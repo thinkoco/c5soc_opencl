@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="System" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element $${FILENAME}
+   {
+   }
+   element acl_snoop_adapter_0
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+   element clk
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element kernel_clk
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+   element mem_splitter_0
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
+   element pipe_stage_pcie_ddr
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="designEnvironment" value="SYSTEM" />
+ <parameter name="device" value="Unknown" />
+ <parameter name="deviceFamily" value="Stratix V" />
+ <parameter name="deviceSpeedGrade" value="Unknown" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="maxAdditionalLatency" value="2" />
+ <parameter name="projectName" value="" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="0" />
+ <parameter name="timeStamp" value="0" />
+ <parameter name="useTestBenchNamingPattern" value="false" />
+ <instanceParameter
+   name="BANK_BYTE_ADDR_WIDTH"
+   displayName="BANK_BYTE_ADDR_WIDTH"
+   type="integer"
+   defaultValue="0"
+   legalRanges=""
+   description="" />
+ <instanceParameter
+   name="DATA_WIDTH"
+   displayName="DATA_WIDTH"
+   type="integer"
+   defaultValue="0"
+   legalRanges=""
+   description="" />
+ <instanceParameter
+   name="NUM_BANKS"
+   displayName="NUM_BANKS"
+   type="integer"
+   defaultValue="0"
+   legalRanges=""
+   description="" />
+ <instanceScript><![CDATA[# request a specific version of the scripting API
+package require -exact qsys 12.1
+
+# Set the name of the procedure to manipulate parameters
+set_module_property COMPOSITION_CALLBACK compose
+
+proc compose {} {
+    # manipulate parameters in here
+    set width [get_parameter_value DATA_WIDTH]
+    set pending_reads [get_parameter_value MAX_PENDING_READS]
+    set log2_num_banks [ expr log([get_parameter_value NUM_BANKS]) / log(2) ]
+    set log2_bank_byte_width [ expr log([get_parameter_value DATA_WIDTH]) / log(2) - 3 ]
+    set bank_awidth [ get_parameter_value BANK_BYTE_ADDR_WIDTH ]
+    set aggr_awidth [expr $dimm_awidth + $log2_num_dimms ]
+    set burst_size [get_parameter_value BURST_SIZE]
+    set burst_width [ expr int(log($burst_size)/log(2)]
+
+    set_instance_parameter_value acl_snoop_adapter_0 BYTE_ADDRESS_WIDTH $aggr_awidth
+    set_instance_parameter_value acl_snoop_adapter_0 BURSTCOUNT_WIDTH $burst_width
+    set_instance_parameter_value acl_snoop_adapter_0 NUM_BYTES [expr $width / 8]
+    set_instance_parameter_value acl_snoop_adapter_0 PENDING_READS $pending_reads
+
+    set_instance_parameter_value pipe_stage_pcie_ddr DATA_WIDTH $width
+    set_instance_parameter_value pipe_stage_pcie_ddr MAX_BURST_SIZE $burst_size
+    set_instance_parameter_value pipe_stage_pcie_ddr ADDRESS_WIDTH $aggr_awidth
+    set_instance_parameter_value pipe_stage_pcie_ddr MAX_PENDING_RESPONSES $pending_reads
+
+    set_instance_parameter_value mem_splitter_0 WIDTH_D $width
+    set_instance_parameter_value mem_splitter_0 M_WIDTH_A $aggr_awidth
+    set_instance_parameter_value mem_splitter_0 BURSTCOUNT_WIDTH $burst_width
+    set_instance_parameter_value mem_splitter_0 MAX_PENDING_READS $pending_reads
+
+}]]></instanceScript>
+ <interface name="mem_export_irq_export" internal=".irq_export" />
+ <interface name="mem_export_export" internal=".export" />
+ <interface
+   name="acl_internal_snoop"
+   internal="acl_snoop_adapter_0.snoop"
+   type="avalon_streaming"
+   dir="start" />
+ <interface name="clk" internal="clk.clk_in" type="clock" dir="end" />
+ <interface name="reset" internal="clk.clk_in_reset" type="reset" dir="end" />
+ <interface name="kernel_clk" internal="kernel_clk.clk_in" type="clock" dir="end" />
+ <interface
+   name="kernel_reset"
+   internal="kernel_clk.clk_in_reset"
+   type="reset"
+   dir="end" />
+ <interface name="s" internal="acl_snoop_adapter_0.s1" type="avalon" dir="end" />
+ <interface
+   name="acl_internal_memorg"
+   internal="mem_splitter_0.mode"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="bank1"
+   internal="mem_splitter_0.bank1"
+   type="avalon"
+   dir="start" />
+ <interface
+   name="bank2"
+   internal="mem_splitter_0.bank2"
+   type="avalon"
+   dir="start" />
+ <module kind="clock_source" version="13.1" enabled="1" name="clk">
+  <parameter name="clockFrequency" value="100000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module
+   kind="acl_snoop_adapter"
+   version="11.0"
+   enabled="1"
+   name="acl_snoop_adapter_0">
+  <parameter name="NUM_BYTES" value="64" />
+  <parameter name="BYTE_ADDRESS_WIDTH" value="47" />
+  <parameter name="PENDING_READS" value="64" />
+  <parameter name="BURSTCOUNT_WIDTH" value="5" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="100000000" />
+  <parameter name="AUTO_KERNEL_CLK_CLOCK_RATE" value="100000000" />
+ </module>
+ <module kind="mem_splitter" version="10.0" enabled="1" name="mem_splitter_0">
+  <parameter name="NUM_BANKS" value="2" />
+  <parameter name="WIDTH_D" value="256" />
+  <parameter name="M_WIDTH_A" value="31" />
+  <parameter name="BURSTCOUNT_WIDTH" value="5" />
+  <parameter name="MAX_PENDING_READS" value="64" />
+ </module>
+ <module
+   kind="altera_avalon_mm_bridge"
+   version="13.1"
+   enabled="1"
+   name="pipe_stage_pcie_ddr">
+  <parameter name="DATA_WIDTH" value="512" />
+  <parameter name="SYMBOL_WIDTH" value="8" />
+  <parameter name="ADDRESS_WIDTH" value="47" />
+  <parameter name="ADDRESS_UNITS" value="SYMBOLS" />
+  <parameter name="MAX_BURST_SIZE" value="16" />
+  <parameter name="MAX_PENDING_RESPONSES" value="64" />
+  <parameter name="LINEWRAPBURSTS" value="0" />
+  <parameter name="PIPELINE_COMMAND" value="1" />
+  <parameter name="PIPELINE_RESPONSE" value="1" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="100000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Stratix V" />
+ </module>
+ <module kind="clock_source" version="13.1" enabled="1" name="kernel_clk">
+  <parameter name="clockFrequency" value="100000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <connection
+   kind="avalon"
+   version="13.1"
+   start="acl_snoop_adapter_0.m1"
+   end="pipe_stage_pcie_ddr.s0">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="13.1"
+   start="pipe_stage_pcie_ddr.m0"
+   end="mem_splitter_0.s">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="clock"
+   version="13.1"
+   start="kernel_clk.clk"
+   end="acl_snoop_adapter_0.kernel_clk" />
+ <connection
+   kind="reset"
+   version="13.1"
+   start="kernel_clk.clk_reset"
+   end="acl_snoop_adapter_0.kernel_reset" />
+ <connection
+   kind="reset"
+   version="13.1"
+   start="clk.clk_reset"
+   end="acl_snoop_adapter_0.clk_reset" />
+ <connection
+   kind="clock"
+   version="13.1"
+   start="clk.clk"
+   end="acl_snoop_adapter_0.clk" />
+ <connection
+   kind="clock"
+   version="13.1"
+   start="clk.clk"
+   end="pipe_stage_pcie_ddr.clk" />
+ <connection kind="clock" version="13.1" start="clk.clk" end="mem_splitter_0.clk" />
+ <connection
+   kind="reset"
+   version="13.1"
+   start="clk.clk_reset"
+   end="mem_splitter_0.clk_reset" />
+ <connection
+   kind="reset"
+   version="13.1"
+   start="clk.clk_reset"
+   end="pipe_stage_pcie_ddr.reset" />
+ <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
+ <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="2" />
+</system>

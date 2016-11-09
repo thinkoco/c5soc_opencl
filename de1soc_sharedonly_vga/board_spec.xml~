@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<board version="0.9" name="de1soc_tank">
+  <!-- TODO Device: -->
+  <device device_model="5csxfc6d6f31c8es_dm.xml">
+    <used_resources>
+      <alms num="2480"/><!-- ALMs used for LUT logic + ALMs used for LUT logic and registers-->
+      <ffs num="3117"/>
+      <dsps num="0"/>
+      <rams num="19"/>
+    </used_resources>
+  </device>
+
+  <!-- One DDR3-800 DIMM, 256-bit data -->
+	<global_mem max_bandwidth="6400">
+		<interface name="acl_iface" port="kernel_mem0" type="slave" width="256" maxburst="16" latency="240" address="0x00000000" size="0x40000000"/>
+	</global_mem>
+	<host>
+		<kernel_config start="0x00000000" size="0x0100000"/>
+  </host>
+  <interfaces>
+		<interface name="acl_iface" port="kernel_cra" type="master" width="64" misc="0"/>
+		<interface name="acl_iface" port="kernel_irq" type="irq" width="1"/>
+		<kernel_clk_reset clk="acl_iface.kernel_clk" clk2x="acl_iface.kernel_clk2x" reset="acl_iface.kernel_reset"/>
+	</interfaces>
+</board>

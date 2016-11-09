@@ -1,0 +1,16 @@
+[I/O]
+Altera PLL Reconfig v12.1= "%t" "%w/../common/lib/megawizard.pl" --wizard:altera_pll_reconfig  --early_gen:on --wizard_file:"%w/pll_reconfig_hw.tcl" --family_parameter:device_family %f %o %h
+<INFO>
+<QIP_FILE_ENABLED/>
+<ACCEPT_OTHER_CNX VALUE="ON"/>
+<DEVICE_FAMILY   SUPPORTED="NONE | Stratix V | Arria V | Cyclone V | Arria V GZ"   SUPPORT_CHECK="ON" /> 
+<LANGUAGES   AHDL="OFF"/>
+<PINPLAN SUPPORTED="ON"/>
+<ALIAS>Altera PLL Reconfig</ALIAS>
+<ALIAS>Altera PLL Reconfig v10.0</ALIAS>
+<ALIAS>Altera PLL Reconfig v10.1</ALIAS>
+<ALIAS>Altera PLL Reconfig v11.0</ALIAS>
+<ALIAS>Altera PLL Reconfig v11.1</ALIAS>
+<ALIAS>Altera PLL Reconfig v12.0</ALIAS>
+<ALIAS>Altera PLL Reconfig v12.1</ALIAS>
+</INFO>
