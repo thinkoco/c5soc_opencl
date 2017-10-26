@@ -8,9 +8,9 @@
 
 modify the board_enc.xml file
 
-form : hardware dir="." default="de1soc_sharedonly"
+	form : hardware dir="." default="de1soc_sharedonly"
 
-to : hardware dir="." default="de1soc_sharedonly_vga"
+	to : hardware dir="." default="de1soc_sharedonly_vga"
 
 ## Host APP
 ### colorGaryAPP
@@ -24,7 +24,7 @@ do sobel by four mathod : arm , neon , opencl ,opencl with shared memory
 | :--------            |:---------:|:---------:|
 | Cortex-A9            |900Mhz     | 168ms     |
 | Neon                 | ?         | 37ms      |
-| Opencl Shared Memory | 130Mhz    | 14.9ms    |
+| OpenCl Shared Memory | 130Mhz    | 14.9ms    |
 ## Linux kernel
 
 	git clone https://github.com/thinkoco/linux-socfpga.git
@@ -36,13 +36,12 @@ do sobel by four mathod : arm , neon , opencl ,opencl with shared memory
 	make socfpga_cyclone5_de1soc.dtb
 
 
-## Image file 
+## SD card Image file 
 
-You can use the [Image file](http://pan.baidu.com/s/1ge6wJhp) directly without build kernel and OpenCL 16.1 enviroment.
-
-http://pan.baidu.com/s/1ge6wJhp
+You can use the SD card [Image file](http://pan.baidu.com/s/1ge6wJhp) directly without build kernel and OpenCL 16.1 enviroment.
 
 ## MSEL
+
 MSEL:[4:0] ——> 00010， SW10[4:0] on,on,on,off,on
 
 ## Limit
