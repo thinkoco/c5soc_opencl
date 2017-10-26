@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<!--
+Copyright (C) 2013-2017 Altera Corporation, San Jose, California, USA. All rights reserved.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this
+software and associated documentation files (the "Software"), to deal in the Software
+without restriction, including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to
+whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or
+substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+This agreement shall be governed in all respects by the laws of the State of California and
+by the laws of the United States of America.
+-->
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Sobel Filter: Intel FPGA&reg; OpenCL&trade; Design Example</title>
+<link rel="stylesheet" href="../common/readme.css" type="text/css">
+</head>
+<body>
+<h1>
+<div class="preheading">Intel FPGA<sup>&reg;</sup> OpenCL&trade; Design Example</div>
+Sobel Filter
+</h1>
+
+<p>This readme file for the Sobel Filter OpenCL Design Example contains
+information about the design example package. For more examples, please
+visit the <a href="https://www.altera.com/products/design-software/embedded-software-developers/opencl/developer-zone.html">Intel FPGA OpenCL Design Examples page</a>.</p>
+<nav>
+<h2>Contents</h2>
+<ul>
+<li><a href="#Description">Description</a></li>
+<li><a href="#Software_Hardware_Requirements">Software &amp; Hardware Requirements</a></li>
+<li><a href="#Package_Contents">Package Contents</a></li>
+<li><a href="#Compiling_the_OpenCL_Kernel">Compiling the OpenCL Kernel</a></li>
+<li><a href="#Compiling_the_Host_Program">Compiling the Host Program</a></li>
+<li><a href="#Running_the_Host_Program">Running the Host Program</a></li>
+<li><a href="#Release_History">Release History</a></li>
+<li><a href="#Legal">Legal</a></li>
+<li><a href="#Contacting_Intel">Contacting Intel</a></li>
+</ul>
+</nav>
+<section>
+<a id="Description"><h2>Description</h2></a>
+<p>This example is a simple Sobel filter. The single work-item OpenCL kernel detects
+      edges in an input RGB (8 bits per components) image and outputs a monochrome
+      image as the result. The kernel demonstrates how to use a sliding-window line
+      buffer to efficiently compute the convolution of a pixel's luma value. The result
+      of the convolution is compared against an input threshold value that can be
+      controlled by the user. The resolution of the filter is fixed through defines so
+      that the line buffer can be implemented efficiently in hardware.</p>
+</section>
+
+<section>
+<a id="Software_Hardware_Requirements"><h2>Software &amp; Hardware Requirements</h2></a>
+<p/>
+<table class="reqs">
+<thead>
+<tr>
+  <th rowspan="3">Requirement</th>
+  <th rowspan="3">Version</th>
+<th colspan="2">OpenCL Kernel</th><th colspan="4">Host Program</th></tr><tr><th rowspan="2">Hardware<br/>Compile</th><th rowspan="2">Emulation<br/>Compile</th><th colspan="2">Hardware</th><th colspan="2">Emulation</th></tr><tr><th>Compile</th><th>Run</th><th>Compile</th><th>Run</th></tr></thead><tbody><tr><td>Quartus Prime Design Software <small>(Quartus II)</small></td><td>16.1 or later</td><td class="req">&#x02713;</td><td class="req">&#x02713;</td><td></td><td></td><td class="unsupported" rowspan="8" colspan="2">Emulation is not supported on the ARM processor. To use emulation, please use an example design package suitable for your development environment.</td></tr><tr><td>Intel(R) FPGA SDK for OpenCL(TM)</td><td>16.1 or later</td><td class="req">&#x02713;</td><td class="req">&#x02713;</td><td class="req" rowspan="2">&#x02713;<div class="either">(either)</div></td><td></td></tr><tr><td>Intel(R) FPGA Runtime Environment for OpenCL(TM)</td><td>16.1 or later</td><td></td><td></td><td class="req">&#x02713;</td></tr><tr><td>Board Support Package</td><td>16.1-compatible</td><td class="req">&#x02713;</td><td class="req">&#x02713;</td><td class="req">&#x02713;</td><td class="req">&#x02713;</td></tr><tr><td>Board Hardware</td><td>-</td><td></td><td></td><td></td><td class="req">&#x02713;</td></tr><tr><td>Altera SoC Embedded Design Suite <small>(ARM cross-compiler)</small></td><td>16.1</td><td></td><td></td><td class="req">&#x02713;</td><td class="req">&#x02713;</td></tr><tr><td>GNU Make</td><td>3.8.1 or later</td><td></td><td></td><td class="req">&#x02713;</td><td></td></tr><tr><td>SDL (Simple DirectMedia Layer) library<sup><a class="note" href="#req-note-1">(1)</a></sup></td><td>2.0.3</td><td></td><td></td><td class="req">&#x02713;</td><td class="req">&#x02713;</td></tr></tbody>
+</table>
+<h3>Notes</h3><ol class="req-notes"><li><a id="req-note-1"/>The SDL (Simple DirectMedia Layer) library is included as part of this example design package.</li></ol>
+</section>
+
+<section>
+<a id="Package_Contents"><h2>Package Contents</h2></a>
+<p/>
+<table class="pkg-contents">
+<thead>
+<tr>
+  <th class="path">Path</th>
+  <th class="desc">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="path"><a href="./" style="padding-left: 0.0ex">sobel_filter/</a></td>
+  <td class="desc"></td>
+</tr>
+<tr>
+  <td class="path"><a href="./Makefile" style="padding-left: 2.0ex">Makefile</a></td>
+  <td class="desc">Makefile for host program</td>
+</tr>
+<tr>
+  <td class="path"><a href="./bin/" style="padding-left: 2.0ex">bin/</a></td>
+  <td class="desc">Host data files, Host program, AOCX files</td>
+</tr>
+<tr>
+  <td class="path"><a href="./device/" style="padding-left: 2.0ex">device/</a></td>
+  <td class="desc">OpenCL kernel files</td>
+</tr>
+<tr>
+  <td class="path"><a href="./device/sobel.cl" style="padding-left: 4.0ex">sobel.cl</a></td>
+  <td class="desc">Top-level OpenCL kernel file</td>
+</tr>
+<tr>
+  <td class="path"><a href="./host/" style="padding-left: 2.0ex">host/</a></td>
+  <td class="desc"></td>
+</tr>
+<tr>
+  <td class="path"><a href="./host/inc/" style="padding-left: 4.0ex">inc/</a></td>
+  <td class="desc">Host include files</td>
+</tr>
+<tr>
+  <td class="path"><a href="./host/src/" style="padding-left: 4.0ex">src/</a></td>
+  <td class="desc">Host source files</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+
+<section>
+<a id="Compiling_the_OpenCL_Kernel"><h2>Compiling the OpenCL Kernel</h2></a>
+    <p>The top-level OpenCL kernel file is <span class="mono">device/sobel.cl</span>.</p>
+    <p>To compile the OpenCL kernel, run:</p>
+    <div class="command">aoc device/sobel.cl <span class="nowrap">-o</span> bin/sobel.aocx --board <span class="highlight">&lt;<i>board</i>&gt;</span></div>
+    <p>where <span class="highlight mono">&lt;<i>board</i>&gt;</span> matches the board you want to target.
+    The <span class="mono">-o bin/sobel.aocx</span> argument is used to place the compiled binary
+    in the location that the host program expects.
+    </p>
+<p>If you are unsure of the boards available, use the following command to list
+available boards:</p>
+<div class="command">aoc --list-boards</div>
+
+</section>
+
+<section>
+<a id="Compiling_the_Host_Program"><h2>Compiling the Host Program</h2></a>
+<p>To compile the host program, run:</p>
+<div class="command">make</div>
+<p>The compiled host program will be located at <span class="mono">bin/host</span>.</p>
+<section>
+<h3>Host Preprocessor Definitions</h3>
+<p>The host program has the following preprocessor definitions:</p>
+<table class="host-defines parameters">
+<thead>
+<tr>
+  <th class="name">Define</th>
+  <th class="type">Type</th>
+  <th class="default">Default</th>
+  <th class="desc">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="name">-D<span class="highlight">USE_SVM_API</span>=&lt;<i>#</i>&gt;</td>
+  <td class="type">Optional</td>
+  <td class="default">0</td>
+  <td class="desc">
+          This option when set to 1 will use the OpenCL 2.0 shared virtual memory (SVM) API.
+        </td>
+</tr>
+</tbody>
+</table>
+<p>On Linux, custom values for preprocessor defines can be specified by setting 
+the value of <mono>CPPFLAGS</mono> when invoking the Makefile.</p>
+
+</section>
+
+<section>
+<a id="Running_the_Host_Program"><h2>Running the Host Program</h2></a>
+<p>Before running the host program, you should have compiled the OpenCL kernel and the host program. Refer to the above sections if you have not completed those steps.</p>
+<p>To run the host program on hardware, execute:</p>
+<div class="command">LD_LIBRARY_PATH=../extlibs/lib:$LD_LIBRARY_PATH bin/host</div>
+<p>Please note that the command includes directives to modify the environment to point to 
+external libraries needed by the host program.</p>
+<p>When the program starts, it will display the unfiltered input image. The controls
+        for the program are listed below:</p><table class="indent">
+          <tr><th>Input</th><th class="left">Action</th></tr>
+          <tr><td class="center"><b>Spacebar</b></td><td>Toggle the filter on or off</td></tr>
+          <tr><td class="center"><b>Q</b>/<b>q</b>/<b>Esc</b>/<b>Enter</b></td><td>Quit the program</td></tr>
+          <tr><td class="center"><b>=</b></td><td>Restore the filter threshold to the default value</td></tr>
+          <tr><td class="center"><b>+</b></td><td>Increase the filter threshold value</td></tr>
+          <tr><td class="center"><b>-</b></td><td>Decrease the filter threshold value</td></tr>
+        </table><section>
+<h3>Host Parameters</h3>
+<p>The general command-line for the host program is:</p>
+<div class="command">bin/host <span class="nowrap">[-<span class="highlight">display</span>=&lt;<i>0|1</i>&gt;]</span></div>
+<p>where the one parameter is:</p>
+<table class="host-params parameters">
+<thead>
+<tr>
+  <th class="name">Parameter</th>
+  <th class="type">Type</th>
+  <th class="default">Default</th>
+  <th class="desc">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="name">-<span class="highlight">display</span>=&lt;<i>0|1</i>&gt;</td>
+  <td class="type">Optional</td>
+  <td class="default">1</td>
+  <td class="desc">
+          Controls whether or not the filter output is displayed on the screen (via SDL).
+        </td>
+</tr>
+</tbody>
+</table>
+</section>
+<section>
+<h3>OpenCL Binary Selection</h3>
+<p>The host program requires a OpenCL binary (AOCX) file to run. For this example design, OpenCL binary files should be placed in the 
+<span class="mono">bin</span> directory.</p>
+
+<p>By default, the host program will look for a binary file in the following order (earlier pattern matches 
+take priority):</p>
+<ol>
+  <li>A file named <span class="mono">sobel.aocx</span>.</li>
+  <li>A file named <span class="mono">sobel_<span class="highlight">&lt;<i>board</i>&gt;</span>_161.aocx</span>, 
+  where <span class="highlight mono">&lt;<i>board</i>&gt;</span> is the name of the board (as passed as the 
+  <span class="mono">--board</span> argument to <span class="mono">aoc</span>).</li>
+</ol>
+</section>
+
+</section>
+
+<section>
+<a id="Release_History"><h2>Release History</h2></a>
+<p/>
+<table class="history">
+<thead>
+<tr>
+  <th class="version">Example Version</th>
+  <th class="sdk-version">SDK Version</th>
+  <th class="date">Date</th>
+  <th class="changes">Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="version">1.5</td>
+  <td class="sdk-version">16.0</td>
+  <td class="date">November 2016</td>
+  <td class="changes"><ul><li>Add SVM API option.</li></ul></td>
+</tr>
+<tr>
+  <td class="version">1.4</td>
+  <td class="sdk-version">16.0</td>
+  <td class="date">June 2016</td>
+  <td class="changes"><ul><li>Fixed makefile.</li></ul></td>
+</tr>
+<tr>
+  <td class="version">1.3</td>
+  <td class="sdk-version">14.1</td>
+  <td class="date">December 2014</td>
+  <td class="changes"><ul><li>New readme documentation.</li><li>Change kernel code to initialize the pixel buffer during initial iterations.</li></ul></td>
+</tr>
+<tr>
+  <td class="version">1.2</td>
+  <td class="sdk-version">14.0</td>
+  <td class="date">July 2014</td>
+  <td class="changes"><ul><li>Update documentation for 14.0 release.</li></ul></td>
+</tr>
+<tr>
+  <td class="version">1.1</td>
+  <td class="sdk-version">13.1</td>
+  <td class="date">January 2014</td>
+  <td class="changes"><ul><li>On Linux, fix possible compilation issues (missing include files).</li></ul></td>
+</tr>
+<tr>
+  <td class="version">1.0</td>
+  <td class="sdk-version">13.1</td>
+  <td class="date">December 2013</td>
+  <td class="changes"><ul><li>First release of example.</li></ul></td>
+</tr>
+</tbody>
+</table>
+
+</section>
+
+<section>
+<a id="Legal"><h2>Legal</h2></a>
+<pre class="license">Copyright (C) 2013-2017 Altera Corporation, San Jose, California, USA. All rights reserved.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this
+software and associated documentation files (the "Software"), to deal in the Software
+without restriction, including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to
+whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or
+substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+This agreement shall be governed in all respects by the laws of the State of California and
+by the laws of the United States of America.
+</pre><section>
+<h3>Simple DirectMedia Layer library</h3>
+<div class="license">
+<pre>
+Simple DirectMedia Layer
+Copyright (C) 1997-2014 Sam Lantinga <slouken@libsdl.org>
+  
+This software is provided 'as-is', without any express or implied
+warranty.  In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+  
+1. The origin of this software must not be misrepresented; you must not
+   claim that you wrote the original software. If you use this software
+   in a product, an acknowledgment in the product documentation would be
+   appreciated but is not required. 
+2. Altered source versions must be plainly marked as such, and must not be
+   misrepresented as being the original software.
+3. This notice may not be removed or altered from any source distribution.
+
+</pre>
+</div>
+</section>
+<section><h3>Trademarks</h3><div class="trademark"><p>OpenCL and the OpenCL logo are trademarks of Apple Inc. used by permission by Khronos.</p><p>Product is based on a published Khronos Specification, and has passed the Khronos Conformance Testing Process. Current conformance status can be found at <a href="www.khronos.org/conformance">www.khronos.org/conformance</a>.</p></div></section>
+</section>
+
+<section>
+<a id="Contacting_Intel"><h2>Contacting Intel</h2></a>
+<p>Although we have made every effort to ensure that this design example works
+correctly, there might be problems that we have not encountered. If you have
+a question or problem that is not answered by the information provided in 
+this readme file or the example's documentation, please contact Intel
+support (<a href="http://www.altera.com/myaltera">myAltera</a>).</p>
+
+</section>
+
+</body>
+</html>
