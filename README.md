@@ -8,17 +8,22 @@
 
 modify the board_enc.xml file
 
-form :<hardware dir="." default="de1soc_sharedonly"></hardware>
+form : hardware dir="." default="de1soc_sharedonly"
 
-to : <hardware dir="." default="de1soc_sharedonly_vga"></hardware>
+to : hardware dir="." default="de1soc_sharedonly_vga"
 
 ## Host APP
 ### colorGaryAPP
 A UVC usb camera application that converting YUYV to RGB and Gray by using opencl.
 
 ### sobel_filter_arm32
-do sobel by four mathod   
+do sobel by four mathod : cpu , neon , opencl ,opencl with shared memory 
 
+| Mathod               | Frequency |  Time     |
+| :--------            |:---------:|:---------:|
+| Cortex-A9            |900Mhz     | 16mms     |
+| Neon                 | ?         | 37ms      |
+| Opencl Shared Memory | 130Mhz    | 14.9ms    |
 ## Linux kernel
 
 	git clone https://github.com/thinkoco/linux-socfpga.git
