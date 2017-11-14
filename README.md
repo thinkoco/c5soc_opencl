@@ -6,7 +6,7 @@
 
 	cp -rf de1soc_sharedonly_vga  ~/intelFPGA/16.1/hld/board/terasic/de1soc
 
-modify the board_enc.xml file
+modify the board_env.xml file
 
 	form : hardware dir="." default="de1soc_sharedonly"
 
@@ -45,5 +45,5 @@ You can use the SD card [Image file](http://pan.baidu.com/s/1ge6wJhp) directly w
 MSEL:[4:0] ——> 00010， SW10[4:0] on,on,on,off,on
 
 ## Limit
-When using desktop, copy your generated top.rbf to fat32 partion and cover opencl.rbf.
+When using desktop, copy your generated top.rbf to fat32 partition and cover opencl.rbf.
 opencl.rbf should match the same host app .
