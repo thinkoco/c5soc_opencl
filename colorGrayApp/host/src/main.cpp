@@ -193,8 +193,10 @@ bool init_opencl() {
   if(!setCwdToExeDir()) {
     return false;
   }
-  // Get the OpenCL platform.
-  platform = findPlatform("Altera");
+  // Get the OpenCL platform. for SDK 14.1
+  //platform = findPlatform("Altera");
+  // Get the OpenCL platform. for SDK 16.1
+  platform = findPlatform("Intel");
   if(platform == NULL) {
     printf("ERROR: Unable to find Altera OpenCL platform.\n");
     return false;
