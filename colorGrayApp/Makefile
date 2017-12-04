@@ -14,7 +14,7 @@
 
 # Creating a static library
 TARGET = grayKernel
-
+TARGET_DIR := bin
 # Where is the Altera SDK for OpenCL software?
 ifeq ($(wildcard $(ALTERAOCLSDKROOT)),)
 $(error Set ALTERAOCLSDKROOT to the root directory of the Altera SDK for OpenCL software installation)
@@ -38,9 +38,9 @@ AOCL_LINK_CONFIG=$(shell aocl link-config --arm) -lSDL -ljpeg
 
 # Make it all!
 all : 
-	$(CROSS-COMPILE)g++ $(SRCS_FILES) $(COMMON_FILES) -o $(TARGET)  $(AOCL_COMPILE_CONFIG) $(AOCL_LINK_CONFIG)
+	$(CROSS-COMPILE)g++ $(SRCS_FILES) $(COMMON_FILES) -o $(TARGET_DIR)/$(TARGET)  $(AOCL_COMPILE_CONFIG) $(AOCL_LINK_CONFIG)
 
 
 # Standard make targets
 clean :
-	@rm -f *.o $(TARGET)
+	@rm -f  $(TARGET_DIR)/*.o $(TARGET_DIR)/$(TARGET)
