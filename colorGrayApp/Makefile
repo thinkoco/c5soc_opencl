@@ -40,7 +40,9 @@ AOCL_LINK_CONFIG=$(shell aocl link-config --arm) -lSDL -ljpeg
 all : 
 	$(CROSS-COMPILE)g++ $(SRCS_FILES) $(COMMON_FILES) -o $(TARGET_DIR)/$(TARGET)  $(AOCL_COMPILE_CONFIG) $(AOCL_LINK_CONFIG)
 
-
+$(TARGET_DIR) :
+	$(ECHO)mkdir $(TARGET_DIR)
+	
 # Standard make targets
 clean :
 	@rm -f  $(TARGET_DIR)/*.o $(TARGET_DIR)/$(TARGET)
