@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<board version="14.1" name="de10_nano_sharedonly">
+<board version="14.1" name="de10_nano_sharedonly_hdmi">
 
   <compile project="top" revision="top" qsys_file="system.qsys" generic_kernel="0">
     <generate cmd="ip-generate --component-file=system.qsys --file-set=QUARTUS_SYNTH --output-directory=system/synthesis --report-file=qip:system/synthesis/system.qip --jvm-max-heap-size=3G"/>
