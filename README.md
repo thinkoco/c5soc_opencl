@@ -23,8 +23,11 @@ Also,it need some modifications to run on DE10-Standard or DE10-Nano
 ![](picture/gspca.png)
 
 ## OpenCL Hardware Template
-**de1soc_sharedonly_vga** is a opencl hardware project that support VGA and desktop for DE1SOC .Copy the file to de1soc OpenCL BSP path.
+**de1soc_sharedonly_vga** is a DE1SOC's OpenCL hardware template that support VGA and desktop.Copy the file to de1soc OpenCL BSP path.
 **this template also support Altera SDK for OpenCL 14.1**
+
+**de10_nano_sharedonly_vga** is a DE10_nano's OpenCL hardware template (Intel FPGA SDK for OpenCL 16.1)that support VGA and desktop .
+**Now,not release editon.No license for compiling**
 
 ## Run OpenCL Application
 
@@ -207,16 +210,17 @@ if you bulid for ALTERA OpenCL SDK 14.1 driver,please checkout **df7d15565965112
 
 ## Planing
 
-- [ ] add mandelbrot application
+- [x] add mandelbrot application
+- [x]  **update to DE10-nano**
 - [ ] update template to Intel FPGA SDK for OpenCL 17.x
 - [ ] add colorGaryAPP shared memory edition
-- [ ]  **update to DE10-nano**
 
 
 ## Limits
-In OpenCL™ systems with homogeneous memory,you have to option to set the CL_CONTEXT_COMPILER_MODE_ALTERA=3 flag in your host code to disable the reading of the .aocx file and the reprogramming of the FPGA.
 
-**When running desktop, copy your generated top.rbf to fat32 partition and rename to opencl.rbf. opencl.rbf file should match the same host app and run host with CL_CONTEXT_COMPILER_MODE_ALTERA=3 flag . **
+Set the CL_CONTEXT_COMPILER_MODE_ALTERA=3 flag in your host code to disable the reading of the .aocx file and the reprogramming of the FPGA.
+When running desktop, copy your generated top.rbf to fat32 partition and rename to opencl.rbf.
+opencl.rbf file should match the same host app and run host with CL_CONTEXT_COMPILER_MODE_ALTERA=3 flag . 
 
 ## Intel FPGA SDK for OpenCL license issue on Ubuntu 16.04
 
