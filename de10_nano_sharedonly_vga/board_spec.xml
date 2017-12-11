@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<board version="14.1" name="de10_nano_sharedonly">
+
+  <compile project="top" revision="top" qsys_file="system.qsys" generic_kernel="0">
+    <generate cmd="ip-generate --component-file=system.qsys --file-set=QUARTUS_SYNTH --output-directory=system/synthesis --report-file=qip:system/synthesis/system.qip --jvm-max-heap-size=3G"/>
+    <synthesize cmd="quartus_sh --flow compile top -c top"/>
+    <auto_migrate platform_type="c5soc" >
+      <include fixes=""/>
+      <exclude fixes=""/>
+    </auto_migrate>
+  </compile>
+  
+  <device device_model="5csxfc6d6f31c8es_dm.xml">
+    <used_resources>
+      <alms num="1080"/><!-- ALMs used for LUT logic + ALMs used for LUT logic and registers-->
+      <ffs num="1908"/>
+      <dsps num="0"/>
+      <rams num="20"/>
+    </used_resources>
+  </device>
+
+  <!-- One DDR3-800 DIMM, 256-bit data -->
+	<global_mem max_bandwidth="6400">
+		<interface name="acl_iface" port="kernel_mem0" type="slave" width="256" maxburst="16" latency="240" address="0x00000000" size="0x40000000"/>
+	</global_mem>
+	<host>
+		<kernel_config start="0x00000000" size="0x0100000"/>
+  </host>
+  <interfaces>
+		<interface name="acl_iface" port="kernel_cra" type="master" width="64" misc="0"/>
+		<interface name="acl_iface" port="kernel_irq" type="irq" width="1"/>
+		<kernel_clk_reset clk="acl_iface.kernel_clk" clk2x="acl_iface.kernel_clk2x" reset="acl_iface.kernel_reset"/>
+	</interfaces>
+</board>
