@@ -26,20 +26,20 @@ Also,it need some modifications to run on DE10-Standard or DE10-Nano
 **de1soc_sharedonly_vga** is a DE1SOC's OpenCL hardware template that support VGA and desktop.Copy the file to de1soc OpenCL BSP path.
 **this template also support Altera SDK for OpenCL 14.1**
 
-**de10_nano_sharedonly_vga** is a DE10_nano's OpenCL hardware template (Intel FPGA SDK for OpenCL 16.1)that support VGA and desktop .
-**Now,not release editon.No license for compiling**
+**de10_nano_sharedonly_hdmi** is a DE10_nano's OpenCL hardware template (Intel FPGA SDK for OpenCL 16.1)that support VGA and desktop .
+**release editon**
 
 ## Run OpenCL Application
 
 1. Wirte  the [Image file](http://pan.baidu.com/s/1ge6wJhp) into the microSD card
 2. Insert the SD card into the microSD card socket(J11)
-3. MSEL[4:0] ——> 01000， SW10(**1 to 6**) on,on,on,off,on,N/A
+3. MSEL[4:0] ——> 01010， SW10(**1 to 6**) on,off,on,off,on,N/A
 4. For de1soc D version , use an USB cable to connect your Host PC with the UART-to-USB port (J4) on DE1-SoC.(F version no need)
 5. Connect the monitor,keyboard and mouse to DE1-SoC
 6. Power on DE1-SoC to boot Linux 
 7. Open the kconsole (Ctrl+Alt+T) on the de1soc desktop and run OpenCL host directly. 
 
-Some compiled binary in **compiled_bin_sdk16.1** folder.
+Some compiled binary in [compiled_bin_sdk16.1](https://github.com/thinkoco/de1_soc_opencl/tree/master/compiled_bin_sdk16.1) folder.
 
 ### colorGaryAPP
 A UVC usb camera application that converting YUYV to RGB and Gray by using opencl.
@@ -57,7 +57,7 @@ do sobel by four mathods : arm , neon , opencl ,opencl with shared memory
 | :--------            |:---------:|:---------:|
 | Cortex-A9            |900Mhz     | 168ms     |
 | Neon                 | ?         | 37ms      |
-| OpenCL Memory Copy   | 140Mhz    |     ?     |
+| OpenCL Memory Copy   | 140Mhz    |     256ms  |
 | OpenCL Shared Memory | 140Mhz    | 14.8ms    |
 
 Host useage:
