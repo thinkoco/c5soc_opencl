@@ -1,7 +1,7 @@
 module top (
 	fpga_clk_50,
-  	fpga_reset_n,
-  	fpga_led_output,
+  //	fpga_reset_n,
+  	//fpga_led_output,
   
  	memory_mem_a,
   	memory_mem_ba,
@@ -77,8 +77,8 @@ module top (
 
 
   input  wire 		      fpga_clk_50;
-  input  wire 		      fpga_reset_n;
-  output wire [3:0]   	fpga_led_output;
+   wire 		      fpga_reset_n;
+  //output wire [3:0]   	fpga_led_output;
   
   		//////////// HDMI //////////
 	inout  wire 		          		HDMI_I2C_SCL;
@@ -150,21 +150,20 @@ module top (
   inout  wire 		      i2c_scl;
   inout  wire 		      i2c_sda;
 
- // wire	[29:0]	      fpga_internal_led;
+  wire	[29:0]	      fpga_internal_led;
   wire		            kernel_clk;
 
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
 
-  wire [1:0] fpga_debounced_buttons;
-  wire [6:0]  fpga_led_internal;
+  wire  fpga_debounced_button;
 
   wire               clk_65;
   wire               clk_130;
 // connection of internal logics
-  assign LED[7:1] = fpga_led_internal;
 
+  assign fpga_reset_n = KEY[0];
 
 //=======================================================
 //  Structural coding
@@ -262,9 +261,9 @@ assign HDMI_TX_CLK = clk_65;
 		.acl_iface_alt_vip_itc_0_clocked_video_vid_h         (),         //                                         .vid_h
 		.acl_iface_alt_vip_itc_0_clocked_video_vid_v         (),         //                                         .vid_v
 		
-		.acl_iface_led_pio_external_connection_export        (fpga_led_internal),        //    acl_iface_led_pio_external_connection.export
+		.acl_iface_led_pio_external_connection_export        (LED[7:4]),        //    acl_iface_led_pio_external_connection.export
 		.acl_iface_dipsw_pio_external_connection_export      (SW),      //  acl_iface_dipsw_pio_external_connection.export
-		.acl_iface_button_pio_external_connection_export     (fpga_debounced_buttons)      // acl_iface_button_pio_external_connection.export
+		.acl_iface_button_pio_external_connection_export     (fpga_debounced_button)      // acl_iface_button_pio_external_connection.export
 	
   );
   
@@ -273,22 +272,22 @@ assign HDMI_TX_CLK = clk_65;
 debounce debounce_inst (
   .clk                                  (fpga_clk_50),
   .reset_n                              (fpga_reset_n),
-  .data_in                              (KEY),
-  .data_out                             (fpga_debounced_buttons)
+  .data_in                              (KEY[1]),
+  .data_out                             (fpga_debounced_button)
 );
-  defparam debounce_inst.WIDTH = 2;
+  defparam debounce_inst.WIDTH = 1;
   defparam debounce_inst.POLARITY = "LOW";
   defparam debounce_inst.TIMEOUT = 50000;               // at 50Mhz this is a debounce time of 1ms
   defparam debounce_inst.TIMEOUT_WIDTH = 16;            // ceil(log2(TIMEOUT))
 
   
  
-//  // module for visualizing the kernel clock with 4 LEDs
-//  async_counter_30 AC30 (
-//        .clk 	(kernel_clk),
-//        .count	(fpga_internal_led)
-//    );
-//  assign fpga_led_output[3:0] = ~fpga_internal_led[29:26];  
+  // module for visualizing the kernel clock with 4 LEDs
+  async_counter_30 AC30 (
+        .clk 	(kernel_clk),
+        .count	(fpga_internal_led)
+    );
+  assign LED[3:0] = ~fpga_internal_led[29:26];  
 
 endmodule
 

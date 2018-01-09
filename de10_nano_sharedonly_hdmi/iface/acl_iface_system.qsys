@@ -714,10 +714,10 @@
   <parameter name="HHP_HPS_VERIFICATION" value="false" />
   <parameter name="HLGPI_Enable" value="false" />
   <parameter name="HPS_PROTOCOL" value="DDR3" />
-  <parameter name="I2C0_Mode" value="I2C" />
-  <parameter name="I2C0_PinMuxing" value="HPS I/O Set 0" />
-  <parameter name="I2C1_Mode" value="N/A" />
-  <parameter name="I2C1_PinMuxing" value="Unused" />
+  <parameter name="I2C0_Mode" value="N/A" />
+  <parameter name="I2C0_PinMuxing" value="Unused" />
+  <parameter name="I2C1_Mode" value="I2C" />
+  <parameter name="I2C1_PinMuxing" value="HPS I/O Set 0" />
   <parameter name="I2C2_Mode" value="N/A" />
   <parameter name="I2C2_PinMuxing" value="Unused" />
   <parameter name="I2C3_Mode" value="N/A" />

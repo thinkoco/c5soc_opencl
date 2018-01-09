@@ -12,10 +12,10 @@
   
   <device device_model="5csxfc6d6f31c8es_dm.xml">
     <used_resources>
-      <alms num="1080"/><!-- ALMs used for LUT logic + ALMs used for LUT logic and registers-->
-      <ffs num="1908"/>
+      <alms num="2095"/><!-- ALMs used for LUT logic + ALMs used for LUT logic and registers-->
+      <ffs num="4677"/>
       <dsps num="0"/>
-      <rams num="20"/>
+      <rams num="36"/>
     </used_resources>
   </device>
 

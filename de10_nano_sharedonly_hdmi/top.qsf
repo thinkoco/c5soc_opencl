@@ -4,7 +4,7 @@
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEBA6U23I7
 set_global_assignment -name TOP_LEVEL_ENTITY top
-set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
+set_global_assignment -name VERILOG_INPUT_VERSION VERILOG_2001
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 
@@ -55,12 +55,10 @@ set_global_assignment -name LL_SECURITY_ROUTING_INTERFACE OFF -section_id acl_if
 set_global_assignment -name LL_IGNORE_IO_BANK_SECURITY_CONSTRAINT OFF -section_id acl_iface_region
 set_global_assignment -name LL_PR_REGION OFF -section_id acl_iface_region
 set_global_assignment -name LL_ROUTING_REGION_EXPANSION_SIZE 2147483647 -section_id acl_iface_region
-set_instance_assignment -name LL_MEMBER_OF acl_iface_region -to "system:the_system|system_acl_iface:acl_iface" -section_id acl_iface_region
 
 set_global_assignment -name LL_CORE_ONLY OFF -section_id acl_iface_region
 set_global_assignment -name PARTITION_IGNORE_SOURCE_FILE_CHANGES ON -section_id acl_iface_partition
 #set_global_assignment -name LL_RECT X0_Y0 -width 19 -height 5 -section_id acl_iface_region
-set_global_assignment -name LL_RECT X25_Y16 -width 44 -height 46 -section_id acl_iface_region
 
 #============================================================
 # Synthesis and Fitter Fine-Tuning
@@ -84,8 +82,8 @@ set_global_assignment -name FLOW_DISABLE_ASSEMBLER ON
 # Global clock and reset
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to fpga_clk_50
 set_location_assignment PIN_Y13 -to PIN_V11
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to fpga_reset_n
-set_location_assignment PIN_AH17 -to fpga_reset_n
+# -name IO_STANDARD "3.3-V LVCMOS" -to fpga_reset_n
+#set_location_assignment PIN_AH17 -to fpga_reset_n
 
 #============================================================
 # HDMI
@@ -669,9 +667,14 @@ set_global_assignment -name MIF_FILE db/reconfig_map_0.mif
 set_global_assignment -name QIP_FILE system/synthesis/system.qip
 set_global_assignment -name SDC_FILE top_post.sdc
 set_global_assignment -name TCL_SCRIPT_FILE scripts/post_module.tcl
-set_global_assignment -name SDC_FILE top_guaranteed_timing.sdc
+set_global_assignment -name SDC_FILE top_guaranteed_timing.sdc -tag aocl_guaranteed_timing
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
+set_global_assignment -name LL_WIDTH 44 -section_id acl_iface_region
+set_global_assignment -name LL_HEIGHT 46 -section_id acl_iface_region
+set_global_assignment -name LL_ORIGIN X25_Y16 -section_id acl_iface_region
+set_instance_assignment -name LL_MEMBER_OF acl_iface_region -to "system:the_system|system_acl_iface:acl_iface" -section_id acl_iface_region
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY aclif_28a61 -to "system:the_system|system_acl_iface:acl_iface" -section_id acl_iface_partition
 set_instance_assignment -name PARTITION_HIERARCHY borde_92b51 -to "system:the_system|system_acl_iface:acl_iface|system_acl_iface_hps:hps|system_acl_iface_hps_hps_io:hps_io|system_acl_iface_hps_hps_io_border:border" -section_id "system_acl_iface_hps_hps_io_border:border"
