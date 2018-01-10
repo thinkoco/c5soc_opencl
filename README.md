@@ -31,7 +31,7 @@ Also,it need some modifications to run on DE10-Standard or DE10-Nano
 
 ## Run OpenCL Application
 
-1. Wirte  the [Image file](http://pan.baidu.com/s/1ge6wJhp) into the microSD card
+1. Download  the Image file ([Baidu Cloud Link](http://pan.baidu.com/s/1ge6wJhp) or [Google Drive Link](https://drive.google.com/drive/folders/1Ly0_IXAf4yZpqq_qGX45RUcDkPlZyk-U) ) and write it into the microSD card
 2. Insert the SD card into the microSD card socket(J11)
 3. MSEL[4:0] ——> 01010， SW10(**1 to 6**) on,off,on,off,on,N/A
 4. For de1soc D version , use an USB cable to connect your Host PC with the UART-to-USB port (J4) on DE1-SoC.(F version no need)
@@ -163,7 +163,7 @@ Compile host on DE1SOC
 
 ## SD card Image file 
 
-You can use the SD card [Image file](http://pan.baidu.com/s/1ge6wJhp) directly without building kernel and OpenCL 16.1 enviroment.
+You can use the SD card Image file( [Baidu Cloud Link](http://pan.baidu.com/s/1ge6wJhp)   or  [Google Drive Link](https://drive.google.com/drive/folders/1Ly0_IXAf4yZpqq_qGX45RUcDkPlZyk-U) ) directly without building kernel and OpenCL 16.1 enviroment.
 
 
 ## Linux kernel and Driver
