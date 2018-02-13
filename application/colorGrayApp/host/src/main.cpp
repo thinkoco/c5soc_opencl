@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <cstring>
-#include "CL/opencl.h"
-#include "AOCL_Utils.h"
+#include <CL/opencl.h>
+#include "AOCLUtils/aocl_utils.h"
 #include <float.h>
 #include <time.h>
 #include <SDL.h>
