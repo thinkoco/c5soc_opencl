@@ -21,22 +21,17 @@ More detail for Intel FPGA SDK for OpenCL 16.1,refering to [DE1SOC_OpenCL_v02.pd
 Install tools and set BSP
 
 	sudo apt update
-	sudo apt install u-boot-tools gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libncurses5-dev make
+	sudo apt install u-boot-tools gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libncurses5-dev make lsb uml-utilities git
 
-	wget http://www.terasic.com.cn/attachment/archive/836/DE1SOC_OpenCL_v02.pdf
-	wget http://www.terasic.com/downloads/cd-rom/de1-soc/DE1_SoC_OpenCL_BSP_16.0_V1.1.zip
-	unzip DE1_SoC_OpenCL_BSP_16.0_V1.1.zip
-	mkdir -p ~/intelFPGA/16.1/hld/board/terasic
+	git clone https://github.com/thinkoco/c5soc_opencl.git
+	cd c5soc_opencl
 
-	cp -rf de1soc ~/intelFPGA/16.1/hld/board/terasic
+	cp -rf de1soc_sharedonly_vga ~/intelFPGA/16.1/hld/board/c5soc
+	cp -rf de10_nano_sharedonly_hdmi ~/intelFPGA/16.1/hld/board/c5soc
 
-	git clone https://github.com/thinkoco/de1_soc_opencl.git
-	cd de1_soc_opencl 
-	cp -rf de1soc_sharedonly_vga ~/intelFPGA/16.1/hld/board/terasic/de1soc
-	
-modify the ~/intelFPGA/16.1/hld/board/terasic/de1soc/board_env.xml file
+modify the ~/intelFPGA/16.1/hld/board/c5soc/board_env.xml file
 
-	form : hardware dir="." default="de1soc"
+	form : hardware dir="." default="c5soc"
 
 	to : hardware dir="." default="de1soc_sharedonly_vga"
 	
@@ -53,7 +48,7 @@ About  environment，write the following to env.sh file and change the paths for
 
 	export PATH="$PATH:${QUARTUS_ROOTDIR}/bin:${QUARTUS_ROOTDIR}/linux64:${ALTERAOCLSDKROOT}/linux64/bin:${ALTERAOCLSDKROOT}/bin"
 	export LD_LIBRARY_PATH="${ALTERAOCLSDKROOT}/linux64/lib"
-	export AOCL_BOARD_PACKAGE_ROOT="${ALTERAOCLSDKROOT}/board/terasic/de1soc"
+	export AOCL_BOARD_PACKAGE_ROOT="${ALTERAOCLSDKROOT}/board/c5soc"
 	export QUARTUS_64BIT=1
 	export LM_LICENSE_FILE="~/intelFPGA/license.dat"
 
@@ -62,31 +57,29 @@ About  environment，write the following to env.sh file and change the paths for
 
 ## Compile OpenCL Host  and Kernel
 
-### colorGaryAPP
+### Windows
 
-Compile opencl kernel command:
+Compile opencl kernel command on PC:
 
-	cd to  xxx/de1_soc_opencl/colorGrayApp
 	aoc device/grayKernel.cl -o bin/grayKernel.aocx --board de1soc_sharedonly_vga -v --report
+	aoc device/sobel.cl -o bin/sobel.aocx --board de1soc_sharedonly_vga -v --report
+	aoc device/mandelbrot_kernel.cl -o bin/mandelbrot_kernel.aocx  --board de1soc_sharedonly_vga -v --report 
 
 Compile host on DE1SOC:
 
-	cd to  xxx/de1_soc_opencl/colorGrayApp
-	make
+	make host
 
+### Linux
 
+Compile opencl kernel command on PC:
 
-### sobel_filter_arm32
+	aoc --list-boards
+	make fpga
 
-Compile opencl kernel command:
+Compile host on DE1SOC:
 
-	cd to  xxx/de1_soc_opencl/sobel_filter_arm32/sobel_filter
-	aoc device/sobel.cl -o bin/sobel.aocx --board de1soc_sharedonly_vga -v --report
+	make host
 
-Compile host on DE1SOC
-
-	cd to  xxx/de1_soc_opencl/sobel_filter_arm32/sobel_filter
-	make
 
 ## Linux kernel and Driver
 If you want to add more kernel features,you can build your own kernel image.When update kernel,you should recompile the opencl driver and update to SD card.

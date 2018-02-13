@@ -18,7 +18,7 @@ You can use the SD card Image files directly without building kernel and OpenCL 
 
 ## Run OpenCL Application
 
-1. Download  the Image fileand write it into the microSD card
+1. Download  the Image file and write it into the microSD card
 2. Insert the SD card into the microSD card socket(J11)
 3. MSEL[4:0] ——> 01010， SW10(**1 to 6**) on,off,on,off,on,N/A
 4. For de1soc D version , use an USB cable to connect your Host PC with the UART-to-USB port (J4) on DE1-SoC.(F version no need)
