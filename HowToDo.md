@@ -6,7 +6,7 @@
 - Intel FPGA SDK for OpenCL 16.1
 - SoC Embedded Design Suite (EDS)
 
-It's easy to use linux commands (arm-linux-guneabihf-gcc,make,dd) in Soc_EDS_coomand_shell.bat on windows.
+It's easy to use linux commands (arm-linux-guneabihf-gcc,make,dd) in Soc_EDS_command_shell.bat on windows.
 
 More detail for Intel FPGA SDK for OpenCL 16.1,refering to [DE1SOC_OpenCL_v02.pdf](http://www.terasic.com.cn/attachment/archive/836/DE1SOC_OpenCL_v02.pdf)
 
@@ -105,6 +105,19 @@ For buliding aoc_drv.ko diver, choose "M" to select one opencl driver
 	Device Drivers > FPGA Configuration Support 
 ![](picture/aoc_drv.png)
 
+## USB Cameras Driver
+
+- UVC (USB video device class) USB Cameras,for example Logitech C270
+
+	Device Drivers > Multimedia support > Media USB Adapters
+	
+![](picture/uvc.png)
+
+- USB Cameras supported by gspca driver,for example ZC301
+
+	Drivers > Multimedia support > Media USB Adapters > GSPCA based webcams
+	
+![](picture/gspca.png)
 
 ## MSEL
 - compression rbf (default generated top.rbf)

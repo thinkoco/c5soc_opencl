@@ -1,4 +1,4 @@
-# de1_soc_opencl
+# IntelFPGA Cyclone V SoC OpenCL
 
 ##  Hardware Architecture
 ![](picture/arch.png)
@@ -9,7 +9,12 @@
 - [x] [DE10-Nano](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=1048)
 - [ ] [DE0-Nano-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=954)
 
-## SD Card Image file links
+## Supported USB Cameras
+
+- UVC (USB video device class) USB Cameras,for example Logitech C270
+- USB Cameras supported by gspca driver,for example ZC301
+
+## SD Card Image links
 
 You can use the SD card Image files directly without building kernel and OpenCL 16.1 enviroment.
 
@@ -28,20 +33,6 @@ You can use the SD card Image files directly without building kernel and OpenCL 
 
 Some compiled binary in [compiled_bin_sdk16.1](https://github.com/thinkoco/de1_soc_opencl/tree/master/compiled_bin_sdk16.1) folder.
 
-## Supported USB Cameras
-
-- UVC (USB video device class) USB Cameras,for example Logitech C270
-
-	Device Drivers > Multimedia support > Media USB Adapters
-	
-![](picture/uvc.png)
-
-- USB Cameras supported by gspca driver,for example ZC301
-
-	Drivers > Multimedia support > Media USB Adapters > GSPCA based webcams
-	
-![](picture/gspca.png)
-
 ## OpenCL Hardware Template
 **de1soc_sharedonly_vga** is a DE1SOC's OpenCL hardware template that support VGA and desktop.Copy the file to de1soc OpenCL BSP path.
 **this template also support Altera SDK for OpenCL 14.1**
@@ -49,17 +40,21 @@ Some compiled binary in [compiled_bin_sdk16.1](https://github.com/thinkoco/de1_s
 **de10_nano_sharedonly_hdmi** is a DE10_nano's OpenCL hardware template (Intel FPGA SDK for OpenCL 16.1)that support VGA and desktop .
 **release editon**
 
-### colorGaryAPP
+### colorApp
 A UVC usb camera application that converting YUYV to RGB and Gray by using opencl.
+
+![](picture/colorApp.png)
 
 Host usage:
 
 	grayKernel -w960 -h720 
 	grayKernel -w640 -h480 -r2 -g1 -b2 -u700 -d200 
 
-### sobel_filter_arm32
+### sobel_filter
 
-do sobel by four mathods : arm , neon , opencl ,opencl with shared memory 
+do sobel by four mathods : arm , neon , opencl ,opencl with shared memory
+
+![](picture/sobel.png)
 
 | Mathods              | Frequency |  Time     |
 | :--------            |:---------:|:---------:|
@@ -74,7 +69,14 @@ Host useage:
 	"+"  Increase filter threshold
 	"="  Reset filter threshold to default
 	 " q/<enter>/<esc>" Quit the program
- 
+
+### Mandelbrot
+
+![](picture/mandelbrot.png)
+
+Host useage:
+
+	mandelbrot -w=800 -h=640 -c=32
 
 ## Planing
 
