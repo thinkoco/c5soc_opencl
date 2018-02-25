@@ -7,7 +7,8 @@
 ## Supported Boards
 - [x] [DE1-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=182&No=870)
 - [x] [DE10-Nano](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=1048)
-- [ ] [DE0-Nano-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=954)
+- [ ] [DE10-Standard](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=182&No=1105)
+- [ ] [DE0-Nano-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=954) + Arduino LCD 
 
 ## Supported USB Cameras
 
@@ -16,10 +17,12 @@
 
 ## SD Card Image links
 
-You can use the SD card Image files directly without building kernel and OpenCL 16.1 enviroment.
+You can use the SD card Image files directly without building kernel and OpenCL 16.1 environment.
 
 - [x] DE1-SoC [Baidu Cloud Link](http://pan.baidu.com/s/1ge6wJhp) or [Google Drive Link](https://drive.google.com/drive/folders/1Ly0_IXAf4yZpqq_qGX45RUcDkPlZyk-U)
 - [x] DE10-Nano [Baidu Cloud Link](https://pan.baidu.com/s/1pNsUHSn) or [Google Drive Link](https://drive.google.com/open?id=1NGk-Dp_oo90QLhaNKBRPbdPdf7fR1IJv)
+- [ ] DE10-Standard
+- [ ] DE0-Nano-SoC
 
 ## Run OpenCL Application
 
@@ -31,17 +34,20 @@ You can use the SD card Image files directly without building kernel and OpenCL 
 6. Power on DE1-SoC to boot Linux 
 7. Open the kconsole (Ctrl+Alt+T) on the de1soc desktop and run OpenCL host directly. 
 
-Some compiled binary in [compiled_bin_sdk16.1](https://github.com/thinkoco/de1_soc_opencl/tree/master/compiled_bin_sdk16.1) folder.
+Some compiled binaries are in [compiled_bin_sdk16.1](https://github.com/thinkoco/de1_soc_opencl/tree/master/compiled_bin_sdk16.1) folder.
 
 ## OpenCL Hardware Template
-**de1soc_sharedonly_vga** is a DE1SOC's OpenCL hardware template that support VGA and desktop.Copy the file to de1soc OpenCL BSP path.
-**this template also support Altera SDK for OpenCL 14.1**
+**de1soc_sharedonly_vga** is a DE1SOC's OpenCL hardware template that supports VGA and desktop.Copy the file to de1soc OpenCL BSP path.
+**this template also supports Altera SDK for OpenCL 14.1**
 
-**de10_nano_sharedonly_hdmi** is a DE10_nano's OpenCL hardware template (Intel FPGA SDK for OpenCL 16.1)that support VGA and desktop .
-**release editon**
+**de10_nano_sharedonly_hdmi** is a DE10_nano's OpenCL hardware template (Intel FPGA SDK for OpenCL 16.1)that supports VGA and desktop .
+**release edition**
+
+**de10_standard_sharedonly_vga** is a DE10_Standard's OpenCL hardware template (Intel FPGA SDK for OpenCL 16.1)that supports VGA and desktop .
+**Not release edition**
 
 ### colorApp
-A UVC usb camera application that converting YUYV to RGB and Gray by using opencl.
+A UVC usb camera application program is used to convert YUYV to RGB and Gray by using opencl.
 
 ![](picture/colorApp.png)
 
@@ -52,15 +58,15 @@ Host usage:
 
 ### sobel_filter
 
-do sobel by four mathods : arm , neon , opencl ,opencl with shared memory
+do sobel by using four methods : arm , neon , opencl ,opencl with shared memory
 
 ![](picture/sobel.png)
 
-| Mathods              | Frequency |  Time     |
+| Methods              | Frequency |  Time     |
 | :--------            |:---------:|:---------:|
-| Cortex-A9            |900Mhz     | 168ms     |
+| Cortex-A9            | 800Mhz    | 168ms     |
 | Neon                 | ?         | 37ms      |
-| OpenCL Memory Copy   | 140Mhz    |     256ms  |
+| OpenCL Memory Copy   | 140Mhz    | 256ms     |
 | OpenCL Shared Memory | 140Mhz    | 14.8ms    |
 
 Host useage:
@@ -82,8 +88,12 @@ Host useage:
 
 - [x] add mandelbrot application
 - [x]  **update to DE10-nano**
+- [ ]  **add DE10-Standard BSP**
+- [ ]  **add DE0-Nano-SoC BSP**
+- [ ] **DE0-Nano-SoC + Arduino LCD BSP**
 - [ ] update template to Intel FPGA SDK for OpenCL 17.x
 - [ ] add colorGaryAPP shared memory edition
+
 
 
 ## Limits
@@ -93,5 +103,5 @@ When running desktop, copy your generated top.rbf to fat32 partition and rename 
 opencl.rbf file should match the same host app and run host with CL_CONTEXT_COMPILER_MODE_ALTERA=3 flag . 
 
 ## How to do
-There are some [guides](HowToDo.md).
+Here are some [guides](HowToDo.md).
 
