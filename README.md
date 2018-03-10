@@ -8,21 +8,23 @@
 - [x] [DE1-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=182&No=870)
 - [x] [DE10-Nano](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=1048)
 - [ ] [DE10-Standard](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=182&No=1105)
-- [ ] [DE0-Nano-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=954) + Arduino LCD 
+- [ ] [DE10-Nano-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=1048) + Arduino LCD
+- [ ] ~~[DE0-Nano-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=954) + Arduino LCD~~
 
 ## Supported USB Cameras
 
 - UVC (USB video device class) USB Cameras,for example Logitech C270
-- USB Cameras supported by gspca driver,for example ZC301
+- USB Cameras supported by gspca driver
+- etc.
 
 ## SD Card Image links
 
 You can use the SD card Image files directly without building kernel and OpenCL 16.1 environment.
 
 - [x] DE1-SoC [Baidu Cloud Link](http://pan.baidu.com/s/1ge6wJhp) or [Google Drive Link](https://drive.google.com/drive/folders/1Ly0_IXAf4yZpqq_qGX45RUcDkPlZyk-U)
-- [x] DE10-Nano [Baidu Cloud Link](https://pan.baidu.com/s/1pNsUHSn) or [Google Drive Link](https://drive.google.com/open?id=1NGk-Dp_oo90QLhaNKBRPbdPdf7fR1IJv)
+- [x] DE10-Nano [Baidu Cloud Link](https://pan.baidu.com/s/1KDyexwHD39uyvcMDm0G97A) or [Google Drive Link](https://drive.google.com/open?id=1mAYHFvOw2xtgf-e8pntFCxCGOdaYNsgG)
 - [ ] DE10-Standard
-- [ ] DE0-Nano-SoC
+- [ ] ~~DE0-Nano-SoC~~
 
 ## Run OpenCL Application
 

@@ -1,5 +1,5 @@
 # How To Do
-## Tools install & Enviroment Setting
+## Tools install & Environment Setting
 ### Windows x64
 
 - Quartus Prime Standard Edition 16.1
@@ -87,8 +87,16 @@ If you want to add more kernel features,you can build your own kernel image.When
 
 	git clone https://github.com/thinkoco/linux-socfpga.git
 	cd linux-socfpga
+
+DE1-Soc:
+
 	git checkout -b socfpga-opencl_4.1.22 origin/socfpga-opencl_4.1.22
 	cp opencl-vga-config .config
+
+DE10-NANO:
+
+	git checkout -b socfpga-opencl_3.18 origin/socfpga-3.18
+	cp config_opencl_de10_nano .config
 	
 	export ARCH=arm
 	export CROSS_COMPILE=arm-linux-gnueabihf-
@@ -139,8 +147,8 @@ For buliding aoc_drv.ko diver, choose "M" to select one opencl driver
 
 	sudo apt install lsb uml-utilities
 
-	sudo tunctl                                           # Create the tap0 network interface
-	sudo ip link set dev tap0 name eth0                   # Rename the tap0 interface to eth0
-	sudo ifconfig eth0 hw ether xx:xx:xx:xx:xx:xx         # Set the MAC address for the eth0 interface
-	sudo ifconfig eth0 up                                 # Bring up the eth0 interface
+~~sudo tunctl~~                                           # Create the tap0 network interface
+~~sudo ip link set dev tap0 name eth0~~                   # Rename the tap0 interface to eth0
+~~sudo ifconfig eth0 hw ether xx:xx:xx:xx:xx:xx~~         # Set the MAC address for the eth0 interface
+~~sudo ifconfig eth0 up~~                                 # Bring up the eth0 interface
 
