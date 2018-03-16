@@ -17,37 +17,50 @@
 - USB Cameras supported by gspca driver
 - etc.
 
-## SD Card Image links
+## SD Card Image Features
 
-You can use the SD card Image files directly without building kernel and OpenCL 16.1 environment.
+- [x] both IntelFPGA OpenCL SDK 16.1 and 17.1
+- [x] also working with terasic's OpenCL hardware template BSP(no vedio ip core)
+- [x] also working without OpenCL
+- [x] support x2go server (run desktop through ethernet)
+- [x] All in one (just DE1-SoC and DE10-Nano)
+- [x] usb host and uvc driver for UVC cameras
 
-- [x] DE1-SoC [Baidu Cloud Link](http://pan.baidu.com/s/1ge6wJhp) or [Google Drive Link](https://drive.google.com/drive/folders/1Ly0_IXAf4yZpqq_qGX45RUcDkPlZyk-U)
-- [x] DE10-Nano [Baidu Cloud Link](https://pan.baidu.com/s/1KDyexwHD39uyvcMDm0G97A) or [Google Drive Link](https://drive.google.com/open?id=1mAYHFvOw2xtgf-e8pntFCxCGOdaYNsgG)
+
+You can downlaod the all in one SD card Image file here [Baidu Cloud Link](https://pan.baidu.com/s/1KDyexwHD39uyvcMDm0G97A) or [Google Drive Link](https://drive.google.com/open?id=1mAYHFvOw2xtgf-e8pntFCxCGOdaYNsgG).
+
+- [x] DE1-SoC
+- [x] DE10-Nano 
 - [ ] DE10-Standard
-- [ ] ~~DE0-Nano-SoC~~
 
 ## Run OpenCL Application
 
-1. Download  the Image file and write it into the microSD card
-2. Insert the SD card into the microSD card socket(J11)
-3. MSEL[4:0] ——> 01010， SW10(**1 to 6**) on,off,on,off,on,N/A
-4. For de1soc D version , use an USB cable to connect your Host PC with the UART-to-USB port (J4) on DE1-SoC.(F version no need)
-5. Connect the monitor,keyboard and mouse to DE1-SoC
-6. Power on DE1-SoC to boot Linux 
-7. Open the kconsole (Ctrl+Alt+T) on the de1soc desktop and run OpenCL host directly. 
-
-Some compiled binaries are in [compiled_bin_sdk16.1](https://github.com/thinkoco/de1_soc_opencl/tree/master/compiled_bin_sdk16.1) folder.
+1. Download the Image file and write it into the microSD card
+2. Cpoy the xxxx.rbf and xxxx_socfpga.dtb (which keep same as your target board) to Windows fat32 partition and rename them to opencl.rbf and socfpga.dtb 
+3. Insert the programmed microSD card to the DE10-nano or DE1-SoC board 
+4. Set the MSEL[4:0] on your board to 01010 , SW10(**1 to 6**) on,off,on,off,on,N/A
+5. Connect a  monitor to the HDMI or VGA port on baord
+6. Conect USB mouse and keyboard to the USB ports on the board
+7. Conect UART to PC ( ** must conect to PC or Power **)
+8. Power on the board and you will see the LXDE graphical environment
+9. Open the console (Ctrl+Alt+T) on the desktop 
+10. source the **init_opencl_16.1.sh** or  **init_opencl_17.1.sh** file 
+11. run OpenCL host (which keep same as your target board and the OpenCL SDK version ) directly. 
 
 ## OpenCL Hardware Template
-**de1soc_sharedonly_vga** is a DE1SOC's OpenCL hardware template that supports VGA and desktop.Copy the file to de1soc OpenCL BSP path.
-**this template also supports Altera SDK for OpenCL 14.1**
 
-**de10_nano_sharedonly_hdmi** is a DE10_nano's OpenCL hardware template (Intel FPGA SDK for OpenCL 16.1)that supports VGA and desktop .
+**Both supports IntelFPGA SDK for OpenCL 16.1 and 17.1**
+
+**de1soc_sharedonly_vga** is a DE1SOC's OpenCL hardware template that supports VGA and desktop.
 **release edition**
 
-**de10_standard_sharedonly_vga** is a DE10_Standard's OpenCL hardware template (Intel FPGA SDK for OpenCL 16.1)that supports VGA and desktop .
-**Not release edition**
+**de10_nano_sharedonly_hdmi** is a DE10_nano's OpenCL hardware template that supports VGA and desktop .
+**release edition**
 
+**de10_standard_sharedonly_vga** is a DE10_Standard's OpenCL hardware template that supports VGA and desktop .
+**waiting for the test**
+
+## App
 ### colorApp
 A UVC usb camera application program is used to convert YUYV to RGB and Gray by using opencl.
 
@@ -86,23 +99,27 @@ Host useage:
 
 	mandelbrot -w=800 -h=640 -c=32
 
-## Planing
+## X2GO
+
+X2Go enables you to access a graphical desktop of a computer over a low bandwidth (or high bandwidth) connection.
+
+![](picture/x2go.png)
+
+## Plans
 
 - [x] add mandelbrot application
-- [x]  **update to DE10-nano**
-- [ ]  **add DE10-Standard BSP**
-- [ ]  **add DE0-Nano-SoC BSP**
-- [ ] **DE0-Nano-SoC + Arduino LCD BSP**
-- [ ] update template to Intel FPGA SDK for OpenCL 17.x
+- [x] add to DE10-nano BSP
+- [x] update template to Intel FPGA SDK for OpenCL 17.x
+- [ ] add DE10-Standard BSP
+- [ ] add DE0-Nano-SoC BSP
+- [ ] DE0-Nano-SoC + Arduino LCD BS
 - [ ] add colorGaryAPP shared memory edition
-
-
 
 ## Limits
 
-Set the CL_CONTEXT_COMPILER_MODE_ALTERA=3 flag in your host code to disable the reading of the .aocx file and the reprogramming of the FPGA.
-When running desktop, copy your generated top.rbf to fat32 partition and rename to opencl.rbf.
-opencl.rbf file should match the same host app and run host with CL_CONTEXT_COMPILER_MODE_ALTERA=3 flag . 
+Set the CL_CONTEXT_COMPILER_MODE_ALTERA=3  (opencl sdk16.1 ) flag in environment to disable the reprogramming of the FPGA by host. When running desktop, copy your generated top.rbf to fat32 partition and rename to opencl.rbf. opencl.rbf file should match the same host app and run host with CL_CONTEXT_COMPILER_MODE_ALTERA=3 flag .
+
+CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 (opencl sdk17.1)
 
 ## How to do
 Here are some [guides](HowToDo.md).

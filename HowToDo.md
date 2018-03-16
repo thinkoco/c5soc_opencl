@@ -2,8 +2,8 @@
 ## Tools install & Environment Setting
 ### Windows x64
 
-- Quartus Prime Standard Edition 16.1
-- Intel FPGA SDK for OpenCL 16.1
+- Quartus Prime Standard Edition 16.1 or 17.1
+- Intel FPGA SDK for OpenCL 16.1 or 17.1
 - SoC Embedded Design Suite (EDS)
 
 It's easy to use linux commands (arm-linux-guneabihf-gcc,make,dd) in Soc_EDS_command_shell.bat on windows.
@@ -12,8 +12,8 @@ More detail for Intel FPGA SDK for OpenCL 16.1,refering to [DE1SOC_OpenCL_v02.pd
 
 ### Linux (Ubuntu 16.04)
 
-- Quartus Prime Standard Edition 16.1
-- Intel FPGA SDK for OpenCL 16.1
+- Quartus Prime Standard Edition 16.1 or 17.1
+- Intel FPGA SDK for OpenCL 16.1 or 17.1
 - arm-linux-gnueabihf-gcc
 - arm-linux-gnueabihf-g++
 - u-boot-tools
@@ -87,14 +87,6 @@ If you want to add more kernel features,you can build your own kernel image.When
 
 	git clone https://github.com/thinkoco/linux-socfpga.git
 	cd linux-socfpga
-
-DE1-Soc:
-
-	git checkout -b socfpga-opencl_4.1.22 origin/socfpga-opencl_4.1.22
-	cp opencl-vga-config .config
-
-DE10-NANO:
-
 	git checkout -b socfpga-opencl_3.18 origin/socfpga-3.18
 	cp config_opencl_de10_nano .config
 	
@@ -106,12 +98,10 @@ DE10-NANO:
 	make socfpga_cyclone5_de1soc.dtb
 	make socfpga_cyclone5_de10_nano.dtb
 
-For buliding aoc_drv.ko diver, choose "M" to select one opencl driver
 
-	make moudles
-	
-	Device Drivers > FPGA Configuration Support 
-![](picture/aoc_drv.png)
+For buliding aoc_drv.ko diver,cd to the dirver folder:
+
+	make KDIR=../(to the linux-socfpga kernel path)
 
 ## USB Cameras Driver
 
@@ -121,7 +111,7 @@ For buliding aoc_drv.ko diver, choose "M" to select one opencl driver
 	
 ![](picture/uvc.png)
 
-- USB Cameras supported by gspca driver,for example ZC301
+- USB Cameras supported by gspca driver
 
 	Drivers > Multimedia support > Media USB Adapters > GSPCA based webcams
 	
