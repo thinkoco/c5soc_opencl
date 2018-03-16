@@ -9,9 +9,6 @@
    categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
-   element $${FILENAME}
-   {
-   }
    element acl_iface
    {
       datum _sortIndex
@@ -57,6 +54,16 @@
  <parameter name="timeStamp" value="0" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
+ <interface
+   name="acl_iface_alt_vip_itc_0_clocked_video"
+   internal="acl_iface.alt_vip_itc_0_clocked_video"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="acl_iface_clock_130"
+   internal="acl_iface.clock_130"
+   type="clock"
+   dir="end" />
  <interface name="clk_50" internal="ext_clk_50.clk_in" type="clock" dir="end" />
  <interface name="fpga_memory" internal="acl_iface.fpga_memory" />
  <interface name="fpga_memory_oct" internal="acl_iface.fpga_memory_oct" />
@@ -81,20 +88,17 @@
    type="reset"
    dir="end" />
  <module name="acl_iface" kind="acl_iface_system" version="1.0" enabled="1">
-  <parameter name="AUTO_CLOCK_130_CLOCK_DOMAIN" value="-1" />
-  <parameter name="AUTO_CLOCK_130_CLOCK_RATE" value="-1" />
-  <parameter name="AUTO_CLOCK_130_RESET_DOMAIN" value="-1" />
-  <parameter name="AUTO_CLOCK_CLOCK_DOMAIN" value="-1" />
-  <parameter name="AUTO_CLOCK_CLOCK_RATE" value="-1" />
-  <parameter name="AUTO_CLOCK_RESET_DOMAIN" value="-1" />
-  <parameter name="AUTO_CONFIG_CLK_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CLOCK_130_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CLOCK_130_CLOCK_RATE" value="0" />
+  <parameter name="AUTO_CLOCK_130_RESET_DOMAIN" value="1" />
+  <parameter name="AUTO_CONFIG_CLK_CLOCK_DOMAIN" value="2" />
   <parameter name="AUTO_CONFIG_CLK_CLOCK_RATE" value="50000000" />
-  <parameter name="AUTO_CONFIG_CLK_RESET_DOMAIN" value="1" />
+  <parameter name="AUTO_CONFIG_CLK_RESET_DOMAIN" value="2" />
   <parameter name="AUTO_DEVICE" value="5CSXFC6D6F31C6" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6_H6" />
   <parameter name="AUTO_GENERATION_ID" value="0" />
-  <parameter name="AUTO_UNIQUE_ID" value="system_acl_iface" />
+  <parameter name="AUTO_UNIQUE_ID">$${FILENAME}_acl_iface</parameter>
  </module>
  <module name="ext_clk_50" kind="clock_source" version="16.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />

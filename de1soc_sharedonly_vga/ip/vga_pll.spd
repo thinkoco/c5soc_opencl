@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<simPackage>
- <topLevel name="vga_pll" />
- <deviceFamily name="cyclonev" />
-</simPackage>

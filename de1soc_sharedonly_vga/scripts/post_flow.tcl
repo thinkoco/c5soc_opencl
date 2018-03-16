@@ -20,8 +20,15 @@ post_message "Project name: $project_name"
 
 # Run PLL adjust script
 post_message "Running PLL adjustment script"
-if {[catch {qexec "quartus_cdb -t iface/ip/bsp/adjust_plls.tcl"} res]} {
-  post_message -type error "Error in adjust_plls.tcl! $res"
+if {[catch {set sdk_root $::env(ALTERAOCLSDKROOT)} result]} {
+  post_message -type error "OpenCL SDK installation not found.  Make sure ALTERAOCLSDKROOT is correctly set" -submsgs [list "Guaranteed timing flow not run - you may have timing failures on the kernel clock\n"]
+} else {
+  source $::env(ALTERAOCLSDKROOT)/ip/board/bsp/adjust_plls.tcl
+}
+
+# Generate the rbf from the sof
+if {[catch {execute_module -tool cpf -args "-c -o bitstream_compression=on top.sof top.rbf"} result]} {
+  post_message "Error generating RBF file! $result"
   exit 2
 }
 

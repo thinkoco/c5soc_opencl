@@ -9,38 +9,12 @@
    categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
-   element $${FILENAME}
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone V";
-         type = "String";
-      }
-   }
    element acl_kernel_clk
    {
       datum _sortIndex
       {
          value = "5";
          type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "0";
-         type = "boolean";
-      }
-   }
-   element acl_kernel_clk.ctrl
-   {
-      datum _lockedAddress
-      {
-         value = "1";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-         value = "49152";
-         type = "String";
       }
    }
    element acl_kernel_interface
@@ -50,13 +24,8 @@
          value = "6";
          type = "int";
       }
-      datum sopceditor_expanded
-      {
-         value = "0";
-         type = "boolean";
-      }
    }
-   element acl_kernel_interface.kernel_cntrl
+   element acl_kernel_interface.ctrl
    {
       datum _lockedAddress
       {
@@ -76,11 +45,6 @@
          value = "8";
          type = "int";
       }
-      datum sopceditor_expanded
-      {
-         value = "0";
-         type = "boolean";
-      }
    }
    element address_span_extender_kernel.windowed_slave
    {
@@ -94,7 +58,7 @@
    {
       datum _sortIndex
       {
-         value = "16";
+         value = "13";
          type = "int";
       }
       datum sopceditor_expanded
@@ -107,13 +71,8 @@
    {
       datum _sortIndex
       {
-         value = "15";
+         value = "12";
          type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "0";
-         type = "boolean";
       }
    }
    element alt_vip_vfr_vga.avalon_slave
@@ -129,32 +88,6 @@
          type = "String";
       }
    }
-   element button_pio
-   {
-      datum _sortIndex
-      {
-         value = "14";
-         type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
-   }
-   element button_pio.s1
-   {
-      datum _lockedAddress
-      {
-         value = "1";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-         value = "131072";
-         type = "String";
-      }
-   }
    element clock_bridge
    {
       datum _sortIndex
@@ -162,10 +95,13 @@
          value = "4";
          type = "int";
       }
-      datum sopceditor_expanded
+   }
+   element clock_bridge_0
+   {
+      datum _sortIndex
       {
-         value = "0";
-         type = "boolean";
+         value = "14";
+         type = "int";
       }
    }
    element clock_cross_kernel_mem1
@@ -175,11 +111,6 @@
          value = "7";
          type = "int";
       }
-      datum sopceditor_expanded
-      {
-         value = "0";
-         type = "boolean";
-      }
    }
    element config_clk
    {
@@ -187,37 +118,6 @@
       {
          value = "0";
          type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "0";
-         type = "boolean";
-      }
-   }
-   element dipsw_pio
-   {
-      datum _sortIndex
-      {
-         value = "13";
-         type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "0";
-         type = "boolean";
-      }
-   }
-   element dipsw_pio.s1
-   {
-      datum _lockedAddress
-      {
-         value = "1";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-         value = "65664";
-         type = "String";
       }
    }
    element global_reset
@@ -227,11 +127,6 @@
          value = "1";
          type = "int";
       }
-      datum sopceditor_expanded
-      {
-         value = "0";
-         type = "boolean";
-      }
    }
    element hps
    {
@@ -239,11 +134,6 @@
       {
          value = "10";
          type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "0";
-         type = "boolean";
       }
    }
    element hps.f2h_sdram0_data
@@ -261,36 +151,13 @@
          value = "3";
          type = "int";
       }
-      datum sopceditor_expanded
-      {
-         value = "0";
-         type = "boolean";
-      }
    }
-   element led_pio
+   element pipe_stage_host_ctrl
    {
       datum _sortIndex
       {
-         value = "12";
+         value = "11";
          type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "0";
-         type = "boolean";
-      }
-   }
-   element led_pio.s1
-   {
-      datum _lockedAddress
-      {
-         value = "1";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-         value = "65600";
-         type = "String";
       }
    }
    element pll
@@ -300,37 +167,6 @@
          value = "2";
          type = "int";
       }
-      datum sopceditor_expanded
-      {
-         value = "0";
-         type = "boolean";
-      }
-   }
-   element sysid_qsys
-   {
-      datum _sortIndex
-      {
-         value = "11";
-         type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
-   }
-   element sysid_qsys.control_slave
-   {
-      datum _lockedAddress
-      {
-         value = "1";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-         value = "65536";
-         type = "String";
-      }
    }
    element version_id
    {
@@ -338,11 +174,6 @@
       {
          value = "9";
          type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "0";
-         type = "boolean";
       }
    }
    element version_id.s
@@ -370,6 +201,7 @@
  <parameter name="globalResetBus" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="hideFromIPCatalog" value="false" />
+ <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="0" />
  <parameter name="projectName" value="" />
  <parameter name="sopcBorderPoints" value="false" />
@@ -380,30 +212,21 @@
  <instanceScript></instanceScript>
  <interface
    name="acl_internal_memorg_kernel"
-   internal="acl_kernel_interface.acl_bsp_memorg_kernel"
-   type="conduit"
-   dir="end" />
+   internal="acl_kernel_interface.acl_bsp_memorg_kernel" />
  <interface
    name="acl_kernel_clk_kernel_pll_locked"
-   internal="acl_kernel_clk.kernel_pll_locked"
-   type="conduit"
-   dir="end" />
+   internal="acl_kernel_clk.kernel_pll_locked" />
  <interface
    name="alt_vip_itc_0_clocked_video"
    internal="alt_vip_itc_0.clocked_video"
    type="conduit"
    dir="end" />
  <interface
-   name="button_pio_external_connection"
-   internal="button_pio.external_connection"
-   type="conduit"
+   name="clock_130"
+   internal="clock_bridge_0.in_clk"
+   type="clock"
    dir="end" />
  <interface name="config_clk" internal="config_clk.in_clk" type="clock" dir="end" />
- <interface
-   name="dipsw_pio_external_connection"
-   internal="dipsw_pio.external_connection"
-   type="conduit"
-   dir="end" />
  <interface
    name="global_reset"
    internal="global_reset.in_reset"
@@ -411,107 +234,85 @@
    dir="end">
   <port name="reset_n" internal="in_reset_n" />
  </interface>
- <interface
-   name="hps_h2f_reset"
-   internal="hps.h2f_reset"
-   type="reset"
-   dir="start" />
  <interface name="kernel_clk" internal="kernel_clk.clk" type="clock" dir="start" />
- <interface
-   name="kernel_clk2x"
-   internal="acl_kernel_clk.kernel_clk2x"
-   type="clock"
-   dir="start" />
+ <interface name="kernel_clk2x" internal="acl_kernel_clk.kernel_clk2x" />
  <interface
    name="kernel_clk_snoop"
    internal="clock_bridge.out_clk"
    type="clock"
    dir="start" />
- <interface
-   name="kernel_cra"
-   internal="acl_kernel_interface.kernel_cra"
-   type="avalon"
-   dir="start" />
+ <interface name="kernel_cra" internal="acl_kernel_interface.kernel_cra" />
  <interface
    name="kernel_interface_acl_bsp_memorg_host"
-   internal="acl_kernel_interface.acl_bsp_memorg_host"
-   type="conduit"
-   dir="end" />
+   internal=".acl_bsp_memorg_host0x018" />
  <interface
    name="kernel_irq"
-   internal="acl_kernel_interface.kernel_irq_from_kernel"
-   type="interrupt"
-   dir="start" />
+   internal="acl_kernel_interface.kernel_irq_from_kernel" />
  <interface
    name="kernel_mem0"
    internal="clock_cross_kernel_mem1.s0"
    type="avalon"
    dir="end" />
- <interface
-   name="kernel_pll_refclk"
-   internal="acl_kernel_clk.pll_refclk"
-   type="clock"
-   dir="end" />
+ <interface name="kernel_pll_refclk" internal="acl_kernel_clk.pll_refclk" />
  <interface
    name="kernel_reset"
    internal="kernel_clk.clk_reset"
    type="reset"
    dir="start" />
- <interface
-   name="led_pio_external_connection"
-   internal="led_pio.external_connection"
-   type="conduit"
-   dir="end" />
  <interface name="mem_export_export" internal=".export" />
  <interface name="mem_export_irq_export" internal=".irq_export" />
  <interface name="memory" internal="hps.memory" type="conduit" dir="end" />
  <interface name="peripheral" internal="hps.hps_io" type="conduit" dir="end" />
- <module name="acl_kernel_clk" kind="acl_kernel_clk" version="1.0" enabled="1">
+ <module
+   name="acl_kernel_clk"
+   kind="acl_kernel_clk_noreconfig"
+   version="1.0"
+   enabled="1">
+  <parameter name="AUTO_BASE_DEVICE" value="Unknown" />
   <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="1" />
   <parameter name="AUTO_CLK_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_CLK_RESET_DOMAIN" value="1" />
-  <parameter name="AUTO_DEVICE" value="5CSEMA5F31C6" />
+  <parameter name="AUTO_DEVICE" value="5CSXFC6D6F31C8ES" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
-  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6" />
   <parameter name="AUTO_GENERATION_ID" value="0" />
-  <parameter name="AUTO_PLL_REFCLK_CLOCK_DOMAIN" value="7" />
+  <parameter name="AUTO_PLL_REFCLK_CLOCK_DOMAIN" value="6" />
   <parameter name="AUTO_PLL_REFCLK_CLOCK_RATE" value="0" />
-  <parameter name="AUTO_PLL_REFCLK_RESET_DOMAIN" value="7" />
+  <parameter name="AUTO_PLL_REFCLK_RESET_DOMAIN" value="6" />
   <parameter name="AUTO_UNIQUE_ID">$${FILENAME}_acl_kernel_clk</parameter>
+  <parameter name="KERNEL_TARGET_CLOCK_RATE" value="140" />
   <parameter name="REF_CLK_RATE" value="50.0" />
  </module>
  <module
    name="acl_kernel_interface"
-   kind="acl_kernel_interface"
+   kind="acl_kernel_interface_soc"
    version="1.0"
    enabled="1">
+  <parameter name="AUTO_BASE_DEVICE" value="Unknown" />
   <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="1" />
   <parameter name="AUTO_CLK_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_CLK_RESET_DOMAIN" value="1" />
-  <parameter name="AUTO_DEVICE" value="5CSEMA5F31C6" />
+  <parameter name="AUTO_DEVICE" value="5CSXFC6D6F31C8ES" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
-  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6" />
   <parameter name="AUTO_GENERATION_ID" value="0" />
-  <parameter name="AUTO_KERNEL_CLK_CLOCK_DOMAIN" value="9" />
-  <parameter name="AUTO_KERNEL_CLK_CLOCK_RATE" value="100000000" />
-  <parameter name="AUTO_KERNEL_CLK_RESET_DOMAIN" value="9" />
+  <parameter name="AUTO_KERNEL_CLK_CLOCK_DOMAIN" value="8" />
+  <parameter name="AUTO_KERNEL_CLK_CLOCK_RATE" value="0" />
+  <parameter name="AUTO_KERNEL_CLK_RESET_DOMAIN" value="8" />
   <parameter name="AUTO_KERNEL_IRQ_FROM_KERNEL_INTERRUPTS_USED" value="0" />
   <parameter name="AUTO_UNIQUE_ID">$${FILENAME}_acl_kernel_interface</parameter>
  </module>
  <module
    name="address_span_extender_kernel"
    kind="altera_address_span_extender"
-   version="14.1"
+   version="16.1"
    enabled="1">
-  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="BURSTCOUNT_WIDTH" value="5" />
   <parameter name="DATA_WIDTH" value="256" />
+  <parameter name="ENABLE_SLAVE_PORT" value="false" />
   <parameter name="MASTER_ADDRESS_DEF" value="0" />
   <parameter name="MASTER_ADDRESS_WIDTH" value="32" />
   <parameter name="MAX_PENDING_READS" value="64" />
   <parameter name="SLAVE_ADDRESS_WIDTH" value="25" />
   <parameter name="SUB_WINDOW_COUNT" value="1" />
-  <parameter name="TERMINATE_SLAVE_PORT" value="true" />
  </module>
  <module name="alt_vip_itc_0" kind="alt_vip_itc" version="14.0" enabled="1">
   <parameter name="ACCEPT_COLOURS_IN_SEQ" value="0" />
@@ -563,39 +364,31 @@
   <parameter name="RMASTER_BURST_TARGET" value="32" />
   <parameter name="RMASTER_FIFO_DEPTH" value="64" />
  </module>
- <module name="button_pio" kind="altera_avalon_pio" version="14.1" enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="true" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="true" />
-  <parameter name="clockRate" value="50000000" />
-  <parameter name="direction" value="Input" />
-  <parameter name="edgeType" value="FALLING" />
-  <parameter name="generateIRQ" value="true" />
-  <parameter name="irqType" value="EDGE" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="2" />
- </module>
  <module
    name="clock_bridge"
    kind="altera_clock_bridge"
-   version="14.1"
+   version="16.1"
    enabled="1">
-  <parameter name="DERIVED_CLOCK_RATE" value="100000000" />
+  <parameter name="DERIVED_CLOCK_RATE" value="0" />
   <parameter name="EXPLICIT_CLOCK_RATE" value="0" />
+  <parameter name="NUM_CLOCK_OUTPUTS" value="1" />
+ </module>
+ <module
+   name="clock_bridge_0"
+   kind="altera_clock_bridge"
+   version="16.1"
+   enabled="1">
+  <parameter name="DERIVED_CLOCK_RATE" value="0" />
+  <parameter name="EXPLICIT_CLOCK_RATE" value="130000000" />
   <parameter name="NUM_CLOCK_OUTPUTS" value="1" />
  </module>
  <module
    name="clock_cross_kernel_mem1"
    kind="altera_avalon_mm_clock_crossing_bridge"
-   version="14.1"
+   version="16.1"
    enabled="1">
-  <parameter name="ADDRESS_UNITS" value="SYMBOLS" />
+  <parameter name="ADDRESS_UNITS" value="WORDS" />
   <parameter name="ADDRESS_WIDTH" value="30" />
-  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
-  <parameter name="AUTO_M0_CLK_CLOCK_RATE" value="100000000" />
-  <parameter name="AUTO_S0_CLK_CLOCK_RATE" value="100000000" />
   <parameter name="COMMAND_FIFO_DEPTH" value="64" />
   <parameter name="DATA_WIDTH" value="256" />
   <parameter name="MASTER_SYNC_DEPTH" value="2" />
@@ -604,35 +397,21 @@
   <parameter name="SLAVE_SYNC_DEPTH" value="2" />
   <parameter name="SYMBOL_WIDTH" value="8" />
   <parameter name="SYSINFO_ADDR_WIDTH" value="30" />
-  <parameter name="USE_AUTO_ADDRESS_WIDTH" value="0" />
+  <parameter name="USE_AUTO_ADDRESS_WIDTH" value="1" />
  </module>
  <module
    name="config_clk"
    kind="altera_clock_bridge"
-   version="14.1"
+   version="16.1"
    enabled="1">
   <parameter name="DERIVED_CLOCK_RATE" value="0" />
   <parameter name="EXPLICIT_CLOCK_RATE" value="50000000" />
   <parameter name="NUM_CLOCK_OUTPUTS" value="1" />
  </module>
- <module name="dipsw_pio" kind="altera_avalon_pio" version="14.1" enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="true" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="true" />
-  <parameter name="clockRate" value="50000000" />
-  <parameter name="direction" value="Input" />
-  <parameter name="edgeType" value="ANY" />
-  <parameter name="generateIRQ" value="true" />
-  <parameter name="irqType" value="EDGE" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="10" />
- </module>
  <module
    name="global_reset"
    kind="altera_reset_bridge"
-   version="14.1"
+   version="16.1"
    enabled="1">
   <parameter name="ACTIVE_LOW_RESET" value="1" />
   <parameter name="AUTO_CLK_CLOCK_RATE" value="-1" />
@@ -640,7 +419,7 @@
   <parameter name="SYNCHRONOUS_EDGES" value="none" />
   <parameter name="USE_RESET_REQUEST" value="0" />
  </module>
- <module name="hps" kind="altera_hps" version="14.1" enabled="1">
+ <module name="hps" kind="altera_hps" version="16.1" enabled="1">
   <parameter name="ABSTRACT_REAL_COMPARE_TEST" value="false" />
   <parameter name="ABS_RAM_MEM_INIT_FILENAME" value="meminit" />
   <parameter name="ACV_PHY_CLK_ADD_FR_PHASE" value="0.0" />
@@ -662,7 +441,7 @@
   <parameter name="AVL_DATA_WIDTH_PORT" value="32,32,32,32,32,32" />
   <parameter name="AVL_MAX_SIZE" value="4" />
   <parameter name="BONDING_OUT_ENABLED" value="false" />
-  <parameter name="BOOTFROMFPGA_Enable" value="true" />
+  <parameter name="BOOTFROMFPGA_Enable" value="false" />
   <parameter name="BSEL" value="1" />
   <parameter name="BSEL_EN" value="false" />
   <parameter name="BYTE_ENABLE" value="true" />
@@ -715,8 +494,10 @@
   <parameter name="DUPLICATE_AC" value="false" />
   <parameter name="ED_EXPORT_SEQ_DEBUG" value="false" />
   <parameter name="EMAC0_Mode" value="N/A" />
+  <parameter name="EMAC0_PTP" value="false" />
   <parameter name="EMAC0_PinMuxing" value="Unused" />
   <parameter name="EMAC1_Mode" value="RGMII" />
+  <parameter name="EMAC1_PTP" value="false" />
   <parameter name="EMAC1_PinMuxing" value="HPS I/O Set 0" />
   <parameter name="ENABLE_ABS_RAM_MEM_INIT" value="false" />
   <parameter name="ENABLE_BONDING" value="false" />
@@ -752,6 +533,7 @@
   <parameter name="F2SDRAM_Width" value="256" />
   <parameter name="F2SINTERRUPT_Enable" value="true" />
   <parameter name="F2S_Width" value="3" />
+  <parameter name="FIX_READ_LATENCY" value="8" />
   <parameter name="FORCED_NON_LDC_ADDR_CMD_MEM_CK_INVERT" value="false" />
   <parameter name="FORCED_NUM_WRITE_FR_CYCLE_SHIFTS" value="0" />
   <parameter name="FORCE_DQS_TRACKING" value="AUTO" />
@@ -770,15 +552,14 @@
   <parameter name="FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_I2C1_SCL_IN" value="100" />
   <parameter name="FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_I2C2_SCL_IN" value="100" />
   <parameter name="FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_I2C3_SCL_IN" value="100" />
-  <parameter name="FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_SDIO_CLK_IN" value="100" />
   <parameter name="FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_SPIS0_SCLK_IN" value="100" />
   <parameter name="FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_SPIS1_SCLK_IN" value="100" />
   <parameter name="FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_USB0_CLK_IN" value="100" />
   <parameter name="FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_USB1_CLK_IN" value="100" />
   <parameter name="FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC0_GTX_CLK" value="100" />
-  <parameter name="FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC0_MD_CLK" value="100" />
+  <parameter name="FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC0_MD_CLK" value="100.0" />
   <parameter name="FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC1_GTX_CLK" value="100" />
-  <parameter name="FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC1_MD_CLK" value="100" />
+  <parameter name="FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC1_MD_CLK" value="100.0" />
   <parameter name="FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_I2C0_CLK" value="100" />
   <parameter name="FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_I2C1_CLK" value="100" />
   <parameter name="FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_I2C2_CLK" value="100" />
@@ -971,8 +752,8 @@
   <parameter name="PLL_WRITE_CLK_PHASE_PS_SIM_STR_PARAM" value="" />
   <parameter name="POWER_OF_TWO_BUS" value="false" />
   <parameter name="PRIORITY_PORT" value="1,1,1,1,1,1" />
-  <parameter name="QSPI_Mode" value="1 SS" />
-  <parameter name="QSPI_PinMuxing" value="HPS I/O Set 0" />
+  <parameter name="QSPI_Mode" value="N/A" />
+  <parameter name="QSPI_PinMuxing" value="Unused" />
   <parameter name="RATE" value="Full" />
   <parameter name="RDIMM_CONFIG" value="0000000000000000" />
   <parameter name="READ_DQ_DQS_CLOCK_SOURCE" value="INVERTED_DQS_BUS" />
@@ -988,6 +769,7 @@
   <parameter name="S2FCLK_USER0CLK_Enable" value="false" />
   <parameter name="S2FCLK_USER1CLK_Enable" value="false" />
   <parameter name="S2FCLK_USER1CLK_FREQ" value="100.0" />
+  <parameter name="S2FCLK_USER2CLK" value="5" />
   <parameter name="S2FCLK_USER2CLK_Enable" value="false" />
   <parameter name="S2FCLK_USER2CLK_FREQ" value="100.0" />
   <parameter name="S2FINTERRUPT_CAN_Enable" value="false" />
@@ -1019,8 +801,8 @@
   <parameter name="SPEED_GRADE" value="7" />
   <parameter name="SPIM0_Mode" value="N/A" />
   <parameter name="SPIM0_PinMuxing" value="Unused" />
-  <parameter name="SPIM1_Mode" value="Single Slave Select" />
-  <parameter name="SPIM1_PinMuxing" value="HPS I/O Set 0" />
+  <parameter name="SPIM1_Mode" value="N/A" />
+  <parameter name="SPIM1_PinMuxing" value="Unused" />
   <parameter name="SPIS0_Mode" value="N/A" />
   <parameter name="SPIS0_PinMuxing" value="Unused" />
   <parameter name="SPIS1_Mode" value="N/A" />
@@ -1033,7 +815,7 @@
   <parameter name="TIMING_BOARD_AC_EYE_REDUCTION_SU" value="0.0" />
   <parameter name="TIMING_BOARD_AC_SKEW" value="0.156188" />
   <parameter name="TIMING_BOARD_AC_SLEW_RATE" value="1.0" />
-  <parameter name="TIMING_BOARD_AC_TO_CK_SKEW" value="0.01" />
+  <parameter name="TIMING_BOARD_AC_TO_CK_SKEW" value="0.003586" />
   <parameter name="TIMING_BOARD_CK_CKN_SLEW_RATE" value="2.0" />
   <parameter name="TIMING_BOARD_DELTA_DQS_ARRIVAL_TIME" value="0.0" />
   <parameter name="TIMING_BOARD_DELTA_READ_DQS_ARRIVAL_TIME" value="0.0" />
@@ -1041,7 +823,7 @@
   <parameter name="TIMING_BOARD_DQS_DQSN_SLEW_RATE" value="2.0" />
   <parameter name="TIMING_BOARD_DQ_EYE_REDUCTION" value="0.0" />
   <parameter name="TIMING_BOARD_DQ_SLEW_RATE" value="1.0" />
-  <parameter name="TIMING_BOARD_DQ_TO_DQS_SKEW" value="0.05" />
+  <parameter name="TIMING_BOARD_DQ_TO_DQS_SKEW" value="0.0" />
   <parameter name="TIMING_BOARD_ISI_METHOD" value="AUTO" />
   <parameter name="TIMING_BOARD_MAX_CK_DELAY" value="0.419282" />
   <parameter name="TIMING_BOARD_MAX_DQS_DELAY" value="0.341732" />
@@ -1050,7 +832,7 @@
   <parameter name="TIMING_BOARD_SKEW_BETWEEN_DQS" value="0.111445" />
   <parameter name="TIMING_BOARD_SKEW_CKDQS_DIMM_MAX" value="0.202374" />
   <parameter name="TIMING_BOARD_SKEW_CKDQS_DIMM_MIN" value="-0.04854" />
-  <parameter name="TIMING_BOARD_SKEW_WITHIN_DQS" value="0.01" />
+  <parameter name="TIMING_BOARD_SKEW_WITHIN_DQS" value="0.002115" />
   <parameter name="TIMING_BOARD_TDH" value="0.0" />
   <parameter name="TIMING_BOARD_TDS" value="0.0" />
   <parameter name="TIMING_BOARD_TIH" value="0.0" />
@@ -1072,6 +854,7 @@
   <parameter name="TIMING_TQHS" value="300" />
   <parameter name="TIMING_TQSH" value="0.4" />
   <parameter name="TPIUFPGA_Enable" value="false" />
+  <parameter name="TPIUFPGA_alt" value="false" />
   <parameter name="TRACE_Mode" value="N/A" />
   <parameter name="TRACE_PinMuxing" value="Unused" />
   <parameter name="TRACKING_ERROR_TEST" value="false" />
@@ -1143,6 +926,7 @@
   <parameter name="periph_pll_n" value="1" />
   <parameter name="periph_pll_source" value="0" />
   <parameter name="qspi_clk_source" value="1" />
+  <parameter name="quartus_ini_hps_emif_pll" value="false" />
   <parameter
      name="quartus_ini_hps_ip_enable_all_peripheral_fpga_interfaces"
      value="false" />
@@ -1165,27 +949,31 @@
   <parameter name="usb_mp_clk_div" value="0" />
   <parameter name="use_default_mpu_clk" value="true" />
  </module>
- <module name="kernel_clk" kind="clock_source" version="14.1" enabled="1">
+ <module name="kernel_clk" kind="clock_source" version="16.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
-  <parameter name="inputClockFrequency" value="100000000" />
+  <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="DEASSERT" />
  </module>
- <module name="led_pio" kind="altera_avalon_pio" version="14.1" enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="clockRate" value="50000000" />
-  <parameter name="direction" value="Output" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="10" />
+ <module
+   name="pipe_stage_host_ctrl"
+   kind="altera_avalon_mm_bridge"
+   version="16.1"
+   enabled="1">
+  <parameter name="ADDRESS_UNITS" value="SYMBOLS" />
+  <parameter name="ADDRESS_WIDTH" value="10" />
+  <parameter name="DATA_WIDTH" value="32" />
+  <parameter name="LINEWRAPBURSTS" value="0" />
+  <parameter name="MAX_BURST_SIZE" value="1" />
+  <parameter name="MAX_PENDING_RESPONSES" value="4" />
+  <parameter name="PIPELINE_COMMAND" value="1" />
+  <parameter name="PIPELINE_RESPONSE" value="1" />
+  <parameter name="SYMBOL_WIDTH" value="8" />
+  <parameter name="SYSINFO_ADDR_WIDTH" value="9" />
+  <parameter name="USE_AUTO_ADDRESS_WIDTH" value="1" />
+  <parameter name="USE_RESPONSE" value="0" />
  </module>
- <module name="pll" kind="altera_pll" version="14.1" enabled="1">
+ <module name="pll" kind="altera_pll" version="16.1" enabled="1">
   <parameter name="debug_print_output" value="false" />
   <parameter name="debug_use_rbc_taf_method" value="false" />
   <parameter name="device" value="5CSEMA5F31C6" />
@@ -1292,7 +1080,6 @@
   <parameter name="gui_duty_cycle9" value="50" />
   <parameter name="gui_en_adv_params" value="false" />
   <parameter name="gui_en_dps_ports" value="false" />
-  <parameter name="gui_en_lvds_ports" value="false" />
   <parameter name="gui_en_phout_ports" value="false" />
   <parameter name="gui_en_reconf" value="false" />
   <parameter name="gui_enable_cascade_in" value="false" />
@@ -1303,7 +1090,7 @@
   <parameter name="gui_fractional_cout" value="32" />
   <parameter name="gui_mif_generate" value="false" />
   <parameter name="gui_multiply_factor" value="1" />
-  <parameter name="gui_number_of_clocks" value="2" />
+  <parameter name="gui_number_of_clocks" value="1" />
   <parameter name="gui_operation_mode" value="normal" />
   <parameter name="gui_output_clock_frequency0" value="100.0" />
   <parameter name="gui_output_clock_frequency1" value="130.0" />
@@ -1389,15 +1176,6 @@
   <parameter name="gui_switchover_mode">Automatic Switchover</parameter>
   <parameter name="gui_use_locked" value="false" />
  </module>
- <module
-   name="sysid_qsys"
-   kind="altera_avalon_sysid_qsys"
-   version="14.1"
-   enabled="1">
-  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
-  <parameter name="id" value="-1395322110" />
-  <parameter name="timestamp" value="0" />
- </module>
  <module name="version_id" kind="version_id" version="10.0" enabled="1">
   <parameter name="AUTO_CLK_CLOCK_RATE" value="50000000" />
   <parameter name="VERSION_ID" value="-1597521440" />
@@ -1405,7 +1183,7 @@
  </module>
  <connection
    kind="avalon"
-   version="14.1"
+   version="16.1"
    start="alt_vip_vfr_vga.avalon_master"
    end="hps.f2h_axi_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1414,7 +1192,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="14.1"
+   version="16.1"
    start="address_span_extender_kernel.expanded_master"
    end="hps.f2h_sdram0_data">
   <parameter name="arbitrationPriority" value="1" />
@@ -1423,44 +1201,17 @@
  </connection>
  <connection
    kind="avalon"
-   version="14.1"
-   start="hps.h2f_axi_master"
-   end="sysid_qsys.control_slave">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00010000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="14.1"
-   start="hps.h2f_axi_master"
-   end="led_pio.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00010040" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="14.1"
-   start="hps.h2f_axi_master"
-   end="dipsw_pio.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00010080" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="14.1"
-   start="hps.h2f_axi_master"
-   end="button_pio.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00020000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="14.1"
+   version="16.1"
    start="hps.h2f_lw_axi_master"
+   end="pipe_stage_host_ctrl.s0">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.1"
+   start="pipe_stage_host_ctrl.m0"
    end="alt_vip_vfr_vga.avalon_slave">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0100" />
@@ -1468,26 +1219,17 @@
  </connection>
  <connection
    kind="avalon"
-   version="14.1"
-   start="hps.h2f_lw_axi_master"
-   end="acl_kernel_clk.ctrl">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0xc000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="14.1"
-   start="hps.h2f_lw_axi_master"
-   end="acl_kernel_interface.kernel_cntrl">
+   version="16.1"
+   start="pipe_stage_host_ctrl.m0"
+   end="acl_kernel_interface.ctrl">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x4000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
    kind="avalon"
-   version="14.1"
-   start="hps.h2f_lw_axi_master"
+   version="16.1"
+   start="pipe_stage_host_ctrl.m0"
    end="version_id.s">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0xcfc0" />
@@ -1495,7 +1237,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="14.1"
+   version="16.1"
    start="clock_cross_kernel_mem1.m0"
    end="address_span_extender_kernel.windowed_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1504,213 +1246,169 @@
  </connection>
  <connection
    kind="avalon_streaming"
-   version="14.1"
+   version="16.1"
    start="alt_vip_vfr_vga.avalon_streaming_source"
    end="alt_vip_itc_0.din" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="acl_kernel_clk.kernel_clk"
    end="kernel_clk.clk_in" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="acl_kernel_clk.kernel_clk"
    end="clock_bridge.in_clk" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="acl_kernel_clk.kernel_clk"
    end="acl_kernel_interface.kernel_clk" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="acl_kernel_clk.kernel_clk"
    end="clock_cross_kernel_mem1.s0_clk" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="config_clk.out_clk"
    end="acl_kernel_clk.clk" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="config_clk.out_clk"
    end="acl_kernel_interface.clk" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="config_clk.out_clk"
    end="version_id.clk" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="config_clk.out_clk"
-   end="sysid_qsys.clk" />
+   end="pipe_stage_host_ctrl.clk" />
  <connection
    kind="clock"
-   version="14.1"
-   start="config_clk.out_clk"
-   end="led_pio.clk" />
- <connection
-   kind="clock"
-   version="14.1"
-   start="config_clk.out_clk"
-   end="dipsw_pio.clk" />
- <connection
-   kind="clock"
-   version="14.1"
-   start="config_clk.out_clk"
-   end="button_pio.clk" />
- <connection
-   kind="clock"
-   version="14.1"
+   version="16.1"
    start="config_clk.out_clk"
    end="alt_vip_vfr_vga.clock_master" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
+   start="clock_bridge_0.out_clk"
+   end="alt_vip_vfr_vga.clock_reset" />
+ <connection
+   kind="clock"
+   version="16.1"
    start="config_clk.out_clk"
    end="hps.f2h_axi_clock" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="config_clk.out_clk"
    end="hps.h2f_axi_clock" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="config_clk.out_clk"
    end="hps.h2f_lw_axi_clock" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
+   start="clock_bridge_0.out_clk"
+   end="alt_vip_itc_0.is_clk_rst" />
+ <connection
+   kind="clock"
+   version="16.1"
    start="config_clk.out_clk"
    end="pll.refclk" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="pll.outclk0"
    end="address_span_extender_kernel.clock" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="pll.outclk0"
    end="hps.f2h_sdram0_clock" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="pll.outclk0"
    end="clock_cross_kernel_mem1.m0_clk" />
  <connection
-   kind="clock"
-   version="14.1"
-   start="pll.outclk1"
-   end="alt_vip_vfr_vga.clock_reset" />
- <connection
-   kind="clock"
-   version="14.1"
-   start="pll.outclk1"
-   end="alt_vip_itc_0.is_clk_rst" />
- <connection
    kind="interrupt"
-   version="14.1"
-   start="hps.f2h_irq0"
-   end="dipsw_pio.irq">
-  <parameter name="irqNumber" value="1" />
- </connection>
- <connection
-   kind="interrupt"
-   version="14.1"
-   start="hps.f2h_irq0"
-   end="button_pio.irq">
-  <parameter name="irqNumber" value="2" />
- </connection>
- <connection
-   kind="interrupt"
-   version="14.1"
+   version="16.1"
    start="hps.f2h_irq0"
    end="acl_kernel_interface.kernel_irq_to_host">
   <parameter name="irqNumber" value="0" />
  </connection>
  <connection
    kind="reset"
-   version="14.1"
+   version="16.1"
    start="acl_kernel_interface.kernel_reset"
    end="kernel_clk.clk_in_reset" />
  <connection
    kind="reset"
-   version="14.1"
+   version="16.1"
    start="acl_kernel_interface.kernel_reset"
    end="clock_cross_kernel_mem1.s0_reset" />
  <connection
    kind="reset"
-   version="14.1"
+   version="16.1"
    start="global_reset.out_reset"
    end="version_id.clk_reset" />
  <connection
    kind="reset"
-   version="14.1"
+   version="16.1"
    start="global_reset.out_reset"
    end="alt_vip_vfr_vga.clock_master_reset" />
  <connection
    kind="reset"
-   version="14.1"
+   version="16.1"
    start="global_reset.out_reset"
    end="alt_vip_vfr_vga.clock_reset_reset" />
  <connection
    kind="reset"
-   version="14.1"
+   version="16.1"
    start="global_reset.out_reset"
    end="alt_vip_itc_0.is_clk_rst_reset" />
  <connection
    kind="reset"
-   version="14.1"
+   version="16.1"
    start="global_reset.out_reset"
    end="acl_kernel_clk.reset" />
  <connection
    kind="reset"
-   version="14.1"
+   version="16.1"
    start="global_reset.out_reset"
    end="acl_kernel_interface.reset" />
  <connection
    kind="reset"
-   version="14.1"
+   version="16.1"
    start="global_reset.out_reset"
    end="pll.reset" />
  <connection
    kind="reset"
-   version="14.1"
+   version="16.1"
    start="global_reset.out_reset"
-   end="sysid_qsys.reset" />
+   end="pipe_stage_host_ctrl.reset" />
  <connection
    kind="reset"
-   version="14.1"
-   start="global_reset.out_reset"
-   end="led_pio.reset" />
- <connection
-   kind="reset"
-   version="14.1"
-   start="global_reset.out_reset"
-   end="dipsw_pio.reset" />
- <connection
-   kind="reset"
-   version="14.1"
-   start="global_reset.out_reset"
-   end="button_pio.reset" />
- <connection
-   kind="reset"
-   version="14.1"
+   version="16.1"
    start="global_reset.out_reset"
    end="acl_kernel_interface.sw_reset_in" />
  <connection
    kind="reset"
-   version="14.1"
+   version="16.1"
    start="acl_kernel_interface.sw_reset_export"
    end="clock_cross_kernel_mem1.m0_reset" />
  <connection
    kind="reset"
-   version="14.1"
+   version="16.1"
    start="acl_kernel_interface.sw_reset_export"
    end="address_span_extender_kernel.reset" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="FIFO" />

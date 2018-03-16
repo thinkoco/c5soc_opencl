@@ -3,10 +3,14 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="175" />
+   <connections preferredWidth="111" />
    <irq preferredWidth="34" />
+   <name preferredWidth="315" />
+   <inputclock preferredWidth="137" />
+   <export preferredWidth="275" />
   </columns>
  </systemtable>
  <library expandedCategories="Project,Library" />
- <window width="1100" height="800" x="74" y="0" />
+ <window width="1539" height="800" x="301" y="143" />
+ <hdlexample language="VERILOG" />
 </preferences>

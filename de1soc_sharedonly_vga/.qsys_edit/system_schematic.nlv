@@ -2,7 +2,6 @@
 # 
 preplace inst system.acl_iface.acl_kernel_interface.kernel_clk -pg 1
 preplace inst system.acl_iface.hps.gpio0 -pg 1
-preplace inst system.acl_iface.alt_vip_itc_0 -pg 1
 preplace inst system.acl_iface.hps.gpio1 -pg 1
 preplace inst system.acl_iface.acl_kernel_interface.clk_reset -pg 1
 preplace inst system.acl_iface.hps.gpio2 -pg 1
@@ -24,22 +23,19 @@ preplace inst system.acl_iface.acl_kernel_interface.irq_bridge_0 -pg 1
 preplace inst system.acl_iface.hps.timer1 -pg 1
 preplace inst system.acl_iface.acl_kernel_clk.global_routing_kernel_clk -pg 1
 preplace inst system.acl_iface.acl_kernel_interface.kernel_cra -pg 1
-preplace inst system.acl_iface.dipsw_pio -pg 1
 preplace inst system.acl_iface.acl_kernel_interface.reset_controller_sw -pg 1
 preplace inst system.acl_iface.hps.timer2 -pg 1
-preplace inst system.acl_iface.hps.timer3 -pg 1
 preplace inst system.acl_iface.acl_kernel_interface.sw_reset_in -pg 1
+preplace inst system.acl_iface.hps.timer3 -pg 1
 preplace inst system.acl_iface.hps.f2s_periph_ref_clk -pg 1
 preplace inst system.acl_iface.acl_kernel_clk.global_routing_kernel_clk2x -pg 1
 preplace inst system.acl_iface.acl_kernel_clk.clk -pg 1
 preplace inst system.acl_iface.hps.sdmmc -pg 1
 preplace inst system.acl_iface.acl_kernel_interface -pg 1
-preplace inst system.acl_iface.button_pio -pg 1
 preplace inst system.acl_iface.acl_kernel_clk.kernel_pll -pg 1
 preplace inst system.acl_iface.hps.eosc1 -pg 1
 preplace inst system.acl_iface.version_id -pg 1
 preplace inst system.acl_iface.acl_kernel_interface.irq_ena_0 -pg 1
-preplace inst system.acl_iface.acl_kernel_clk.pll_reconfig_0 -pg 1
 preplace inst system.acl_iface.hps.eosc2 -pg 1
 preplace inst system.acl_iface.acl_kernel_clk.ctrl -pg 1
 preplace inst system.acl_iface.hps.dcan0 -pg 1
@@ -66,15 +62,12 @@ preplace inst system.acl_iface.hps.gmac0 -pg 1
 preplace inst system.acl_iface.hps.gmac1 -pg 1
 preplace inst system.acl_iface.hps.wd_timer0 -pg 1
 preplace inst system.acl_iface.acl_kernel_clk.pll_lock_avs_0 -pg 1
-preplace inst system.acl_iface.hps.wd_timer1 -pg 1
 preplace inst system.acl_iface.hps.uart0 -pg 1
+preplace inst system.acl_iface.hps.wd_timer1 -pg 1
 preplace inst system.acl_iface.config_clk -pg 1
-preplace inst system.ext_clk_50 -pg 1 -lvl 1 -y 150
-preplace inst system.acl_iface.sysid_qsys -pg 1
 preplace inst system.acl_iface.hps.uart1 -pg 1
-preplace inst system.acl_iface.alt_vip_vfr_vga -pg 1
+preplace inst system.ext_clk_50 -pg 1 -lvl 1 -y 90
 preplace inst system.acl_iface.acl_kernel_clk.kernel_clk -pg 1
-preplace inst system.acl_iface.led_pio -pg 1
 preplace inst system.acl_iface.hps.axi_sdram -pg 1
 preplace inst system.acl_iface.hps.f2s_sdram_ref_clk -pg 1
 preplace inst system.acl_iface -pg 1 -lvl 2 -y 50
@@ -84,6 +77,7 @@ preplace inst system.acl_iface.hps.bridges -pg 1
 preplace inst system.acl_iface.hps.hps_io.border -pg 1
 preplace inst system.acl_iface.hps.arm_a9_0 -pg 1
 preplace inst system.acl_iface.hps.arm_a9_1 -pg 1
+preplace inst system.acl_iface.hps.scu -pg 1
 preplace inst system.acl_iface.hps.nand0 -pg 1
 preplace inst system.acl_iface.acl_kernel_interface.sys_description_rom -pg 1
 preplace inst system.acl_iface.hps.fpga_interfaces -pg 1
@@ -91,22 +85,19 @@ preplace inst system.acl_iface.hps.hps_io -pg 1
 preplace inst system.acl_iface.hps.qspi -pg 1
 preplace inst system.acl_iface.clock_cross_kernel_mem1 -pg 1
 preplace inst system.acl_iface.acl_kernel_interface.reset_bridge_0 -pg 1
+preplace inst system.acl_iface.pipe_stage_host_ctrl -pg 1
 preplace inst system.acl_iface.acl_kernel_interface.reset_bridge_1 -pg 1
 preplace inst system -pg 1 -lvl 1 -y 40 -regy -20
 preplace inst system.acl_iface.acl_kernel_interface.address_span_extender_0 -pg 1
 preplace inst system.acl_iface.acl_kernel_interface.kernel_cntrl -pg 1
 preplace inst system.acl_iface.acl_kernel_clk.pll_rom -pg 1
 preplace inst system.acl_iface.address_span_extender_kernel -pg 1
-preplace netloc POINT_TO_POINT<net_container>system</net_container>(MASTER)ext_clk_50.clk_reset,(SLAVE)acl_iface.global_reset) 1 1 1 N
-preplace netloc EXPORT<net_container>system</net_container>(SLAVE)system.clk_50,(SLAVE)ext_clk_50.clk_in) 1 0 1 NJ
-preplace netloc EXPORT<net_container>system</net_container>(SLAVE)system.acl_iface_dipsw_pio_external_connection,(SLAVE)acl_iface.dipsw_pio_external_connection) 1 0 2 NJ 140 NJ
-preplace netloc EXPORT<net_container>system</net_container>(SLAVE)acl_iface.alt_vip_itc_0_clocked_video,(SLAVE)system.acl_iface_alt_vip_itc_0_clocked_video) 1 0 2 NJ 100 NJ
-preplace netloc EXPORT<net_container>system</net_container>(SLAVE)system.acl_iface_led_pio_external_connection,(SLAVE)acl_iface.led_pio_external_connection) 1 0 2 NJ 260 NJ
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)system.memory,(SLAVE)acl_iface.memory) 1 0 2 NJ 180 NJ
+preplace netloc FAN_OUT<net_container>system</net_container>(SLAVE)acl_iface.config_clk,(SLAVE)acl_iface.kernel_pll_refclk,(MASTER)ext_clk_50.clk) 1 1 1 290
 preplace netloc EXPORT<net_container>system</net_container>(MASTER)system.kernel_clk,(MASTER)acl_iface.kernel_clk_snoop) 1 2 1 N
-preplace netloc EXPORT<net_container>system</net_container>(SLAVE)system.acl_iface_button_pio_external_connection,(SLAVE)acl_iface.button_pio_external_connection) 1 0 2 NJ 120 NJ
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)ext_clk_50.clk_in,(SLAVE)system.clk_50) 1 0 1 NJ
 preplace netloc EXPORT<net_container>system</net_container>(SLAVE)ext_clk_50.clk_in_reset,(SLAVE)system.reset_50) 1 0 1 NJ
-preplace netloc EXPORT<net_container>system</net_container>(SLAVE)acl_iface.memory,(SLAVE)system.memory) 1 0 2 NJ 280 NJ
-preplace netloc FAN_OUT<net_container>system</net_container>(MASTER)ext_clk_50.clk,(SLAVE)acl_iface.config_clk,(SLAVE)acl_iface.kernel_pll_refclk) 1 1 1 430
-preplace netloc EXPORT<net_container>system</net_container>(SLAVE)system.peripheral,(SLAVE)acl_iface.peripheral) 1 0 2 NJ 300 NJ
-levelinfo -pg 1 0 200 930
-levelinfo -hier system 210 240 640 830
+preplace netloc POINT_TO_POINT<net_container>system</net_container>(SLAVE)acl_iface.global_reset,(MASTER)ext_clk_50.clk_reset) 1 1 1 N
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)system.peripheral,(SLAVE)acl_iface.peripheral) 1 0 2 NJ 200 NJ
+levelinfo -pg 1 0 80 780
+levelinfo -hier system 90 120 500 680

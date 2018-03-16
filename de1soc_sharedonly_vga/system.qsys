@@ -9,14 +9,6 @@
    categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
-   element $${FILENAME}
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone V";
-         type = "String";
-      }
-   }
    element acl_iface
    {
       datum _sortIndex
@@ -53,6 +45,7 @@
  <parameter name="globalResetBus" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="hideFromIPCatalog" value="false" />
+ <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="0" />
  <parameter name="projectName" value="top.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
@@ -67,24 +60,9 @@
    type="conduit"
    dir="end" />
  <interface
-   name="acl_iface_button_pio_external_connection"
-   internal="acl_iface.button_pio_external_connection"
-   type="conduit"
-   dir="end" />
- <interface
-   name="acl_iface_dipsw_pio_external_connection"
-   internal="acl_iface.dipsw_pio_external_connection"
-   type="conduit"
-   dir="end" />
- <interface
-   name="acl_iface_hps_h2f_reset"
-   internal="acl_iface.hps_h2f_reset"
-   type="reset"
-   dir="start" />
- <interface
-   name="acl_iface_led_pio_external_connection"
-   internal="acl_iface.led_pio_external_connection"
-   type="conduit"
+   name="acl_iface_clock_130"
+   internal="acl_iface.clock_130"
+   type="clock"
    dir="end" />
  <interface name="clk_50" internal="ext_clk_50.clk_in" type="clock" dir="end" />
  <interface name="fpga_memory" internal="acl_iface.fpga_memory" />
@@ -110,20 +88,19 @@
    type="reset"
    dir="end" />
  <module name="acl_iface" kind="acl_iface_system" version="1.0" enabled="1">
-  <parameter name="AUTO_CONFIG_CLK_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CLOCK_130_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CLOCK_130_CLOCK_RATE" value="0" />
+  <parameter name="AUTO_CLOCK_130_RESET_DOMAIN" value="1" />
+  <parameter name="AUTO_CONFIG_CLK_CLOCK_DOMAIN" value="2" />
   <parameter name="AUTO_CONFIG_CLK_CLOCK_RATE" value="50000000" />
-  <parameter name="AUTO_CONFIG_CLK_RESET_DOMAIN" value="1" />
+  <parameter name="AUTO_CONFIG_CLK_RESET_DOMAIN" value="2" />
   <parameter name="AUTO_DEVICE" value="5CSEMA5F31C6" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6" />
   <parameter name="AUTO_GENERATION_ID" value="0" />
-  <parameter name="AUTO_KERNEL_IRQ_INTERRUPTS_USED" value="0" />
-  <parameter name="AUTO_KERNEL_PLL_REFCLK_CLOCK_DOMAIN" value="1" />
-  <parameter name="AUTO_KERNEL_PLL_REFCLK_CLOCK_RATE" value="50000000" />
-  <parameter name="AUTO_KERNEL_PLL_REFCLK_RESET_DOMAIN" value="1" />
-  <parameter name="AUTO_UNIQUE_ID" value="system_acl_iface" />
+  <parameter name="AUTO_UNIQUE_ID">$${FILENAME}_acl_iface</parameter>
  </module>
- <module name="ext_clk_50" kind="clock_source" version="14.1" enabled="1">
+ <module name="ext_clk_50" kind="clock_source" version="16.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
@@ -131,17 +108,17 @@
  </module>
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="ext_clk_50.clk"
    end="acl_iface.config_clk" />
  <connection
    kind="clock"
-   version="14.1"
+   version="16.1"
    start="ext_clk_50.clk"
    end="acl_iface.kernel_pll_refclk" />
  <connection
    kind="reset"
-   version="14.1"
+   version="16.1"
    start="ext_clk_50.clk_reset"
    end="acl_iface.global_reset" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="FIFO" />
