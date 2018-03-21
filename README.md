@@ -7,8 +7,7 @@
 ## Supported Boards
 - [x] [DE1-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=182&No=870)
 - [x] [DE10-Nano](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=1048)
-- [ ] [DE10-Standard](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=182&No=1105)
-- [ ] [DE10-Nano-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=1048) + Arduino LCD
+- [x] [DE10-Standard](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=182&No=1105)
 - [ ] ~~[DE0-Nano-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=954) + Arduino LCD~~
 
 ## Supported USB Cameras
@@ -23,7 +22,7 @@
 - [x] also working with terasic's OpenCL hardware template BSP(no vedio ip core)
 - [x] also working without OpenCL
 - [x] support x2go server (run desktop through ethernet)
-- [x] All in one (just DE1-SoC and DE10-Nano)
+- [x] All in one ( DE1-SoC , DE10-Nano and DE10-Standard)
 - [x] usb host and uvc driver for UVC cameras
 
 
@@ -31,13 +30,13 @@ You can downlaod the all in one SD card Image file here [Baidu Cloud Link](https
 
 - [x] DE1-SoC
 - [x] DE10-Nano 
-- [ ] DE10-Standard
+- [x] DE10-Standard
 
 ## Run OpenCL Application
 
 1. Download the Image file and write it into the microSD card
 2. Cpoy the xxxx.rbf and xxxx_socfpga.dtb (which keep same as your target board) to Windows fat32 partition and rename them to opencl.rbf and socfpga.dtb 
-3. Insert the programmed microSD card to the DE10-nano or DE1-SoC board 
+3. Insert the programmed microSD card to the DE10-nano or DE1-SoC or DE10-Standard board 
 4. Set the MSEL[4:0] on your board to 01010 , SW10(**1 to 6**) on,off,on,off,on,N/A
 5. Connect a  monitor to the HDMI or VGA port on baord
 6. Conect USB mouse and keyboard to the USB ports on the board
@@ -52,13 +51,11 @@ You can downlaod the all in one SD card Image file here [Baidu Cloud Link](https
 **Both supports IntelFPGA SDK for OpenCL 16.1 and 17.1**
 
 **de1soc_sharedonly_vga** is a DE1SOC's OpenCL hardware template that supports VGA and desktop.
-**release edition**
 
-**de10_nano_sharedonly_hdmi** is a DE10_nano's OpenCL hardware template that supports VGA and desktop .
-**release edition**
+**de10_nano_sharedonly_hdmi** is a DE10_nano's OpenCL hardware template that supports HDMI and desktop .
 
 **de10_standard_sharedonly_vga** is a DE10_Standard's OpenCL hardware template that supports VGA and desktop .
-**waiting for the test**
+
 
 ## App
 ### colorApp
@@ -102,6 +99,9 @@ Host useage:
 ## X2GO
 
 X2Go enables you to access a graphical desktop of a computer over a low bandwidth (or high bandwidth) connection.
+You can also use terasic's hardware templates which includes no vedio ip core to build the OpenCL aocx file.Then,
+you can get more fpga resouce and dynamic configuration for OpenCL.In this way, you need update the device tree
+binary file which contains no vedio ip core descriptoin and delete the CL_CONTEXT_COMPILER_MODE_xxx flag in initail shell file.
 
 ![](picture/x2go.png)
 
@@ -110,7 +110,7 @@ X2Go enables you to access a graphical desktop of a computer over a low bandwidt
 - [x] add mandelbrot application
 - [x] add to DE10-nano BSP
 - [x] update template to Intel FPGA SDK for OpenCL 17.x
-- [ ] add DE10-Standard BSP
+- [x] add DE10-Standard BSP
 - [ ] add DE0-Nano-SoC BSP
 - [ ] DE0-Nano-SoC + Arduino LCD BS
 - [ ] add colorGaryAPP shared memory edition

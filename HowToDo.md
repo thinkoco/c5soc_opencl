@@ -28,6 +28,13 @@ Install tools and set BSP
 
 	cp -rf de1soc_sharedonly_vga ~/intelFPGA/16.1/hld/board/c5soc
 	cp -rf de10_nano_sharedonly_hdmi ~/intelFPGA/16.1/hld/board/c5soc
+	cp -rf de10_standard_sharedonly_vga ~/intelFPGA/16.1/hld/board/c5soc
+or
+
+	cp -rf de1soc_sharedonly_vga ~/intelFPGA/17.1/hld/board/c5soc/hardware
+	cp -rf de10_nano_sharedonly_hdmi ~/intelFPGA/17.1/hld/board/c5soc/hardware
+	cp -rf de10_standard_sharedonly_vga ~/intelFPGA/17.1/hld/board/c5soc/hardware
+
 
 modify the ~/intelFPGA/16.1/hld/board/c5soc/board_env.xml file
 
@@ -70,6 +77,7 @@ Compile host on DE1SOC:
 	make host
 
 ### Linux
+You can modify the target boards name in the make file for hardware compiling.
 
 Compile opencl kernel command on PC:
 
@@ -97,9 +105,11 @@ If you want to add more kernel features,you can build your own kernel image.When
 	make zImage
 	make socfpga_cyclone5_de1soc.dtb
 	make socfpga_cyclone5_de10_nano.dtb
+	make socfpga_cyclone5_de10_standard.dtb
 
+If you just need x2go and no vga support, just remove the video ip core description in the dts files.Also,you can reduce the VIP driver in kernel and rebuild OpenCL driver. 
 
-For buliding aoc_drv.ko diver,cd to the dirver folder:
+For rebuliding aoc_drv.ko diver,cd to the dirver folder:
 
 	make KDIR=../(to the linux-socfpga kernel path)
 
@@ -130,6 +140,14 @@ For buliding aoc_drv.ko diver,cd to the dirver folder:
 
 	MSEL[4:0] ——> 01000， SW10(**1 to 6**) on,on,on,off,on,N/A
 
+## How to get rbf  form aocx file
+
+If you lost the rbf file and do not want recompile hardware,you can get it from the aocx file.
+
+	aocl binedit boardtest.aocx list
+	aocl binedit boardtest.aocx get .acl.fpga.bin fpga.bin
+	aocl binedit fpga.bin get .acl.rbf opencl.rbf
+
 
 ## Intel FPGA SDK for OpenCL license issue on Ubuntu 16.04
 
@@ -138,7 +156,10 @@ For buliding aoc_drv.ko diver,cd to the dirver folder:
 	sudo apt install lsb uml-utilities
 
 ~~sudo tunctl~~                                           # Create the tap0 network interface
+
 ~~sudo ip link set dev tap0 name eth0~~                   # Rename the tap0 interface to eth0
+
 ~~sudo ifconfig eth0 hw ether xx:xx:xx:xx:xx:xx~~         # Set the MAC address for the eth0 interface
+
 ~~sudo ifconfig eth0 up~~                                 # Bring up the eth0 interface
 
