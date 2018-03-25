@@ -55,7 +55,7 @@ void camera_sobel(global unsigned short * restrict frame_in, global unsigned int
             for (int j = 0; j < 3; ++j) {
 		//Get Y form YU or YV
                 unsigned int pixel = rows[i * COLS + j];
-                unsigned int luma = (pixel >> 8) & 0xff;
+                unsigned int luma = pixel & 0xff;
                 x_dir += luma * Gx[i][j];
                 y_dir += luma * Gy[i][j];
             }
