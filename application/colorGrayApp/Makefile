@@ -4,8 +4,8 @@ HOST_EXE  = colorApp.run
 HOST_DIRS = host/src ../common/src/AOCLUtils
 HOST_SRCS := $(wildcard  $(foreach D, $(HOST_DIRS), $D/*.cpp))
 HOST_OBJS = $(HOST_SRCS:%.cpp=%.o)
-HOST_INCS = host/inc ../common/inc /usr/include/SDL
-HOST_LIBS := SDL jpeg
+HOST_INCS = host/inc ../common/inc /usr/include/SDL2
+HOST_LIBS := SDL2
 HOST_DEBUG =
 
 #if you are loading images from OpenCV interfaces please set to 1
