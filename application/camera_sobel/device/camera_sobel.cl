@@ -63,9 +63,9 @@ void camera_sobel(global unsigned short * restrict frame_in, global unsigned int
         int temp = abs(x_dir) + abs(y_dir);
         unsigned int clamped;
         if (temp > threshold) {
-            clamped = 0xffffff;
+            clamped = 0xffffffff;
         } else {
-            clamped = 0;
+            clamped = 0xff000000;
         }
 
         if (count >= 0) {
