@@ -248,8 +248,9 @@ static void keyboardPressEvent(SDL_Event *event)
       SDL_Event quitEvent;
       quitEvent.type = SDL_QUIT;
       SDL_PushEvent(&quitEvent);
+    	}
       break;
-    }
+
     	case SDLK_s:
 		opt.hw = 0;
 		buffer_mmap(0);
