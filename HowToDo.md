@@ -107,9 +107,13 @@ If you want to add more kernel features,you can build your own kernel image.When
 	make socfpga_cyclone5_de10_nano.dtb
 	make socfpga_cyclone5_de10_standard.dtb
 
-If you just need x2go and no vga support, just remove the video ip core description in the dts files.Also,you can reduce the VIP driver in kernel and rebuild OpenCL driver. 
+for x2go only mode.If you just need x2go only, you should remove the video ip core description in the dts files.
 
-For rebuliding aoc_drv.ko diver,cd to the dirver folder:
+	make socfpga_cyclone5_de1soc_x2go.dtb
+	make socfpga_cyclone5_de10_nano_x2go.dtb
+	make socfpga_cyclone5_de10_standard_x2go.dtb
+
+Also,you can reduce the VIP driver in kernel and rebuild OpenCL driver(This is an optional step).For rebuliding aoc_drv.ko diver,cd to the dirver folder:
 
 	make KDIR=../(to the linux-socfpga kernel path)
 
