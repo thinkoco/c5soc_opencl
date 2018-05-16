@@ -53,7 +53,7 @@ About  environment，write the following to env.sh file and change the paths for
 	export QSYS_ROOTDIR="~/intelFPGA/16.1/quartus/sopc_builder/bin"
 	export QUARTUS_ROOTDIR="~/intelFPGA/16.1/quartus"
 
-	export PATH="$PATH:${QUARTUS_ROOTDIR}/bin:${QUARTUS_ROOTDIR}/linux64:${ALTERAOCLSDKROOT}/linux64/bin:${ALTERAOCLSDKROOT}/bin"
+	export PATH="$PATH:${QUARTUS_ROOTDIR}/bin:${QUARTUS_ROOTDIR}/linux64:${QSYS_ROOTDIR}:${ALTERAOCLSDKROOT}/linux64/bin:${ALTERAOCLSDKROOT}/bin"
 	export LD_LIBRARY_PATH="${ALTERAOCLSDKROOT}/linux64/lib"
 	export AOCL_BOARD_PACKAGE_ROOT="${ALTERAOCLSDKROOT}/board/c5soc"
 	export QUARTUS_64BIT=1

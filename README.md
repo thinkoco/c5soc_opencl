@@ -134,6 +134,7 @@ binary file which contains no vedio ip core descriptoin and delete the CL_CONTEX
 - [x] add colorGaryAPP shared memory edition
 - [x] add camera sobel application
 - [ ] DE0-Nano-SoC + Arduino LCD BSP
+- [ ] guides for building SD card image
 
 
 ## Limits
@@ -145,3 +146,5 @@ CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 (opencl sdk17.1)
 ## How to do
 Here are some [guides](HowToDo.md).
 
+## How build your own BSP
+[BulidBSP](HowTOBuildBSP.md)
