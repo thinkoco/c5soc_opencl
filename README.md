@@ -107,13 +107,6 @@ binary file which contains no vedio ip core descriptoin and delete the CL_CONTEX
 
 ![](picture/x2go.png)
 
-### X2go login 
-1. check the host IP on board.
-2. login user: knat password: knat. 
-3. using "sudo su" to get root privileges
-
-![](picture/x2go_login.png)
-
 ### Differences between VIP Core and X2GO only
 
 | Entry                |   VGA or HDMI (VIP Core) with X2GO            |      X2GO only (Ethernet)                   |
@@ -123,7 +116,7 @@ binary file which contains no vedio ip core descriptoin and delete the CL_CONTEX
 | socfpga.dtb          | contain VIP core description                  | no VIP core description                     |
 | init_opencl_16.1.sh  | add CL_CONTEXT_COMPILER_MODE_ALTERA=3         | delete CL_CONTEXT_COMPILER_MODE_ALTERA=3    |
 | init_opencl_17.1.sh  | add CL_CONTEXT_COMPILER_MODE_INTELFPGA=3      | delete CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 |
-| host reprogram fpga  | disable (need update opencl.rbf and reboot)   | enable                                      |
+| host reprogram fpga  | enable (need the fpga reconfigrable sd image) | enable                                   |
 
 ## Plans
 
@@ -144,7 +137,8 @@ Set the CL_CONTEXT_COMPILER_MODE_ALTERA=3  (opencl sdk16.1 ) flag in environment
 CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 (opencl sdk17.1)
 
 ## How to do
-Here are some [guides](HowToDo.md).
+1. [How to do](HowToDo.md)
 
-## How build your own BSP
-[BulidBSP](HowTOBuildBSP.md)
+2. [How to build your own BSP](HowTOBuildBSP.md)
+
+3. [How to do fpga reconfiguration](HowtoReconfigureFPGA.md)
