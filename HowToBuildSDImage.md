@@ -2,10 +2,10 @@
 
 ## 1. Build opencl.rbf
 ```
-cd~ 
+cd ~ 
 mkdir sdcard && cd sdcard
 
-echo -e  "__kernel void hello_world(int thread_id_from_which_to_print_message) { \n\tunsigned thread_id = get_global_id(0);\n\tif(thread_id == thread_id_from_which_to_print_message) {\n\t\tprintf(\"Thread #%u: Hello from Altera's OpenCL Compiler! \\\n \", thread_id);\n\t}\n}" >> hello_world.cl
+echo -e  "__kernel void hello_world(int thread_id_from_which_to_print_message) { \n\tunsigned thread_id = get_global_id(0);\n\tif(thread_id == thread_id_from_which_to_print_message) {\n\t\tprintf(\"Thread #%u: Hello from Altera's OpenCL Compiler! \\\n \", thread_id);\n\t}\n}" > hello_world.cl
 
 aoc hello_world.cl -o hello_world.aocx --board de10_nano_sharedonly_hdmi --report -v
 cp hello_world/top.rbf opencl.rbf
@@ -81,6 +81,10 @@ echo "127.0.1.1 c5soc" >> /etc/hosts
 # Now add a user of your choice and include him in suitable groups
 adduser knat && addgroup knat adm && addgroup knat sudo && addgroup knat audio
 
+# add root password
+passwd root
+
+# update DNS automatically,Set ‘timezone’,Make X used by ‘anyuser’
 dpkg-reconfigure tzdata
 dpkg-reconfigure resolvconf
 dpkg-reconfigure x11-common
@@ -119,6 +123,8 @@ sudo ./make_sdimage.py -f -P preloader-mkpimage.bin,u-boot.img,num=3,format=raw,
 ```
 
 ## 7. Related Links
-[https://rocketboards.org/foswiki/Documentation/AVGSRDSdCard](https://rocketboards.org/foswiki/Documentation/AVGSRDSdCard)
-[http://gnu-linux.org/building-ubuntu-rootfs-for-arm.html](http://gnu-linux.org/building-ubuntu-rootfs-for-arm.html)
+
+1. [https://rocketboards.org/foswiki/Documentation/AVGSRDSdCard](https://rocketboards.org/foswiki/Documentation/AVGSRDSdCard)
+
+2. [http://gnu-linux.org/building-ubuntu-rootfs-for-arm.html](http://gnu-linux.org/building-ubuntu-rootfs-for-arm.html)
 

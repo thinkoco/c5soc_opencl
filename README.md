@@ -19,7 +19,7 @@
 ## SD Card Image Features
 
 - both IntelFPGA OpenCL SDK 16.1 and 17.1
-- ubuntu 16.04 root file system
+- ubuntu 16.04 and 18.04 root file system
 - LXDE desktop
 - support x2go server (run desktop through ethernet)
 - also working with terasic's OpenCL hardware template BSP(x2go only with no vedio ip core)
@@ -116,7 +116,7 @@ binary file which contains no vedio ip core descriptoin and delete the CL_CONTEX
 | socfpga.dtb          | contain VIP core description                  | no VIP core description                     |
 | init_opencl_16.1.sh  | add CL_CONTEXT_COMPILER_MODE_ALTERA=3         | delete CL_CONTEXT_COMPILER_MODE_ALTERA=3    |
 | init_opencl_17.1.sh  | add CL_CONTEXT_COMPILER_MODE_INTELFPGA=3      | delete CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 |
-| host reprogram fpga  | enable (need the fpga reconfigrable sd image) | enable                                   |
+| host reprogram fpga  | manual ([see here](HowtoReconfigureFPGA.md)) | enable                                   |
 
 ## Plans
 
