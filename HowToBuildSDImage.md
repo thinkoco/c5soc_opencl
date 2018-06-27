@@ -43,8 +43,20 @@ mkimage   -A arm -O linux -T script -C none -a 0 -e 0 -n "My script" -d boot.scr
 ## 4. Build zImage and socfpga.dtb
 ```
 cd ~/sdcard/
-cp ~/terasic/linux-socfpga/arch/arm/boot/zImage ./
-cp ~/terasic/linux-socfpga/arch/arm/boot/dts/socfpga_cyclone5_de10_nano.dtb  ./socfpga.dtb
+git clone https://github.com/thinkoco/linux-socfpga.git
+cd linux-socfpga
+git checkout -b socfpga-opencl_3.18 origin/socfpga-3.18
+cp config_opencl .config
+export ARCH=arm
+export CROSS_COMPILE=arm-linux-gnueabihf-
+export LOADADDR=0x8000
+
+make zImage
+make socfpga_cyclone5_de10_nano.dtb
+make modules_install INSTALL_MOD_PATH=~/sdcard/
+
+cp ~/sdcard/linux-socfpga/arch/arm/boot/zImage ./
+cp ~/sdcard/linux-socfpga/arch/arm/boot/dts/socfpga_cyclone5_de10_nano.dtb  ./socfpga.dtb
 ```
 
 ## 5. Build ubuntu rootfs
@@ -57,6 +69,9 @@ chmod +x ch-mount.sh
 mkdir rootfs
 sudo tar xpf ubuntu-base-18.04-base-armhf.tar.gz -C rootfs/
 sudo cp /usr/bin/qemu-arm-static rootfs/usr/bin/
+cd ~/sdcard/lib
+sudo cp moudles -rf ../rootfs/lib
+cd ~/sdcard/
 ```
 Mount proc, sys, dev, dev/pts to new fileystem
 ```
@@ -65,7 +80,7 @@ sudo ./ch-mount.sh -m ./rootfs/
 Now,in chroot environment
 
 ```
-# set DNS
+# set DNS 8.8.8.8 or 114.114.114.114
 echo nameserver 8.8.8.8 > /etc/resolv.conf
 
 # install minimal packages required for X server and some core utils
@@ -84,16 +99,23 @@ adduser knat && addgroup knat adm && addgroup knat sudo && addgroup knat audio
 # add root password
 passwd root
 
-# update DNS automatically,Set ‘timezone’,Make X used by ‘anyuser’
-dpkg-reconfigure tzdata
-dpkg-reconfigure resolvconf
-dpkg-reconfigure x11-common
-
 # modify getty@.service
 sed -i 's/^ExecStart=-\/sbin\/agetty.*$/ExecStart=-\/sbin\/agetty --noclear %I $TERM/' /lib/systemd/system/getty@.service
 
 # set lightdm.conf
 echo -e "[SeatDefaults]\nautologin-user=root\nautologin-user-timeout=0" > /etc/lightdm/lightdm.conf
+
+# set rc.local 
+echo -e '#!/bin/sh -e\n#\n# rc.local\n#\n#In order to enable or disable this script just change the execution bits\n\nmodprobe altvipfb\nservice lightdm start\nmount -t vfat /dev/mmcblk0p1 /mnt\n\nexit 0' > /etc/rc.local
+
+chmod +x /etc/rc.local
+
+# update DNS automatically,Set ‘timezone’,Make X used by ‘anyuser’
+dpkg-reconfigure tzdata
+
+dpkg-reconfigure resolvconf
+
+dpkg-reconfigure x11-common
 
 # exit chroot environment
 exit
@@ -124,7 +146,7 @@ sudo ./make_sdimage.py -f -P preloader-mkpimage.bin,u-boot.img,num=3,format=raw,
 
 ## 7. Related Links
 
-1. [https://rocketboards.org/foswiki/Documentation/AVGSRDSdCard](https://rocketboards.org/foswiki/Documentation/AVGSRDSdCard)
+- [https://rocketboards.org/foswiki/Documentation/AVGSRDSdCard](https://rocketboards.org/foswiki/Documentation/AVGSRDSdCard)
 
-2. [http://gnu-linux.org/building-ubuntu-rootfs-for-arm.html](http://gnu-linux.org/building-ubuntu-rootfs-for-arm.html)
+- [http://gnu-linux.org/building-ubuntu-rootfs-for-arm.html](http://gnu-linux.org/building-ubuntu-rootfs-for-arm.html)
 

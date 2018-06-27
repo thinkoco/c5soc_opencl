@@ -102,7 +102,7 @@ Host useage:
 X2Go enables you to access a graphical desktop of a computer over a low bandwidth (or high bandwidth) connection.
 You can also use terasic's hardware templates which includes no vedio ip core to build the OpenCL aocx file.Then,
 you can get more fpga resouce and dynamic configuration for OpenCL.In this way, you need update the device tree
-binary file which contains no vedio ip core descriptoin and delete the CL_CONTEXT_COMPILER_MODE_xxx flag in initail shell file.
+binary file which contains no vedio ip core descriptoin and delete the CL_CONTEXT_COMPILER_MODE_xxx flag in initial shell file.
 
 ![](picture/x2go.png)
 
@@ -115,7 +115,7 @@ binary file which contains no vedio ip core descriptoin and delete the CL_CONTEX
 | socfpga.dtb          | contain VIP core description                  | no VIP core description                     |
 | init_opencl_16.1.sh  | add CL_CONTEXT_COMPILER_MODE_ALTERA=3         | delete CL_CONTEXT_COMPILER_MODE_ALTERA=3    |
 | init_opencl_17.1.sh  | add CL_CONTEXT_COMPILER_MODE_INTELFPGA=3      | delete CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 |
-| host reprogram fpga  | manual ([look here](HowtoReconfigureFPGA.md)) | enable                                   |
+| host reprogram fpga  | manual ([look here](HowToReconfigureFPGA.md)) | enable                                   |
 
 ## Plans
 
@@ -136,7 +136,7 @@ CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 (opencl sdk17.1)
 ## How to do
 1. [How to do](HowToDo.md)
 
-2. [How to build your own BSP](HowTOBuildBSP.md)
+2. [How to build your own BSP](HowToBuildBSP.md)
 
 3. [How to update opencl driver](HowToBuildOpenCLDriver.md)
 

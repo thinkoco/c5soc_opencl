@@ -1,9 +1,12 @@
 # How to do FPGA reconfiguration with VIP core
+
+**Now,you can download the `c5soc_opencl_lxde_fpga_reconfigurable.img` from the Cloud Drive and write it to SD card. Then, you can run it directly without updating `fpga_reconfigurable_with_VIP` files**
+
 ## FPGA reconfigurable files
  you can get the `fpga_reconfigurable_with_VIP` folder in [Baidu Cloud Link](https://pan.baidu.com/s/1KDyexwHD39uyvcMDm0G97A) or [Google Drive Link](https://drive.google.com/open?id=1mAYHFvOw2xtgf-e8pntFCxCGOdaYNsgG)
 
 
-1. write the all_in_one.img to sd card 
+1. write the c5soc_opencl_lxde_all_in_one_180317.img to sd card 
 2. mount the sd card on ubuntu
 3. run update_files_cmd.sh in fpga_reconfigurable_with_VIP folder
 
