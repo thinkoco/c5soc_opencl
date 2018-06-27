@@ -8,7 +8,6 @@
 - [x] [DE1-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=182&No=870)
 - [x] [DE10-Nano](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=1048)
 - [x] [DE10-Standard](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=182&No=1105)
-- [ ] ~~[DE0-Nano-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=954) + Arduino LCD~~
 
 ## Supported USB Cameras
 
@@ -116,7 +115,7 @@ binary file which contains no vedio ip core descriptoin and delete the CL_CONTEX
 | socfpga.dtb          | contain VIP core description                  | no VIP core description                     |
 | init_opencl_16.1.sh  | add CL_CONTEXT_COMPILER_MODE_ALTERA=3         | delete CL_CONTEXT_COMPILER_MODE_ALTERA=3    |
 | init_opencl_17.1.sh  | add CL_CONTEXT_COMPILER_MODE_INTELFPGA=3      | delete CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 |
-| host reprogram fpga  | manual ([see here](HowtoReconfigureFPGA.md)) | enable                                   |
+| host reprogram fpga  | manual ([look here](HowtoReconfigureFPGA.md)) | enable                                   |
 
 ## Plans
 
@@ -127,9 +126,6 @@ binary file which contains no vedio ip core descriptoin and delete the CL_CONTEX
 - [x] add colorGaryAPP shared memory edition
 - [x] add camera sobel application
 - [x] guides for building SD card image
-- [ ] DE0-Nano-SoC + Arduino LCD BSP
-
-
 
 ## Limits
 
@@ -142,6 +138,8 @@ CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 (opencl sdk17.1)
 
 2. [How to build your own BSP](HowTOBuildBSP.md)
 
-3. [How to do fpga reconfiguration](HowtoReconfigureFPGA.md)
+3. [How to update opencl driver](HowToBuildOpenCLDriver.md)
 
-4. [How to build SD card Image](HowToBuildSDImage.md)
+4. [How to do fpga reconfiguration](HowToReconfigureFPGA.md)
+
+5. [How to build SD card Image](HowToBuildSDImage.md)

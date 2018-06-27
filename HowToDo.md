@@ -6,7 +6,7 @@
 - Intel FPGA SDK for OpenCL 16.1 or 17.1
 - SoC Embedded Design Suite (EDS)
 
-It's easy to use linux commands (arm-linux-guneabihf-gcc,make,dd) in Soc_EDS_command_shell.bat on windows.
+It's easy to use linux commands (arm-linux-guneabihf-gcc,make) in Soc_EDS_command_shell.bat on windows.
 
 More detail for Intel FPGA SDK for OpenCL 16.1,refering to [DE1SOC_OpenCL_v02.pdf](http://www.terasic.com.cn/attachment/archive/836/DE1SOC_OpenCL_v02.pdf)
 
@@ -14,6 +14,7 @@ More detail for Intel FPGA SDK for OpenCL 16.1,refering to [DE1SOC_OpenCL_v02.pd
 
 - Quartus Prime Standard Edition 16.1 or 17.1
 - Intel FPGA SDK for OpenCL 16.1 or 17.1
+- SoC Embedded Design Suite (EDS)
 - arm-linux-gnueabihf-gcc
 - arm-linux-gnueabihf-g++
 - u-boot-tools
@@ -90,7 +91,7 @@ Compile host on DE1SOC:
 
 
 ## Linux kernel and Driver
-If you want to add more kernel features,you can build your own kernel image.When update kernel,you should recompile the opencl driver and update to SD card.
+If you want to add more kernel features,you can build your own kernel image.When updating kernel,you should recompile the opencl driver and update to SD card.
 *for windows, complie kernel image in Soc_EDS_coomand_shell.bat*
 
 	git clone https://github.com/thinkoco/linux-socfpga.git

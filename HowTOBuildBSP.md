@@ -55,30 +55,32 @@ Save without generating HDL
 	![](picture/bsp_13.png)
 
 ## Run Software
+
 1. Git clone the linux-socfpga
-
-	git clone https://github.com/thinkoco/linux-socfpga.git
-	cd linux-socfpga
-	git checkout -b socfpga-opencl_3.18 origin/socfpga-3.18
-
-2. Modify the device tree source file(linux-socfpga/arch/arm/boot/dts/socfpga_cyclone5_de1soc_x2go.dts),update socfpga.dtb
+```
+git clone https://github.com/thinkoco/linux-socfpga.git
+cd linux-socfpga
+git checkout -b socfpga-opencl_3.18 origin/socfpga-3.18
+```
+2. Modify the device tree source file(`linux-socfpga/arch/arm/boot/dts/socfpga_cyclone5_de1soc_x2go.dts`),update socfpga.dtb
 
 	![](picture/bsp_15.png)
-
-	make socfpga_cyclone5_de1soc_x2go.dtb
+```
+make socfpga_cyclone5_de1soc_x2go.dtb
+```
 
 3. Build opencl kernel
-
-	aoc device/camera_sobel.cl -o bin/camera_sobel.aocx --board de1soc_sharedonly_io -v --report
-
+```
+aoc device/camera_sobel.cl -o bin/camera_sobel.aocx --board de1soc_sharedonly_io -v --report
+```
 4. Generate hps_0.h
-
-	sopc-create-header-files ./system.sopcinfo --single hps_0.h --module acl_iface_hps
-
+```
+sopc-create-header-files ./system.sopcinfo --single hps_0.h --module acl_iface_hps
+```
 5. code in de1soc_sw_io, and build it on PC
 
 6. aocl program and run host
-
-	aocl program /dev/acl0  cemera_sobel.aocx
-	./led_pio
-
+```
+aocl program /dev/acl0  cemera_sobel.aocx
+./led_pio
+```
