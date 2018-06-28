@@ -17,11 +17,12 @@
 
 ## SD Card Image Features
 
+- **now,FPGA reconfigurable** (c5soc_opencl_lxde_fpga_reconfigurable.img only)
 - both IntelFPGA OpenCL SDK 16.1 and 17.1
 - ubuntu 16.04 and 18.04 root file system
 - LXDE desktop
 - support x2go server (run desktop through ethernet)
-- also working with terasic's OpenCL hardware template BSP(x2go only with no vedio ip core)
+- also working with terasic's OpenCL hardware template BSP(x2go only with no vedio ip core,[see here](HowToRunX2GO.md))
 - also working without OpenCL
 - All in one ( DE1-SoC , DE10-Nano and DE10-Standard)
 - usb host and uvc driver for UVC cameras
@@ -97,26 +98,6 @@ Host useage:
 
 	mandelbrot -w=800 -h=640 -c=32
 
-## X2GO
-
-X2Go enables you to access a graphical desktop of a computer over a low bandwidth (or high bandwidth) connection.
-You can also use terasic's hardware templates which includes no vedio ip core to build the OpenCL aocx file.Then,
-you can get more fpga resouce and dynamic configuration for OpenCL.In this way, you need update the device tree
-binary file which contains no vedio ip core descriptoin and delete the CL_CONTEXT_COMPILER_MODE_xxx flag in initial shell file.
-
-![](picture/x2go.png)
-
-### Differences between VIP Core and X2GO only
-
-| Entry                |   VGA or HDMI (VIP Core) with X2GO            |      X2GO only (Ethernet)                   |
-| :--------            |:--------------------------                    |:-----------------------                     |
-| Hardware template    | de10_nano_sharedonly_hdmi                     | de10_nano_sharedonly  (form terasic)        |
-| opencl.rbf           | contain VIP core                              | no VIP Core                                 |
-| socfpga.dtb          | contain VIP core description                  | no VIP core description                     |
-| init_opencl_16.1.sh  | add CL_CONTEXT_COMPILER_MODE_ALTERA=3         | delete CL_CONTEXT_COMPILER_MODE_ALTERA=3    |
-| init_opencl_17.1.sh  | add CL_CONTEXT_COMPILER_MODE_INTELFPGA=3      | delete CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 |
-| host reprogram fpga  | manual ([look here](HowToReconfigureFPGA.md)) | enable                                   |
-
 ## Plans
 
 - [x] add mandelbrot application
@@ -136,10 +117,12 @@ CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 (opencl sdk17.1)
 ## How to do
 1. [How to do](HowToDo.md)
 
-2. [How to build your own BSP](HowToBuildBSP.md)
+2. [How to Run x2go](HowToRunX2GO.md)
 
-3. [How to update opencl driver](HowToBuildOpenCLDriver.md)
+3. [How to build your own BSP](HowToBuildBSP.md)
 
-4. [How to do fpga reconfiguration](HowToReconfigureFPGA.md)
+4. [How to update opencl driver](HowToBuildOpenCLDriver.md)
+
+5. [How to do fpga reconfiguration](HowToReconfigureFPGA.md)
 
 5. [How to build SD card Image](HowToBuildSDImage.md)

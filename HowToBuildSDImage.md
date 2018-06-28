@@ -96,8 +96,8 @@ echo "127.0.1.1 c5soc" >> /etc/hosts
 # Now add a user of your choice and include him in suitable groups
 adduser knat && addgroup knat adm && addgroup knat sudo && addgroup knat audio
 
-# add root password
-passwd root
+# set root without password
+sed -i 's/^root\:\*/root\:/g' /etc/shadow 
 
 # modify getty@.service
 sed -i 's/^ExecStart=-\/sbin\/agetty.*$/ExecStart=-\/sbin\/agetty --noclear %I $TERM/' /lib/systemd/system/getty@.service

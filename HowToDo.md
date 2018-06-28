@@ -146,13 +146,6 @@ Also,you can reduce the VIP driver in kernel and rebuild OpenCL driver(This is a
 	MSEL[4:0] ——> 01000， SW10(**1 to 6**) on,on,on,off,on,N/A
 
 
-## X2go login 
-1. check the host IP on board.
-2. login user: knat password: knat. 
-3. using "sudo su" to get root privileges
-
-![](picture/x2go_login.png)
-
 ## How to get rbf  form aocx file
 
 If you lost the rbf file and do not want recompile hardware,you can get it from the aocx file.
