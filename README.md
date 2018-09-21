@@ -18,11 +18,11 @@
 ## SD Card Image Features
 
 - **now,FPGA reconfigurable** (c5soc_opencl_lxde_fpga_reconfigurable.img only)
-- both IntelFPGA OpenCL SDK 16.1 and 17.1
+- IntelFPGA OpenCL SDK 16.1, 17.1 and 18.0
 - ubuntu 16.04 and 18.04 root file system
 - LXDE desktop
 - support x2go server (run desktop through ethernet)
-- also working with terasic's OpenCL hardware template BSP(x2go only with no vedio ip core,[see here](HowToRunX2GO.md))
+- also working with terasic's OpenCL hardware template BSP(x2go only with no vedio ip core,[here](HowToRunX2GO.md))
 - also working without OpenCL
 - All in one ( DE1-SoC , DE10-Nano and DE10-Standard)
 - usb host and uvc driver for UVC cameras
@@ -33,7 +33,7 @@ You can downlaod the all in one SD card Image file here [Baidu Cloud Link](https
 ## Run OpenCL Application
 
 1. Download the Image file and write it into the microSD card
-2. Cpoy the BOARD_NAME_APP.rbf and BOARD_NAME_socfpga.dtb ( keep the BOARD_NAME same as your target board) to Windows fat32 partition and rename them to opencl.rbf and socfpga.dtb 
+2. Copy the BOARD_NAME_APP.rbf and BOARD_NAME_socfpga.dtb ( keep the BOARD_NAME same as your target board) to Windows fat32 partition and rename them to opencl.rbf and socfpga.dtb 
 3. Insert the programmed microSD card to the DE10-nano or DE1-SoC or DE10-Standard board 
 4. Set the MSEL[4:0] on your board to 01010 , SW10(**1 to 6**) on,off,on,off,on,N/A
 5. Connect a  monitor to the HDMI or VGA port on baord
@@ -45,8 +45,6 @@ You can downlaod the all in one SD card Image file here [Baidu Cloud Link](https
 11. run OpenCL host (which keep same as your target board and the OpenCL SDK version ) directly. 
 
 ## OpenCL Hardware Template
-
-**Both supports IntelFPGA SDK for OpenCL 16.1 and 17.1**
 
 | Target Board      | Hardware Template  wtih VIP core | terasic's Hardware Template |
 | :--------         |:---------                        |:----------------------------|
@@ -107,12 +105,13 @@ Host useage:
 - [x] add colorGaryAPP shared memory edition
 - [x] add camera sobel application
 - [x] guides for building SD card image
+- [x] Intel FPGA SDK for OpenCL 18.0 template
 
 ## Limits
 
 Set the CL_CONTEXT_COMPILER_MODE_ALTERA=3  (opencl sdk16.1 ) flag in environment to disable the reprogramming of the FPGA by host. When running desktop, copy your generated top.rbf to fat32 partition and rename to opencl.rbf. opencl.rbf file should match the same host app and run host with CL_CONTEXT_COMPILER_MODE_ALTERA=3 flag .
 
-CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 (opencl sdk17.1)
+CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 (opencl sdk17.1 ~ 18.0)
 
 ## How to do
 1. [How to do](HowToDo.md)

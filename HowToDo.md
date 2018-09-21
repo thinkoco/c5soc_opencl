@@ -2,18 +2,16 @@
 ## Tools install & Environment Setting
 ### Windows x64
 
-- Quartus Prime Standard Edition 16.1 or 17.1
-- Intel FPGA SDK for OpenCL 16.1 or 17.1
+- Quartus Prime Lite 17.1 or 18.0
+- Intel FPGA SDK for OpenCL 17.1 or 18.0
 - SoC Embedded Design Suite (EDS)
 
 It's easy to use linux commands (arm-linux-guneabihf-gcc,make) in Soc_EDS_command_shell.bat on windows.
 
-More detail for Intel FPGA SDK for OpenCL 16.1,refering to [DE1SOC_OpenCL_v02.pdf](http://www.terasic.com.cn/attachment/archive/836/DE1SOC_OpenCL_v02.pdf)
-
 ### Linux (Ubuntu 16.04)
 
-- Quartus Prime Standard Edition 16.1 or 17.1
-- Intel FPGA SDK for OpenCL 16.1 or 17.1
+- Quartus Prime Lite 17.1 or 18.0
+- Intel FPGA SDK for OpenCL 17.1 or 18.0
 - SoC Embedded Design Suite (EDS)
 - arm-linux-gnueabihf-gcc
 - arm-linux-gnueabihf-g++
@@ -25,16 +23,19 @@ Install tools and set BSP
 	sudo apt install u-boot-tools gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libncurses5-dev make lsb uml-utilities git
 
 	git clone https://github.com/thinkoco/c5soc_opencl.git
-	cd c5soc_opencl
 
+	cd c5soc_opencl
 	cp -rf de1soc_sharedonly_vga ~/intelFPGA/16.1/hld/board/c5soc
 	cp -rf de10_nano_sharedonly_hdmi ~/intelFPGA/16.1/hld/board/c5soc
 	cp -rf de10_standard_sharedonly_vga ~/intelFPGA/16.1/hld/board/c5soc
-or
 
-	cp -rf de1soc_sharedonly_vga ~/intelFPGA/17.1/hld/board/c5soc/hardware
-	cp -rf de10_nano_sharedonly_hdmi ~/intelFPGA/17.1/hld/board/c5soc/hardware
-	cp -rf de10_standard_sharedonly_vga ~/intelFPGA/17.1/hld/board/c5soc/hardware
+for 17.1 or later,change the `ALTERAOCLSDKROOT` to `INTELFPGAOCLSDKROOT`
+
+	cd c5soc_opencl
+	sed -i "s/ALTERAOCLSDKROOT/INTELFPGAOCLSDKROOT/g" `grep ALTERAOCLSDKROOT -rl ./de*/`
+	cp -rf de1soc_sharedonly_vga ~/intelFPGA_lite/18.0/hld/board/c5soc/hardware
+	cp -rf de10_nano_sharedonly_hdmi ~/intelFPGA_lite/18.0/hld/board/c5soc/hardware
+	cp -rf de10_standard_sharedonly_vga ~/intelFPGA_lite/18.0/hld/board/c5soc/hardware
 
 
 modify the ~/intelFPGA/16.1/hld/board/c5soc/board_env.xml file
@@ -60,6 +61,15 @@ About  environment，write the following to env.sh file and change the paths for
 	export QUARTUS_64BIT=1
 	export LM_LICENSE_FILE="~/intelFPGA/license.dat"
 
+or 
+	#!/bin/bash
+	export INTELFPGAOCLSDKROOT="~/intelFPGA_lite/18.0/hld"
+	export QSYS_ROOTDIR="~/intelFPGA_lite/18.0/quartus/sopc_builder/bin"
+	export QUARTUS_ROOTDIR_OVERRIDE="~/intelFPGA_lite/18.0/quartus"
+	export PATH="$PATH:${QUARTUS_ROOTDIR_OVERRIDE}/bin:${QUARTUS_ROOTDIR_OVERRIDE}/linux64:${INTELFPGAOCLSDKROOT}/linux64/bin:${INTELFPGAOCLSDKROOT}/bin:${QSYS_ROOTDIR}"
+	export LD_LIBRARY_PATH="${INTELFPGAOCLSDKROOT}/host/linux64/lib:${AOCL_BOARD_PAKAGE_ROOT}/linux64/lib:${LD_LIBRARY_PATH}"
+	export AOCL_BOARD_PACKAGE_ROOT="${INTELFPGAOCLSDKROOT}/board/c5soc"
+	export QUARTUS_64BIT=1
 
 
 
