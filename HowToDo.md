@@ -2,16 +2,16 @@
 ## Tools install & Environment Setting
 ### Windows x64
 
-- Quartus Prime Lite 17.1 or 18.0
-- Intel FPGA SDK for OpenCL 17.1 or 18.0
+- Quartus Prime Lite 17.1 to 18.1
+- Intel FPGA SDK for OpenCL 17.1 to 18.1
 - SoC Embedded Design Suite (EDS)
 
 It's easy to use linux commands (arm-linux-guneabihf-gcc,make) in Soc_EDS_command_shell.bat on windows.
 
 ### Linux (Ubuntu 16.04)
 
-- Quartus Prime Lite 17.1 or 18.0
-- Intel FPGA SDK for OpenCL 17.1 or 18.0
+- Quartus Prime Lite 17.1 to 18.1
+- Intel FPGA SDK for OpenCL 17.1 to 18.1
 - SoC Embedded Design Suite (EDS)
 - arm-linux-gnueabihf-gcc
 - arm-linux-gnueabihf-g++
@@ -61,7 +61,8 @@ About  environment，write the following to env.sh file and change the paths for
 	export QUARTUS_64BIT=1
 	export LM_LICENSE_FILE="~/intelFPGA/license.dat"
 
-or 
+for 18.0 lite
+
 	#!/bin/bash
 	export INTELFPGAOCLSDKROOT="~/intelFPGA_lite/18.0/hld"
 	export QSYS_ROOTDIR="~/intelFPGA_lite/18.0/quartus/sopc_builder/bin"
@@ -70,7 +71,6 @@ or
 	export LD_LIBRARY_PATH="${INTELFPGAOCLSDKROOT}/host/linux64/lib:${AOCL_BOARD_PAKAGE_ROOT}/linux64/lib:${LD_LIBRARY_PATH}"
 	export AOCL_BOARD_PACKAGE_ROOT="${INTELFPGAOCLSDKROOT}/board/c5soc"
 	export QUARTUS_64BIT=1
-
 
 
 ## Compile OpenCL Host  and Kernel
@@ -82,6 +82,7 @@ Compile opencl kernel command on PC:
 	aoc device/grayKernel.cl -o bin/grayKernel.aocx --board de1soc_sharedonly_vga -v --report
 	aoc device/sobel.cl -o bin/sobel.aocx --board de1soc_sharedonly_vga -v --report
 	aoc device/mandelbrot_kernel.cl -o bin/mandelbrot_kernel.aocx  --board de1soc_sharedonly_vga -v --report 
+	aoc device/camera_sobel.cl -o bin/camera_sobel.aocx -board=de1soc_sharedonly_vga -v -report
 
 Compile host on DE1SOC:
 

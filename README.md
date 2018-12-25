@@ -18,7 +18,7 @@
 ## SD Card Image Features
 
 - **now,FPGA reconfigurable** (c5soc_opencl_lxde_fpga_reconfigurable.img only)
-- IntelFPGA OpenCL SDK 16.1, 17.1 and 18.0
+- IntelFPGA OpenCL SDK 16.1, 17.1 ,18.0, 18.1
 - ubuntu 16.04 and 18.04 root file system
 - LXDE desktop
 - support x2go server (run desktop through ethernet)
@@ -30,19 +30,32 @@
 You can downlaod the all in one SD card Image file here [Baidu Cloud Link](https://pan.baidu.com/s/1KDyexwHD39uyvcMDm0G97A) or [Google Drive Link](https://drive.google.com/open?id=1mAYHFvOw2xtgf-e8pntFCxCGOdaYNsgG).
 
 
-## Run OpenCL Application
+## Run default OpenCL Application
 
 1. Download the Image file and write it into the microSD card
-2. Copy the BOARD_NAME_APP.rbf and BOARD_NAME_socfpga.dtb ( keep the BOARD_NAME same as your target board) to Windows fat32 partition and rename them to opencl.rbf and socfpga.dtb 
+2. **Copy the BOARD_NAME_APP.rbf and BOARD_NAME_socfpga.dtb in sdcard ( make sure the BOARD_NAME same as your target board) to Windows fat32 partition and rename them to opencl.rbf and socfpga.dtb**
 3. Insert the programmed microSD card to the DE10-nano or DE1-SoC or DE10-Standard board 
 4. Set the MSEL[4:0] on your board to 01010 , SW10(**1 to 6**) on,off,on,off,on,N/A
 5. Connect a  monitor to the HDMI or VGA port on baord
 6. Conect USB mouse and keyboard to the USB ports on the board
-7. Conect UART to PC (**must conect to PC or Power**)
+7. Conect UART to PC (**must connect to PC or Power**)
 8. Power on the board and you will see the LXDE graphical environment
 9. Open the console (Ctrl+Alt+T) on the desktop 
 10. source the **init_opencl_16.1.sh** or  **init_opencl_17.1.sh** file 
 11. run OpenCL host (which keep same as your target board and the OpenCL SDK version ) directly. 
+
+
+## Run other OpenCL Application
+
+1. c5soc_opencl_lxde_all_in_one_180317.img
+
+	a) **update the opencl.rbf with top.rbf(which is genrated when building XXXX.aocx in the output folder), keep the file name opencl.rbf**	
+	b) copy the XXXX.aocx and host to sdcard
+	c) boot and run
+
+2. c5soc_opencl_lxde_fpga_reconfigurable.img
+
+	[Here](./HowToReconfigureFPGA.md#fpga-reconfiguration)
 
 ## OpenCL Hardware Template
 
