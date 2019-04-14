@@ -2,7 +2,7 @@
 
 ##  Hardware Architecture
 
-![](figure/arch.png)
+![](documents/figure/arch.png)
 
 ## Supported Boards
 
@@ -21,7 +21,7 @@
 - ubuntu 16.04 and 18.04 root file system
 - LXDE desktop
 - support x2go server (run desktop through ethernet)
-- also working with terasic's OpenCL hardware template BSP(x2go only with no vedio ip core,[here](HowToRunX2GO.md))
+- also working with terasic's OpenCL hardware template BSP(x2go only with no vedio ip core,[here](documents/HowToRunX2GO.md))
 - also working without OpenCL
 - All in one ( DE1-SoC , DE10-Nano and DE10-Standard)
 - usb host and uvc driver for UVC cameras
@@ -37,7 +37,7 @@ You can downlaod the all in one SD card Image file here [Baidu Cloud Link](https
 4. Set the MSEL[4:0] on your board to 01010 , SW10(**1 to 6**) on,off,on,off,on,N/A
 5. Connect a  monitor to the HDMI or VGA port on baord
 6. Conect USB mouse and keyboard to the USB ports on the board
-7. Conect UART to PC (**must connect to PC or Power,fixed on linux 4.19.x**)
+7. Conect UART to PC (**must connect to PC or Power)
 8. Power on the board and you will see the LXDE graphical environment
 9. Open the console (Ctrl+Alt+T) on the desktop 
 10. source the **init_opencl_xxxx.sh** file 
@@ -61,7 +61,7 @@ You can downlaod the all in one SD card Image file here [Baidu Cloud Link](https
 
 A UVC usb camera application program is used to convert YUYV to RGB and Gray by using opencl.
 
-![](figure/colorApp.png)
+![](documents/figure/colorApp.png)
 
 Host usage:
 
@@ -71,13 +71,15 @@ Host usage:
 ### camera_sobel
 YUYV --> Y(gray) --> sobel 
 
-	camera_sobel.run -h  //"-h" hardware mode
+![](documents/figure/camera_sobel.png)
+
+	camera_sobel.run -v  //"-v" hardware mode
 
 ### sobel_filter
 
 do sobel by using four methods : arm , neon , opencl ,opencl with shared memory
 
-![](figure/sobel.png)
+![](documents/figure/sobel.png)
 
 | Methods              | Frequency |  Time     |
 | :--------            |:---------:|:---------:|
@@ -95,7 +97,7 @@ Host useage:
 
 ### Mandelbrot
 
-![](figure/mandelbrot.png)
+![](documents/figure/mandelbrot.png)
 
 Host useage:
 
@@ -111,6 +113,7 @@ Host useage:
 - [x] add camera sobel application
 - [x] guides for building SD card image
 - [x] Intel FPGA SDK for OpenCL 18.0 template
+- [x] add c5soc_opencl_rte runtime environment submodule
 
 ## Limits
 
