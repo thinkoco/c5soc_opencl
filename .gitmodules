@@ -1,0 +1,3 @@
+[submodule "c5soc_opencl_rte"]
+	path = c5soc_opencl_rte
+	url = https://github.com/thinkoco/c5soc_opencl_rte.git
