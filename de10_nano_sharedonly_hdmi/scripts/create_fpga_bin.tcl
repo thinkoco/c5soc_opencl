@@ -29,12 +29,12 @@ set file_sizes [list]
 set files [list]
 
 # Make sure OpenCL SDK installation exists
-post_message "Checking for OpenCL SDK installation, environment should have ALTERAOCLSDKROOT defined"
-if {[catch {set sdk_root $::env(ALTERAOCLSDKROOT)} result]} {
-  post_message -type error "OpenCL SDK installation not found.  Make sure ALTERAOCLSDKROOT is correctly set"
+post_message "Checking for OpenCL SDK installation, environment should have INTELFPGAOCLSDKROOT defined"
+if {[catch {set sdk_root $::env(INTELFPGAOCLSDKROOT)} result]} {
+  post_message -type error "OpenCL SDK installation not found.  Make sure INTELFPGAOCLSDKROOT is correctly set"
   exit 2
 } else {
-  post_message "ALTERAOCLSDKROOT=$::env(ALTERAOCLSDKROOT)"
+  post_message "INTELFPGAOCLSDKROOT=$::env(INTELFPGAOCLSDKROOT)"
 }
 
 for {set i 0} {$i < $argc} {incr i} {

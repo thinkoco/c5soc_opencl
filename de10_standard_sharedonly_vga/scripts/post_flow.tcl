@@ -20,10 +20,10 @@ post_message "Project name: $project_name"
 
 # Run PLL adjust script
 post_message "Running PLL adjustment script"
-if {[catch {set sdk_root $::env(ALTERAOCLSDKROOT)} result]} {
-  post_message -type error "OpenCL SDK installation not found.  Make sure ALTERAOCLSDKROOT is correctly set" -submsgs [list "Guaranteed timing flow not run - you may have timing failures on the kernel clock\n"]
+if {[catch {set sdk_root $::env(INTELFPGAOCLSDKROOT)} result]} {
+  post_message -type error "OpenCL SDK installation not found.  Make sure INTELFPGAOCLSDKROOT is correctly set" -submsgs [list "Guaranteed timing flow not run - you may have timing failures on the kernel clock\n"]
 } else {
-  source $::env(ALTERAOCLSDKROOT)/ip/board/bsp/adjust_plls.tcl
+  source $::env(INTELFPGAOCLSDKROOT)/ip/board/bsp/adjust_plls.tcl
 }
 
 # Generate the rbf from the sof

@@ -18,7 +18,7 @@ bsp-editor&
 ```
 File --> New HPS BSP,set `Preloader settings directory`path to `~/sdcard/hello_world/hps_isw_handoff/system_acl_iface_hps`
 
-![](picture/NewBsp.png)
+![](figure/NewBsp.png)
 
 Then, OK --> Generate --> Exit
 [ENTER]
@@ -53,6 +53,7 @@ export LOADADDR=0x8000
 
 make zImage
 make socfpga_cyclone5_de10_nano.dtb
+make modules
 make modules_install INSTALL_MOD_PATH=~/sdcard/
 
 cp ~/sdcard/linux-socfpga/arch/arm/boot/zImage ./

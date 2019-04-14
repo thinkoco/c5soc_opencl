@@ -1,10 +1,11 @@
 # IntelFPGA Cyclone V SoC OpenCL
 
 ##  Hardware Architecture
-![](picture/arch.png)
 
+![](figure/arch.png)
 
 ## Supported Boards
+
 - [x] [DE1-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=182&No=870)
 - [x] [DE10-Nano](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=1048)
 - [x] [DE10-Standard](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=182&No=1105)
@@ -12,13 +13,11 @@
 ## Supported USB Cameras
 
 - UVC (USB video device class) USB Cameras,for example Logitech C270
-- USB Cameras supported by gspca driver
-- etc.
 
 ## SD Card Image Features
 
 - **now,FPGA reconfigurable** (c5soc_opencl_lxde_fpga_reconfigurable.img only)
-- IntelFPGA OpenCL SDK 16.1, 17.1 ,18.0, 18.1
+- IntelFPGA OpenCL SDK 17.1 ,18.0, 18.1
 - ubuntu 16.04 and 18.04 root file system
 - LXDE desktop
 - support x2go server (run desktop through ethernet)
@@ -38,24 +37,16 @@ You can downlaod the all in one SD card Image file here [Baidu Cloud Link](https
 4. Set the MSEL[4:0] on your board to 01010 , SW10(**1 to 6**) on,off,on,off,on,N/A
 5. Connect a  monitor to the HDMI or VGA port on baord
 6. Conect USB mouse and keyboard to the USB ports on the board
-7. Conect UART to PC (**must connect to PC or Power**)
+7. Conect UART to PC (**must connect to PC or Power,fixed on linux 4.19.x**)
 8. Power on the board and you will see the LXDE graphical environment
 9. Open the console (Ctrl+Alt+T) on the desktop 
-10. source the **init_opencl_16.1.sh** or  **init_opencl_17.1.sh** file 
+10. source the **init_opencl_xxxx.sh** file 
 11. run OpenCL host (which keep same as your target board and the OpenCL SDK version ) directly. 
 
 
-## Run other OpenCL Application
+## Run another OpenCL Application
 
-1. c5soc_opencl_lxde_all_in_one_180317.img
-
-	a) **update the opencl.rbf with top.rbf(which is genrated when building XXXX.aocx in the output folder), keep the file name opencl.rbf**	
-	b) copy the XXXX.aocx and host to sdcard
-	c) boot and run
-
-2. c5soc_opencl_lxde_fpga_reconfigurable.img
-
-	[Here](./HowToReconfigureFPGA.md#fpga-reconfiguration)
+ **c5soc_opencl_lxde_fpga_reconfigurable.img**,[Here HowToReconfigureFPGA](documents/HowToReconfigureFPGA.md#fpga-reconfiguration)
 
 ## OpenCL Hardware Template
 
@@ -67,9 +58,10 @@ You can downlaod the all in one SD card Image file here [Baidu Cloud Link](https
 
 ## App
 ### colorApp
+
 A UVC usb camera application program is used to convert YUYV to RGB and Gray by using opencl.
 
-![](picture/colorApp.png)
+![](figure/colorApp.png)
 
 Host usage:
 
@@ -85,7 +77,7 @@ YUYV --> Y(gray) --> sobel
 
 do sobel by using four methods : arm , neon , opencl ,opencl with shared memory
 
-![](picture/sobel.png)
+![](figure/sobel.png)
 
 | Methods              | Frequency |  Time     |
 | :--------            |:---------:|:---------:|
@@ -103,7 +95,7 @@ Host useage:
 
 ### Mandelbrot
 
-![](picture/mandelbrot.png)
+![](figure/mandelbrot.png)
 
 Host useage:
 
@@ -122,19 +114,18 @@ Host useage:
 
 ## Limits
 
-Set the CL_CONTEXT_COMPILER_MODE_ALTERA=3  (opencl sdk16.1 ) flag in environment to disable the reprogramming of the FPGA by host. When running desktop, copy your generated top.rbf to fat32 partition and rename to opencl.rbf. opencl.rbf file should match the same host app and run host with CL_CONTEXT_COMPILER_MODE_ALTERA=3 flag .
-
-CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 (opencl sdk17.1 ~ 18.0)
+Set the CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 (opencl sdk17.1 ~ 18.1) flag in environment to disable the reprogramming of the FPGA by host. For updating aocx, go to
+[How to do fpga reconfiguration](documents/HowToReconfigureFPGA.md)
 
 ## How to do
-1. [How to do](HowToDo.md)
+1. [How to do](documents/HowToDo.md)
 
-2. [How to Run x2go](HowToRunX2GO.md)
+2. [How to Run x2go](documents/HowToRunX2GO.md)
 
-3. [How to build your own BSP](HowToBuildBSP.md)
+3. [How to build your own BSP](documents/HowToBuildBSP.md)
 
-4. [How to update opencl driver](HowToBuildOpenCLDriver.md)
+4. [How to update opencl driver](documents/HowToBuildOpenCLDriver.md)
 
-5. [How to do fpga reconfiguration](HowToReconfigureFPGA.md)
+5. [How to do fpga reconfiguration](documents/HowToReconfigureFPGA.md)
 
-5. [How to build SD card Image](HowToBuildSDImage.md)
+5. [How to build SD card Image](documents/HowToBuildSDImage.md)

@@ -5,7 +5,7 @@
 X2Go enables you to access a graphical desktop of a computer over a low bandwidth (or high bandwidth) connection.
 In x2go only mode,if using terasic's hardware templates which includes no vedio ip core to build the OpenCL aocx file,you can get more fpga resouce for OpenCL.
 
-![](picture/x2go.png)
+![](figure/x2go.png)
 
 ## Install x2go server in sd card
 To install add-apt-repository on Ubuntu
@@ -40,7 +40,7 @@ https://code.x2go.org/releases/binary-win32/x2goclient/releases/4.1.1.1-2018.03.
 2. login user: knat password: knat. 
 3. using "sudo su" to get root privileges
 
-![](picture/x2go_login.png)
+![](figure/x2go_login.png)
 
 
  
@@ -54,7 +54,7 @@ In x2go only mode,there is no vip logic in rbf(aocx) and vip driver will not be 
 | socfpga.dtb          | contain VIP core description                  | no VIP core description                     |
 | init_opencl_16.1.sh  | add CL_CONTEXT_COMPILER_MODE_ALTERA=3         | delete CL_CONTEXT_COMPILER_MODE_ALTERA=3    |
 | init_opencl_17.1.sh  | add CL_CONTEXT_COMPILER_MODE_INTELFPGA=3      | delete CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 |
-| host reprogram fpga  | manual (by aocl program [look here](HowToReconfigureFPGA.md)) | enable                  |
+| host reprogram fpga  | manual (by aocl program [look here](documents/HowToReconfigureFPGA.md)) | enable            |
 
 ## how to do x2go only
 
