@@ -9,6 +9,7 @@
 - [x] [DE1-SoC](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=182&No=870)
 - [x] [DE10-Nano](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=1048)
 - [x] [DE10-Standard](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=182&No=1105)
+- [x] [DE10-Nano](http://www.terasic.com.cn/cgi-bin/page/archive.pl?Language=China&CategoryNo=203&No=1048)+[Mi-LCD](https://github.com/thinkoco/mi-lcd)
 
 ## Supported USB Cameras
 
@@ -114,6 +115,7 @@ Host useage:
 - [x] guides for building SD card image
 - [x] Intel FPGA SDK for OpenCL 18.0 template
 - [x] add c5soc_opencl_rte runtime environment submodule
+- [x] add de10_nano sharedonly with i80 controller BSP for Mi-LCD
 
 ## Limits
 
