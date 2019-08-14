@@ -1146,7 +1146,7 @@
    start="pipe_stage_host_ctrl.m0"
    end="tft_lcd.avalon_slave_0">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x0040" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
