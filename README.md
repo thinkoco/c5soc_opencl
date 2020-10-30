@@ -17,24 +17,23 @@
 
 ## SD Card Image Features
 
-- **now,FPGA reconfigurable** (c5soc_opencl_lxde_fpga_reconfigurable.img only)
-- IntelFPGA OpenCL SDK 17.1 ,18.0, 18.1
-- ubuntu 16.04 and 18.04 root file system
+- **now,FPGA reconfigurable**
+- IntelFPGA OpenCL SDK 17.1 , 18.1 ,19.1
+- ubuntu 18.04 root file system
 - LXDE desktop
 - support x2go server (run desktop through ethernet)
 - also working with terasic's OpenCL hardware template BSP(x2go only with no vedio ip core,[here](documents/HowToRunX2GO.md))
-- also working without OpenCL
 - All in one ( DE1-SoC , DE10-Nano and DE10-Standard)
-- usb host and uvc driver for UVC cameras
+- usb host and uvc driver for UVC USB cameras
 
-You can downlaod the all in one SD card Image file here [Baidu Cloud Link](https://pan.baidu.com/s/1KDyexwHD39uyvcMDm0G97A) or [Google Drive Link](https://drive.google.com/open?id=1mAYHFvOw2xtgf-e8pntFCxCGOdaYNsgG).
+You can downlaod the `c5soc_opencl_lxde_fpga_reconfigurable_20201027.img` all in one SD card Image file here [Baidu Cloud Link](https://pan.baidu.com/s/1KDyexwHD39uyvcMDm0G97A) or [Google Drive Link](https://drive.google.com/open?id=1mAYHFvOw2xtgf-e8pntFCxCGOdaYNsgG).
 
 
 ## Run default OpenCL Application
 
 1. Download the Image file and write it into the microSD card
 2. **Copy the BOARD_NAME_APP.rbf and BOARD_NAME_socfpga.dtb in sdcard ( make sure the BOARD_NAME same as your target board) to Windows fat32 partition and rename them to opencl.rbf and socfpga.dtb**
-3. Insert the programmed microSD card to the DE10-nano or DE1-SoC or DE10-Standard board 
+3. Insert the microSD card to the DE10-nano , DE1-SoC or DE10-Standard board 
 4. Set the MSEL[4:0] on your board to 01010 , SW10(**1 to 6**) on,off,on,off,on,N/A
 5. Connect a  monitor to the HDMI or VGA port on baord
 6. Conect USB mouse and keyboard to the USB ports on the board
@@ -44,11 +43,6 @@ You can downlaod the all in one SD card Image file here [Baidu Cloud Link](https
 10. source the **init_opencl_xxxx.sh** file 
 11. run OpenCL host (which keep same as your target board and the OpenCL SDK version ) directly. 
 
-
-## Run another OpenCL Application
-
- **c5soc_opencl_lxde_fpga_reconfigurable.img**,[Here HowToReconfigureFPGA](documents/HowToReconfigureFPGA.md#fpga-reconfiguration)
-
 ## OpenCL Hardware Template
 
 | Target Board      | Hardware Template  wtih VIP core | terasic's Hardware Template |
@@ -57,7 +51,10 @@ You can downlaod the all in one SD card Image file here [Baidu Cloud Link](https
 | DE10-nano         | de10_nano_sharedonly_hdmi        | de10_nano_sharedonly        |
 | DE10-Standard     | de10_standard_sharedonly_vga     | de10_standard_sharedonly    |
 
-## App
+ 
+ de10_nano_sharedonly_mil for DE10-nano + Mi_LCD
+
+## Demos
 ### colorApp
 
 A UVC usb camera application program is used to convert YUYV to RGB and Gray by using opencl.
@@ -104,7 +101,7 @@ Host useage:
 
 	mandelbrot -w=800 -h=640 -c=32
 
-## Plans
+## Works
 
 - [x] add mandelbrot application
 - [x] add to DE10-nano BSP
@@ -113,24 +110,29 @@ Host useage:
 - [x] add colorGaryAPP shared memory edition
 - [x] add camera sobel application
 - [x] guides for building SD card image
-- [x] Intel FPGA SDK for OpenCL 18.0 template
+- [x] Intel FPGA SDK for OpenCL 18.1 template
 - [x] add c5soc_opencl_rte runtime environment submodule
 - [x] add de10_nano sharedonly with i80 controller BSP for Mi-LCD
+- [x] Intel FPGA SDK for OpenCL 19.1 template
+
+
+## How to do
+
+1. [How to do](documents/HowToDo.md)
+
+2. [Linux and Drivers](documents/LinuxAndDrivers.md)
+
+3. [Network](documents/Network.md)
+
+4. [How to Run x2go](documents/HowToRunX2GO.md)
+
+5. [How to build a BSP](documents/HowToBuildBSP.md)
+
+6. [How to do fpga reconfiguration](documents/HowToReconfigureFPGA.md)
+
+7. [How to build SD card Image](documents/HowToBuildSDImage.md)
 
 ## Limits
 
 Set the CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 (opencl sdk17.1 ~ 18.1) flag in environment to disable the reprogramming of the FPGA by host. For updating aocx, go to
 [How to do fpga reconfiguration](documents/HowToReconfigureFPGA.md)
-
-## How to do
-1. [How to do](documents/HowToDo.md)
-
-2. [How to Run x2go](documents/HowToRunX2GO.md)
-
-3. [How to build your own BSP](documents/HowToBuildBSP.md)
-
-4. [How to update opencl driver](documents/HowToBuildOpenCLDriver.md)
-
-5. [How to do fpga reconfiguration](documents/HowToReconfigureFPGA.md)
-
-5. [How to build SD card Image](documents/HowToBuildSDImage.md)
