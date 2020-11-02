@@ -32,16 +32,16 @@ You can downlaod the `c5soc_opencl_lxde_fpga_reconfigurable_20201027.img` all in
 ## Run default OpenCL Application
 
 1. Download the Image file and write it into the microSD card
-2. **Copy the BOARD_NAME_APP.rbf and BOARD_NAME_socfpga.dtb in sdcard ( make sure the BOARD_NAME same as your target board) to Windows fat32 partition and rename them to opencl.rbf and socfpga.dtb**
+2. run `update_rbf_and_dtb.bat` or `sh ./update_rbf_and_dtb.sh` on PC to update rbf and dtb for target board
 3. Insert the microSD card to the DE10-nano , DE1-SoC or DE10-Standard board 
 4. Set the MSEL[4:0] on your board to 01010 , SW10(**1 to 6**) on,off,on,off,on,N/A
 5. Connect a  monitor to the HDMI or VGA port on baord
 6. Conect USB mouse and keyboard to the USB ports on the board
-7. Conect UART to PC (**must connect to PC or Power)
+7. Conect UART to PC (**must connect to PC**)
 8. Power on the board and you will see the LXDE graphical environment
-9. Open the console (Ctrl+Alt+T) on the desktop 
-10. source the **init_opencl_xxxx.sh** file 
-11. run OpenCL host (which keep same as your target board and the OpenCL SDK version ) directly. 
+9. Open the LXterminal on the desktop 
+10. source the **init_opencl_17.1.sh** file 
+11. run sobel host `host.17.1.run` directly. (which keep same as your target board and the OpenCL SDK version ) 
 
 ## OpenCL Hardware Template
 
@@ -101,7 +101,7 @@ Host useage:
 
 	mandelbrot -w=800 -h=640 -c=32
 
-## Works
+## History
 
 - [x] add mandelbrot application
 - [x] add to DE10-nano BSP
@@ -110,10 +110,10 @@ Host useage:
 - [x] add colorGaryAPP shared memory edition
 - [x] add camera sobel application
 - [x] guides for building SD card image
-- [x] Intel FPGA SDK for OpenCL 18.1 template
+- [x] Intel FPGA SDK for OpenCL 18.0 template
 - [x] add c5soc_opencl_rte runtime environment submodule
 - [x] add de10_nano sharedonly with i80 controller BSP for Mi-LCD
-- [x] Intel FPGA SDK for OpenCL 19.1 template
+- [x] Intel FPGA SDK for OpenCL 18.1, 19.1 environment
 
 
 ## How to do
@@ -134,5 +134,5 @@ Host useage:
 
 ## Limits
 
-Set the CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 (opencl sdk17.1 ~ 18.1) flag in environment to disable the reprogramming of the FPGA by host. For updating aocx, go to
+Set the CL_CONTEXT_COMPILER_MODE_INTELFPGA=3 (opencl sdk17.1 ~ 19.1) flag in environment to disable the reprogramming of the FPGA by host. For updating aocx, go to
 [How to do fpga reconfiguration](documents/HowToReconfigureFPGA.md)

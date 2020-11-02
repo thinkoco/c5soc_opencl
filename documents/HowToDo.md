@@ -44,7 +44,7 @@ sudo apt install minicom u-boot-tools gcc-arm-linux-gnueabihf g++-arm-linux-gnue
 ls /dev/sd*
 ```
 
-2. insert sdcard to PC and show the sdx device again, the new device is
+2. insert sdcard to PC and show the sdx device again, the new device is sdcard
 
  ![](figure/c5soc_show_sdx.png)
 
@@ -74,22 +74,23 @@ sudo dd if=c5soc_opencl_lxde_fpga_reconfigurable.img of=/dev/sdb status=progress
 
 About  environment，write the following to env.sh file and change the paths for your situation. Source it using "**source env.sh**" before compiling .aocx and .rbf.
 ```
-	export INTELFPGAOCLSDKROOT="/opt/intelFPGA_lite/18.0/hld"
-	export QSYS_ROOTDIR="/opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin"
-	export QUARTUS_ROOTDIR_OVERRIDE="/opt/intelFPGA_lite/18.0/quartus"
-	export PATH="$PATH:${QUARTUS_ROOTDIR_OVERRIDE}/bin:${QUARTUS_ROOTDIR_OVERRIDE}/linux64:${INTELFPGAOCLSDKROOT}/linux64/bin:${INTELFPGAOCLSDKROOT}/bin:${QSYS_ROOTDIR}"
-	export LD_LIBRARY_PATH="${INTELFPGAOCLSDKROOT}/host/linux64/lib:${AOCL_BOARD_PAKAGE_ROOT}/linux64/lib:${LD_LIBRARY_PATH}"
-	export AOCL_BOARD_PACKAGE_ROOT="${INTELFPGAOCLSDKROOT}/board/c5soc"
-	export QUARTUS_64BIT=1
+export INTELFPGAOCLSDKROOT="/optintelFPGA_lite/18.0/hld"
+export QSYS_ROOTDIR="/optintelFPGA_lite/18.0/quartussopc_builder/bin"
+export QUARTUS_ROOTDIR_OVERRIDE="/optintelFPGA_lite/18.0/quartus"
+export PATH="$PATH:{QUARTUS_ROOTDIR_OVERRIDE}/bin:{QUARTUS_ROOTDIR_OVERRIDE}/linux64:{INTELFPGAOCLSDKROOT}/linux64/bin:{INTELFPGAOCLSDKROOT}/bin:{QSYS_ROOTDIR}"
+export LD_LIBRARY_PATH="{INTELFPGAOCLSDKROOT}/host/linux64lib:${AOCL_BOARD_PAKAGE_ROOT}/linux64lib:${LD_LIBRARY_PATH}"
+export AOCL_BOARD_PACKAGE_ROOT="{INTELFPGAOCLSDKROOT}/board/c5soc"
+export QUARTUS_64BIT=1
 ```
 
 ![](figure/c5soc_aoc_list_board.png)
 
 3. compile the Mandelbrot kernel on PC
 
-    cd c5soc_opencl/application/mandelbrot
-	aoc device/mandelbrot_kernel.cl -o bin/mandelbrot_kernel.aocx  -board=de10_nano_sharedonly_hdmi -v -report 
-
+```
+cd c5soc_opencl/application/mandelbrot
+aoc device/mandelbrot_kernel.cl -o bin/mandelbrot_kernel.aocx  -board=de10_nano_sharedonly_hdmi -v -report 
+```
 
 ![](figure/c5soc_run_aoc.png)
 

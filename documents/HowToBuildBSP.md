@@ -50,7 +50,14 @@ Save without generating HDL
 
 	![](figure/bsp_12.png)
 
-13. Delete `acl_iface_partition.qxp` and other useless files.Finally,keep these files .
+
+13. set acl_iface_region form `LL_ENABLED OFF` to  `LL_ENABLED ON` in top.qsf
+
+```
+set_global_assignment -name LL_ENABLED ON -section_id acl_iface_region
+```
+
+14. Delete `acl_iface_partition.qxp` and other useless files.Finally,keep these files .
 
 	![](figure/bsp_13.png)
 
