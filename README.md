@@ -37,7 +37,7 @@ You can downlaod the `c5soc_opencl_lxde_fpga_reconfigurable_20201027.img` all in
 4. Set the MSEL[4:0] on your board to 01010 , SW10(**1 to 6**) on,off,on,off,on,N/A
 5. Connect a  monitor to the HDMI or VGA port on baord
 6. Conect USB mouse and keyboard to the USB ports on the board
-7. Conect UART to PC (**must connect to PC**)
+7. Conect UART to PC
 8. Power on the board and you will see the LXDE graphical environment
 9. Open the LXterminal on the desktop 
 10. source the **init_opencl_17.1.sh** file 
@@ -114,6 +114,8 @@ Host useage:
 - [x] add c5soc_opencl_rte runtime environment submodule
 - [x] add de10_nano sharedonly with i80 controller BSP for Mi-LCD
 - [x] Intel FPGA SDK for OpenCL 18.1, 19.1 environment
+- [x] add initial script for selecting the target board in sdcard image
+- [x] update u-boot to fix boot hangs bug when not connecting USB-UART to PC
 
 
 ## How to do

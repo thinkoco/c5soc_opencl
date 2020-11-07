@@ -14,16 +14,13 @@ cp hello_world/top.rbf opencl.rbf
 ```
 ~/intelFPGA/17.1/embedded/embedded_command_shell.sh
 cd ~/sdcard/hello_world
-bsp-editor& 
-```
-File --> New HPS BSP,set `Preloader settings directory`path to `~/sdcard/hello_world/hps_isw_handoff/system_acl_iface_hps`
+mkdir -p ~/sdcard/hello_world/software/spl_bsp
+bsp-create-settings \
+	--type spl \
+	--bsp-dir software/spl_bsp \
+	--preloader-settings-dir "hps_isw_handoff/system_acl_iface_hps" \
+	--settings software/spl_bsp/settings.bsp
 
-![](figure/NewBsp.png)
-
-Then, OK --> Generate --> Exit
-[ENTER]
-
-```
 cd ~/sdcard/hello_world/software/spl_bsp/
 make
 cp preloader-mkpimage.bin ~/sdcard/
@@ -43,9 +40,8 @@ mkimage   -A arm -O linux -T script -C none -a 0 -e 0 -n "My script" -d boot.scr
 ## 4. Build zImage and socfpga.dtb
 ```
 cd ~/sdcard/
-git clone https://github.com/thinkoco/linux-socfpga.git
+git clone -b socfpga-opencl_3.18 --depth=10 https://github.com/thinkoco/linux-socfpga.git
 cd linux-socfpga
-git checkout -b socfpga-opencl_3.18 origin/socfpga-3.18
 cp config_opencl .config
 export ARCH=arm
 export CROSS_COMPILE=arm-linux-gnueabihf-
@@ -86,7 +82,7 @@ echo nameserver 8.8.8.8 > /etc/resolv.conf
 
 # install minimal packages required for X server and some core utils
 apt update
-apt-get install language-pack-en-base vim sudo ssh net-tools ethtool wireless-tools lxde xfce4-power-manager xinit xorg xserver-xorg-video-fbdev xserver-xorg-input-all network-manager iputils-ping rsyslog lightdm-gtk-greeter alsa-utils mplayer lightdm bash-completion lxtask htop python-gobject-2 python-gtk2 synaptic --no-install-recommends
+apt-get install language-pack-en-base vim sudo ssh net-tools ethtool wireless-tools lxde xfce4-power-manager xinit xorg xserver-xorg-video-fbdev xserver-xorg-input-all network-manager ntpdate iputils-ping rsyslog lightdm-gtk-greeter alsa-utils mplayer lightdm bash-completion lxtask htop python-gobject-2 python-gtk2 synaptic --no-install-recommends
 
 apt install locales-all tzdata resolvconf  --no-install-recommends
 
@@ -111,8 +107,12 @@ echo -e '#!/bin/sh -e\n#\n# rc.local\n#\n#In order to enable or disable this scr
 
 chmod +x /etc/rc.local
 
+echo -e 'auto lo\niface lo inet loopback\n\nauto eth0\niface eth0 inet dhcp' > /etc/network/interfaces
+
 # update DNS automatically,Set ‘timezone’,Make X used by ‘anyuser’
 dpkg-reconfigure tzdata
+
+dpkg-reconfigure network-manager
 
 dpkg-reconfigure resolvconf
 
@@ -140,14 +140,16 @@ sudo bash ./ch-mount.sh -u rootfs/
 
 ```
 cd ~/sdcard
-wget http://releases.rocketboards.org/release/2017.10/gsrd/tools/make_sdimage.py
-chmod +x make_sdimage.py
-sudo ./make_sdimage.py -f -P preloader-mkpimage.bin,u-boot.img,num=3,format=raw,size=10M,type=A2  -P rootfs/*,num=2,format=ext4,size=1500M  -P zImage,u-boot.scr,opencl.rbf,socfpga.dtb,num=1,format=vfat,size=500M -s 2G -n sdcard_de10_nano.img
+wget https://releases.rocketboards.org/release/2020.05/gsrd/tools/make_sdimage_p3.py
+chmod +x make_sdimage_p3.py
+sudo ./make_sdimage_p3.py -f -P preloader-mkpimage.bin,u-boot.img,num=3,format=raw,size=10M,type=A2  -P rootfs/*,num=2,format=ext4,size=1500M  -P zImage,u-boot.scr,opencl.rbf,socfpga.dtb,num=1,format=vfat,size=500M -s 2G -n sdcard_de10_nano.img
 ```
 
 ## 7. Related Links
 
 - [https://rocketboards.org/foswiki/Documentation/AVGSRDSdCard](https://rocketboards.org/foswiki/Documentation/AVGSRDSdCard)
+  
+- [https://rocketboards.org/foswiki/Documentation/CycloneVSoCGSRD](https://rocketboards.org/foswiki/Documentation/CycloneVSoCGSRD)
 
 - [http://gnu-linux.org/building-ubuntu-rootfs-for-arm.html](http://gnu-linux.org/building-ubuntu-rootfs-for-arm.html)
 

@@ -65,9 +65,8 @@ set_global_assignment -name LL_ENABLED ON -section_id acl_iface_region
 
 1. Git clone the linux-socfpga
 ```
-git clone https://github.com/thinkoco/linux-socfpga.git
+git clone -b socfpga-opencl_3.18 --depth=10 https://github.com/thinkoco/linux-socfpga.git
 cd linux-socfpga
-git checkout -b socfpga-opencl_3.18 origin/socfpga-3.18
 ```
 2. Modify the device tree source file(`linux-socfpga/arch/arm/boot/dts/socfpga_cyclone5_de1soc_x2go.dts`),update socfpga.dtb
 

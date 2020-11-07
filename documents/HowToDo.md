@@ -61,11 +61,11 @@ sudo dd if=c5soc_opencl_lxde_fpga_reconfigurable.img of=/dev/sdb status=progress
 1. copy the hardware bsp to `/opt/intelFPGA_lite/18.1/hld/board/c5soc/hardware`
 
 ```
-	git clone https://github.com/thinkoco/c5soc_opencl.git
-	cd c5soc_opencl
-	cp -rf de1soc_sharedonly_vga /opt/intelFPGA_lite/18.0/hld/board/c5soc/hardware
-	cp -rf de10_nano_sharedonly_hdmi /opt/intelFPGA_lite/18.0/hld/board/c5soc/hardware
-	cp -rf de10_standard_sharedonly_vga /opt/intelFPGA_lite/18.0/hld/board/c5soc/hardware
+git clone https://github.com/thinkococ5soc_opencl.git
+cd c5soc_opencl
+cp -rf de1soc_sharedonly_vga /optintelFPGA_lite/18.0/hld/board/c5soc/hardware
+cp -rf de10_nano_sharedonly_hdmi /opt/intelFPGA_lite/18.0/hld/board/c5soc/hardware
+cp -rf de10_standard_sharedonly_vga /opt/intelFPGA_lite/18.0/hld/board/c5soc/hardware
 ```
 
 ![](figure/c5soc_copy_bsp.png)
@@ -128,7 +128,7 @@ ls bin/mandelbrot_kernel.aocx
 ![](figure/c5soc_copy_aocx.png)
 
 ## Build the mandelbrot host on DE10_NANO
-1. boot the de10_nano and connect serial port to PC
+1. boot the de10_nano and connect serial port (USB-UART) to PC
 
 ```
 sudo minicom -D /dev/ttyUSB0 -8 -b 115200

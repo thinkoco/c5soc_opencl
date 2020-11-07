@@ -3,7 +3,7 @@
 **Now,you can download the `c5soc_opencl_lxde_fpga_reconfigurable.img` from the Cloud Drive and write it to SD card.**
 
 ## Start desktop 
-run following commands in the `serial port terminal`
+run following commands in the `serial port terminal` (USB-UART)
 ```
 modprobe altvipfb
 service lightdm start
@@ -12,7 +12,7 @@ export DISPLAY=:0
 ```
 
 ## FPGA reconfiguration
-source the `init_opencl_xxxx.sh` file in the serial port terminal
+source the `init_opencl_xxxx.sh` file in the serial port terminal (USB-UART)
 
 ```
 service lightdm stop
