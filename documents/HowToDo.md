@@ -44,15 +44,15 @@ sudo apt install minicom u-boot-tools gcc-arm-linux-gnueabihf g++-arm-linux-gnue
 ls /dev/sd*
 ```
 
-2. insert sdcard to PC and show the sdx device again, the new device is sdcard
+2. insert sdcard to PC and show the `sdx` device again, the new device is sdcard
 
  ![](figure/c5soc_show_sdx.png)
 
-3. unzip the Image and write it to sdx
+3. unzip the Image and write it to `sdx` with dd (change /dev/sdx to the new device in step 2)
 
 ```
 unzip c5soc_opencl_lxde_fpga_reconfigurable_20201027.zip
-sudo dd if=c5soc_opencl_lxde_fpga_reconfigurable.img of=/dev/sdb status=progress bs=1M
+sudo dd if=c5soc_opencl_lxde_fpga_reconfigurable.img of=/dev/sdx status=progress bs=1M
 ```
 
  ![](figure/c5soc_write_sdcard.png)
@@ -191,9 +191,13 @@ cd /mnt/mandelbrot_run
 
 ## run demo by aocl program
 
-1. connect  UVC usb camera to DE10_NANO
+1. connect  UVC usb camera and USB-UART to DE10_NANO.then,open the uart terminal on PC
+   
+```
+sudo minicom -D /dev/ttyUSB0 -8 -b 115200
+```
 
-2. stop lightdm and program by `aocl program`(serial port terminal)
+2. stop lightdm and program by `aocl program`(USB-UART terminal)
 
 ```
 cd /root
